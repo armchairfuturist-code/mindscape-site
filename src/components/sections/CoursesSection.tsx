@@ -1,0 +1,172 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowRight, Clock, Users, BookOpen } from "lucide-react";
+import { courses } from "@/data/courses";
+
+function CourseCard({ course }: { course: typeof courses[0] }) {
+    const statusColors = {
+        open: "bg-green-100 text-green-700",
+        waitlist: "bg-gold/20 text-gold-dark",
+        "coming-soon": "bg-slate-100 text-slate-600",
+    };
+
+    const statusLabels = {
+        open: "Enroll Now",
+        waitlist: "Join Waitlist",
+        "coming-soon": "Coming Soon",
+    };
+
+    const typeLabels = {
+        masterclass: "Masterclass",
+        certification: "Certification",
+        ebook: "eBook",
+    };
+
+    return (
+        <Link
+            href={`/courses/${course.slug}`}
+            className="group card-interactive flex flex-col h-full"
+        >
+            {/* Image */}
+            <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-5 -mx-6 -mt-6">
+                <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+
+                {/* Status Badge */}
+                <div className="absolute top-4 right-4">
+                    <span className={`badge ${statusColors[course.status]}`}>
+                        {statusLabels[course.status]}
+                    </span>
+                </div>
+
+                {/* Type Badge */}
+                <div className="absolute bottom-4 left-4">
+                    <span className="badge bg-white/90 text-navy backdrop-blur-sm">
+                        {typeLabels[course.type]}
+                    </span>
+                </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex-grow">
+                <h3 className="font-heading font-semibold text-lg text-navy mb-2 group-hover:text-teal transition-colors line-clamp-2">
+                    {course.title}
+                </h3>
+                <p className="text-slate-600 text-sm line-clamp-2 mb-4">
+                    {course.subtitle}
+                </p>
+
+                {/* Meta */}
+                <div className="flex flex-wrap gap-4 text-sm text-slate-500">
+                    {course.duration && (
+                        <span className="flex items-center gap-1.5">
+                            <Clock size={14} />
+                            {course.duration}
+                        </span>
+                    )}
+                    {course.instructor && (
+                        <span className="flex items-center gap-1.5">
+                            <Users size={14} />
+                            {course.instructor === 'both' ? 'Stephan & Amber' :
+                                course.instructor === 'stephan' ? 'Stephan Kerby' : 'Amber Kerby'}
+                        </span>
+                    )}
+                    {course.format && (
+                        <span className="flex items-center gap-1.5">
+                            <BookOpen size={14} />
+                            {course.format.split(' ')[0]}
+                        </span>
+                    )}
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
+                <div>
+                    {course.price ? (
+                        <span className="font-semibold text-navy">${course.price}</span>
+                    ) : (
+                        <span className="text-sm text-slate-500">
+                            {course.nextCohort ? `Next: ${course.nextCohort}` : 'View Details'}
+                        </span>
+                    )}
+                </div>
+                <span className="inline-flex items-center gap-1 text-teal font-medium text-sm group-hover:gap-2 transition-all">
+                    Learn More
+                    <ArrowRight size={16} />
+                </span>
+            </div>
+        </Link>
+    );
+}
+
+export default function CoursesSection() {
+    // Group courses by type
+    const certifications = courses.filter(c => c.type === 'certification');
+    const masterclasses = courses.filter(c => c.type === 'masterclass');
+    const ebooks = courses.filter(c => c.type === 'ebook');
+
+    return (
+        <section id="courses" className="section bg-white">
+            <div className="container-custom">
+                {/* Section Header */}
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <div className="decorative-line mx-auto mb-6" />
+                    <h2 className="text-navy mb-4">Our Programs</h2>
+                    <p className="text-lg text-slate-600">
+                        A wide range of coursework to fit your schedule and your needs.
+                        Whether you're a licensed clinician, facilitator, guide, or dedicated seeker,
+                        our curriculum is designed to meet you where you are.
+                    </p>
+                </div>
+
+                {/* Certification Programs */}
+                {certifications.length > 0 && (
+                    <div className="mb-16">
+                        <h3 className="text-2xl font-heading font-semibold text-navy mb-8">
+                            Certification Programs
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {certifications.map((course) => (
+                                <CourseCard key={course.slug} course={course} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Masterclasses */}
+                {masterclasses.length > 0 && (
+                    <div className="mb-16">
+                        <h3 className="text-2xl font-heading font-semibold text-navy mb-8">
+                            Masterclasses
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {masterclasses.map((course) => (
+                                <CourseCard key={course.slug} course={course} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* eBooks & Resources */}
+                {ebooks.length > 0 && (
+                    <div>
+                        <h3 className="text-2xl font-heading font-semibold text-navy mb-8">
+                            eBooks & Resources
+                        </h3>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {ebooks.map((course) => (
+                                <CourseCard key={course.slug} course={course} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+}
