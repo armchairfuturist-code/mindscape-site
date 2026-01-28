@@ -471,3 +471,25 @@ p {
   font-size: 1.125rem;
   line-height: 1.777;
 }
+
+/* Logo Color Control */
+.logo {
+  color: inherit;
+  transition: color 300ms ease;
+}
+
+body.dark .logo {
+  color: #FFFFFF;
+}
+
+body.light .logo {
+  color: #000000;
+}
+
+.header-light {
+  color: black !important;
+}
+
+.header-dark {
+  color: white !important;
+}

@@ -13,40 +13,40 @@ interface YouTubeVideo {
 // Placeholder videos - will be replaced with YouTube API integration
 const placeholderVideos: YouTubeVideo[] = [
     {
-        id: "video1",
-        title: "Introduction to 5-MeO-DMT Facilitation",
-        thumbnail: "/images/1.png",
-        publishedAt: "2024-01-15",
+        id: "o2wXQd3KaSM",
+        title: "The Art of Sacred Facilitation",
+        thumbnail: "https://img.youtube.com/vi/o2wXQd3KaSM/maxresdefault.jpg",
+        publishedAt: "2024-01-20",
     },
     {
-        id: "video2",
-        title: "Trauma-Informed Psychedelic Care",
-        thumbnail: "/images/2.png",
-        publishedAt: "2024-01-10",
+        id: "pZW5yo1JpoA",
+        title: "5-MeO/Bufo Facilitation: Beyond Costumes",
+        thumbnail: "https://img.youtube.com/vi/pZW5yo1JpoA/maxresdefault.jpg",
+        publishedAt: "2026-01-28",
     },
     {
-        id: "video3",
-        title: "The Art of Integration",
-        thumbnail: "/images/3.png",
-        publishedAt: "2024-01-05",
+        id: "Kix2m4jx_Yg",
+        title: "Ram Dass: We Meet Our Ideas, Not People",
+        thumbnail: "https://img.youtube.com/vi/Kix2m4jx_Yg/maxresdefault.jpg",
+        publishedAt: "2026-01-26",
     },
     {
-        id: "video4",
-        title: "Ethics in Psychedelic Facilitation",
-        thumbnail: "/images/1.png",
-        publishedAt: "2024-01-01",
+        id: "C_cXz3LwlRw",
+        title: "Judgement.. How Real Is It?",
+        thumbnail: "https://img.youtube.com/vi/C_cXz3LwlRw/maxresdefault.jpg",
+        publishedAt: "2026-01-25",
     },
     {
-        id: "video5",
-        title: "Ketamine-Assisted Psychotherapy Overview",
-        thumbnail: "/images/2.png",
-        publishedAt: "2023-12-28",
+        id: "xvLqh7eSyDo",
+        title: "Break Free From Old Patterns",
+        thumbnail: "https://img.youtube.com/vi/xvLqh7eSyDo/maxresdefault.jpg",
+        publishedAt: "2026-01-21",
     },
     {
-        id: "video6",
-        title: "Building Your Practice",
-        thumbnail: "/images/3.png",
-        publishedAt: "2023-12-20",
+        id: "mISdZWN_7w8",
+        title: "Why Losing a Pet Hurts MORE Than Losing a Person",
+        thumbnail: "https://img.youtube.com/vi/mISdZWN_7w8/maxresdefault.jpg",
+        publishedAt: "2026-01-20",
     },
 ];
 
@@ -54,19 +54,24 @@ export default function VideosSection() {
     const [videos, setVideos] = useState<YouTubeVideo[]>(placeholderVideos);
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
-    // TODO: Integrate YouTube API
-    // useEffect(() => {
-    //   async function fetchVideos() {
-    //     try {
-    //       const response = await fetch('/api/youtube');
-    //       const data = await response.json();
-    //       setVideos(data);
-    //     } catch (error) {
-    //       console.error('Failed to fetch videos:', error);
-    //     }
-    //   }
-    //   fetchVideos();
-    // }, []);
+    useEffect(() => {
+        async function fetchVideos() {
+            try {
+                const response = await fetch('/api/youtube');
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    // Keep the first placeholder as the "main" video per instructions
+                    // and append the most recent shorts below it
+                    setVideos([placeholderVideos[0], ...data]);
+                }
+            } catch (error) {
+                console.error('Failed to fetch videos:', error);
+            }
+        }
+        fetchVideos();
+    }, []);
 
     return (
         <section id="videos" className="section bg-navy relative overflow-hidden">
@@ -99,14 +104,23 @@ export default function VideosSection() {
                                 className="absolute inset-0 w-full h-full"
                             />
                         ) : (
-                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-navy-700 to-navy-900">
-                                <div className="text-center">
+                            <div
+                                className="absolute inset-0 flex items-center justify-center cursor-pointer group"
+                                onClick={() => setSelectedVideo(videos[0]?.id)}
+                            >
+                                <img
+                                    src={videos[0]?.thumbnail}
+                                    alt={videos[0]?.title}
+                                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute inset-0 bg-navy/40 group-hover:bg-navy/20 transition-colors" />
+                                <div className="relative z-10 text-center">
                                     <div className="w-20 h-20 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-4 
-                                 hover:bg-gold/30 transition-colors cursor-pointer group"
-                                        onClick={() => setSelectedVideo(videos[0]?.id)}>
-                                        <Play size={32} className="text-gold group-hover:scale-110 transition-transform" fill="currentColor" />
+                                 hover:bg-gold/40 transition-all group-hover:scale-110">
+                                        <Play size={32} className="text-gold" fill="currentColor" />
                                     </div>
-                                    <p className="text-white/60">Select a video to watch</p>
+                                    <p className="text-white font-medium text-lg mb-1">{videos[0]?.title}</p>
+                                    <p className="text-white/60">Click to play featured teaching</p>
                                 </div>
                             </div>
                         )}
@@ -115,7 +129,7 @@ export default function VideosSection() {
 
                 {/* Video Grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {videos.map((video, index) => (
+                    {videos.slice(1).map((video, index) => (
                         <button
                             key={video.id}
                             onClick={() => setSelectedVideo(video.id)}
@@ -159,12 +173,12 @@ export default function VideosSection() {
                 {/* YouTube Channel Link */}
                 <div className="text-center mt-12">
                     <a
-                        href="https://www.youtube.com/@mindscapeinstitute"
+                        href="https://www.youtube.com/@mindscapeinstitute/shorts"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-teal-300 hover:text-gold font-medium transition-colors"
                     >
-                        View all videos on YouTube
+                        View more shorts on YouTube
                         <ExternalLink size={16} />
                     </a>
                 </div>

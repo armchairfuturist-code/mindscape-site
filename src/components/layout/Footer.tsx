@@ -1,11 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Youtube, Linkedin, Instagram } from "lucide-react";
+import Logo from "../ui/Logo";
 
 const footerLinks = {
     programs: [
         { href: "/courses/5-meo-dmt-facilitation", label: "5-MeO-DMT Facilitation" },
-        { href: "/courses/ketamine-masterclass", label: "Ketamine Masterclass" },
         { href: "/courses/psilocybin-masterclass", label: "Psilocybin Masterclass" },
         { href: "/courses/mdma-masterclass", label: "MDMA Masterclass" },
         { href: "/courses/certified-entheogenic-guide", label: "Certified Entheogenic Guide" },
@@ -21,7 +21,7 @@ const footerLinks = {
 
 const socialLinks = [
     { href: "https://www.youtube.com/@mindscapeinstitute", icon: Youtube, label: "YouTube" },
-    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+    { href: "https://www.linkedin.com/in/mindscapeinstitute/", icon: Linkedin, label: "LinkedIn" },
     { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
     { href: "mailto:contact@mindscapeinstitute.com", icon: Mail, label: "Email" },
 ];
@@ -34,14 +34,9 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {/* Brand Column */}
                     <div className="lg:col-span-1">
-                        <Link href="/" className="flex items-center gap-3 mb-6">
-                            <div className="relative w-12 h-12">
-                                <Image
-                                    src="/images/bf2e421-d14-c32-6e20-deb615f31ce_Full_logo.webp"
-                                    alt="Mindscape Institute"
-                                    fill
-                                    className="object-contain"
-                                />
+                        <Link href="/" className="flex items-center gap-3 mb-6 text-white group">
+                            <div className="w-12 h-12 transition-all duration-300">
+                                <Logo className="w-full h-full" />
                             </div>
                             <div>
                                 <span className="font-heading font-bold text-lg leading-tight block">

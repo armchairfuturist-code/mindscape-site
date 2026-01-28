@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import Logo from "../ui/Logo";
 
 const navLinks = [
     { href: "#home", label: "Home" },
@@ -47,24 +48,21 @@ export default function Header() {
         <>
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                        ? "bg-white/95 backdrop-blur-md shadow-soft py-3"
-                        : "bg-transparent py-5"
+                    ? "bg-white/95 backdrop-blur-md shadow-soft py-3"
+                    : "bg-transparent py-5"
                     }`}
             >
                 <div className="container-custom">
                     <nav className="flex items-center justify-between">
                         {/* Logo */}
-                        <Link href="/" className="flex items-center gap-3 group">
-                            <div className="relative w-12 h-12 overflow-hidden">
-                                <Image
-                                    src="/images/bf2e421-d14-c32-6e20-deb615f31ce_Full_logo.webp"
-                                    alt="Mindscape Institute"
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
+                        <Link
+                            href="/"
+                            className={`flex items-center gap-3 group transition-colors ${isScrolled ? 'header-light' : 'header-dark'}`}
+                        >
+                            <div className="w-12 h-12 transition-all duration-300">
+                                <Logo className="w-full h-full" />
                             </div>
-                            <div className={`hidden sm:block transition-colors ${isScrolled ? 'text-navy' : 'text-white'}`}>
+                            <div className="hidden sm:block">
                                 <span className="font-heading font-bold text-lg leading-tight block">
                                     MINDSCAPE
                                 </span>
@@ -137,8 +135,8 @@ export default function Header() {
                                     href={link.href}
                                     onClick={(e) => handleNavClick(e, link.href)}
                                     className={`block py-4 text-xl font-heading font-medium text-white/90 hover:text-gold border-b border-white/10 transition-all duration-300 transform ${isMobileMenuOpen
-                                            ? "translate-x-0 opacity-100"
-                                            : "translate-x-8 opacity-0"
+                                        ? "translate-x-0 opacity-100"
+                                        : "translate-x-8 opacity-0"
                                         }`}
                                     style={{ transitionDelay: `${100 + index * 50}ms` }}
                                 >

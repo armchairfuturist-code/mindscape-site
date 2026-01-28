@@ -15,19 +15,19 @@ const founders = [
             "Somatic Integration",
             "Trauma-Informed Practice",
         ],
-        linkedin: "https://linkedin.com",
+        linkedin: "https://www.linkedin.com/in/mindscapeinstitute/",
     },
     {
         name: "Amber Kerby, LMFT",
         role: "Co-Founder & Lead Instructor",
         image: "/images/ea7b4995-4a6d-441f-a654-8950252753f4.jpg",
-        bio: "Licensed marriage and family therapist specializing in IFS, ketamine assisted psychotherapy (KAP), and psychedelic integration. Through Non Ordinary Therapy, LLC, I bring clinical expertise and deep compassion to the field of psychedelic-assisted healing.",
+        bio: "Licensed marriage and family therapist specializing in IFS and psychedelic integration. Through Non Ordinary Therapy, LLC, I bring clinical expertise and deep compassion to the field of psychedelic-assisted healing.",
         specialties: [
-            "Ketamine Assisted Psychotherapy",
             "IFS Level 2 Trained",
             "Psychedelic Integration",
+            "Trauma-Informed Practice",
         ],
-        linkedin: "https://linkedin.com",
+        linkedin: "https://www.linkedin.com/in/nonordinarytherapy/",
     },
 ];
 

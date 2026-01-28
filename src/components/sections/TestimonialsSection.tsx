@@ -13,13 +13,6 @@ const testimonials = [
         rating: 5,
     },
     {
-        id: 2,
-        quote: "Amber's ketamine training completely transformed my practice. Her integration of IFS with psychedelic therapy is groundbreaking. I feel genuinely equipped to help my clients now.",
-        author: "Michael Chen, LCSW",
-        role: "Therapist",
-        rating: 5,
-    },
-    {
         id: 3,
         quote: "The 5-MeO facilitator course was the most comprehensive and ethically grounded training I've found. The ongoing community support has been invaluable.",
         author: "Elena Rodriguez",

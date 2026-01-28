@@ -19,24 +19,26 @@ export default function HeroSection() {
         >
             {/* Background */}
             <div className="absolute inset-0">
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-hero-gradient z-10" />
-
-                {/* Animated background elements */}
+                {/* Image Background */}
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal/20 rounded-full blur-3xl animate-float" />
-                    <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold/10 rounded-full blur-3xl animate-float animation-delay-200" />
-                    <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-teal/15 rounded-full blur-3xl animate-float animation-delay-400" />
+                    <Image
+                        src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=2560"
+                        alt="Atmospheric Peaks - Mindscape Consciousness"
+                        fill
+                        priority
+                        className="object-cover"
+                    />
                 </div>
 
-                {/* Subtle pattern overlay */}
-                <div
-                    className="absolute inset-0 z-20 opacity-5"
-                    style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                        backgroundSize: '40px 40px',
-                    }}
-                />
+                {/* Overlays for depth and readability */}
+                <div className="absolute inset-0 bg-navy/60 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-navy/40 via-transparent to-navy/80 z-20" />
+
+                {/* Animated highlights */}
+                <div className="absolute inset-0 z-30 opacity-20 pointer-events-none">
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal/20 rounded-full blur-3xl animate-float" />
+                    <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold/10 rounded-full blur-3xl animate-float animation-delay-200" />
+                </div>
             </div>
 
             {/* Content */}

@@ -24,7 +24,6 @@ export const metadata: Metadata = {
     "psychedelic education",
     "psychedelic therapy training",
     "5-MeO-DMT facilitation",
-    "ketamine assisted psychotherapy",
     "psilocybin training",
     "MDMA therapy",
     "psychedelic integration",
