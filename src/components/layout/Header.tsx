@@ -90,7 +90,7 @@ export default function Header() {
                         {/* CTA Button */}
                         <div className="hidden lg:block">
                             <Link
-                                href="#"
+                                href="/coaching"
                                 className="btn-primary text-sm"
                             >
                                 Individual Coaching
@@ -148,7 +148,7 @@ export default function Header() {
                         {/* CTA */}
                         <div className="mt-8">
                             <Link
-                                href="#"
+                                href="/coaching"
                                 className="btn-primary w-full text-center"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >

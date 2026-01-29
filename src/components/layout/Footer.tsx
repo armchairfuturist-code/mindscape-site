@@ -8,6 +8,7 @@ const footerLinks = {
         { href: "/courses/5-meo-dmt-facilitation", label: "5-MeO-DMT Facilitation" },
         { href: "/courses/psilocybin-masterclass", label: "Psilocybin Masterclass" },
         { href: "/courses/mdma-masterclass", label: "MDMA Masterclass" },
+        { href: "/coaching", label: "Awareness Reset (1:1)" },
         { href: "/courses/certified-entheogenic-guide", label: "Certified Entheogenic Guide" },
     ],
     resources: [
