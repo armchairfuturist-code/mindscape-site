@@ -61,8 +61,14 @@ export default function CoachingContent() {
             <section id="details" className="py-24 bg-navy-900 text-white relative border-b border-navy-800">
                 <div className="container-custom">
                     <div className="max-w-3xl mx-auto text-center">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-500/10 mb-8 border border-red-500/20 text-red-400">
-                            <AlertCircle size={32} />
+                        <div className="max-w-2xl mx-auto mb-12 rounded-2xl overflow-hidden shadow-2xl border border-white/10 aspect-video relative bg-navy-800">
+                            <iframe
+                                src="https://www.youtube.com/embed/fDoYJQDsWCE"
+                                title="Awareness Reset: Video Preview"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="absolute inset-0 w-full h-full"
+                            />
                         </div>
                         <h2 className="text-3xl md:text-4xl font-heading font-bold mb-8 leading-snug">
                             "This is not therapy.<br />
@@ -119,13 +125,14 @@ export default function CoachingContent() {
                                 {/* Placeholder Content Image */}
                                 <div className="absolute inset-0 bg-navy/5" />
                                 <Image
-                                    src="https://images.unsplash.com/photo-1593811167026-cd309bea7750?q=80&w=2670&auto=format&fit=crop"
+                                    src="/images/image.png"
                                     alt="Deep contemplative state"
                                     fill
                                     className="object-cover"
+                                    priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end p-8">
-                                    <p className="text-white font-medium text-lg italic">
+                                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent flex items-end p-8">
+                                    <p className="text-white font-medium text-xl italic leading-relaxed">
                                         "This is quiet work. Precise work. And often deeply reorganizing."
                                     </p>
                                 </div>
