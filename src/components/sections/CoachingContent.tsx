@@ -125,14 +125,14 @@ export default function CoachingContent() {
                                 {/* Placeholder Content Image */}
                                 <div className="absolute inset-0 bg-navy/5" />
                                 <Image
-                                    src="/images/image.png"
+                                    src="/image.png"
                                     alt="Deep contemplative state"
                                     fill
                                     className="object-cover"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent flex items-end p-8">
-                                    <p className="text-white font-medium text-xl italic leading-relaxed">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end p-8">
+                                    <p className="text-white font-medium text-xl italic leading-relaxed drop-shadow-lg">
                                         "This is quiet work. Precise work. And often deeply reorganizing."
                                     </p>
                                 </div>
