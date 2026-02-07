@@ -322,8 +322,8 @@ export const courses: Course[] = [
     {
         slug: "expanding-therapeutic-horizons",
         title: "Expanding Therapeutic Horizons",
-        subtitle: "Therapy Hit a Wall. We’re Breaking It Down.",
-        description: "You know the feeling.\n\nYou’re sitting across from a client. You’ve done the work. You’ve used the modalities. You’ve built the rapport. But they’re still stuck. The trauma is lodged somewhere words just can’t reach.\n\nWe aren’t just entering a new chapter of mental health. We are rewriting the whole book.\n\nKetamine. Psilocybin. MDMA.\n\nThese aren’t just substances; they are keys. And the door is unlocking. The question isn’t if these tools will become the standard of care. The question is whether you’ll be ready when they do.",
+        subtitle: "",
+        description: "You’re sitting across from a client. You’ve done the work. You’ve used the modalities. You’ve built the rapport. But they’re still stuck. The trauma is lodged somewhere words just can’t reach.\n\nWe aren’t just entering a new chapter of mental health. We are rewriting the whole book.\n\nKetamine. Psilocybin. MDMA.\n\nThese aren’t just substances; they are keys. And the door is unlocking. The question isn’t if these tools will become the standard of care. The question is whether you’ll be ready when they do.",
         image: "/images/eth.avif",
         price: 299,
         priceTiers: [
