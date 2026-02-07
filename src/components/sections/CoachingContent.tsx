@@ -335,9 +335,14 @@ export default function CoachingContent() {
                             <p className="text-slate-600 italic mb-8">
                                 "This is not a sales call. If it’s not aligned, I’ll tell you."
                             </p>
-                            <Link href="/contact" className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4">
+                            <a
+                                href="https://tidycal.com/stephankerby/30-minute-meeting"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4"
+                            >
                                 Book Consultation <ArrowRight size={18} />
-                            </Link>
+                            </a>
                         </div>
                         <div className="bg-white p-8 rounded-2xl shadow-soft border border-slate-100">
                             <h3 className="font-heading font-bold text-navy mb-6 text-xl">About Kerby</h3>

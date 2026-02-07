@@ -114,11 +114,13 @@ function StatusToggle({
 function AccordionItem({
     title,
     topics,
+    description,
     isOpen,
     onClick,
 }: {
     title: string;
     topics: string[];
+    description?: string;
     isOpen: boolean;
     onClick: () => void;
 }) {
@@ -137,6 +139,9 @@ function AccordionItem({
             </button>
             {isOpen && (
                 <div className="p-5 pt-0 bg-white">
+                    {description && (
+                        <p className="text-slate-600 mb-4 italic">{description}</p>
+                    )}
                     <ul className="space-y-2">
                         {topics.map((topic, index) => (
                             <li key={index} className="flex items-start gap-3">
@@ -242,11 +247,13 @@ export default function CourseDetailContent({ course }: Props) {
                                         : "Digital Resource"}
                             </span>
 
-                            {/* Title */}
                             <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
                                 {course.title}
                             </h1>
-                            <p className="text-xl text-teal-200 mb-6">{course.subtitle}</p>
+                            <p className="text-xl text-teal-200 mb-6 font-semibold uppercase tracking-wide">{course.subtitle}</p>
+                            <div className="text-lg text-white/80 mb-8 whitespace-pre-wrap max-w-2xl leading-relaxed">
+                                {course.description}
+                            </div>
 
                             {/* Meta */}
                             <div className="flex flex-wrap gap-6 text-white/70 mb-8">
@@ -268,7 +275,9 @@ export default function CourseDetailContent({ course }: Props) {
                                         ? "Stephan & Amber"
                                         : course.instructor === "stephan"
                                             ? "Stephan Kerby"
-                                            : "Amber Kerby, LMFT"}
+                                            : course.instructor === "martin"
+                                                ? "Martin W. Ball, Ph.D."
+                                                : "Amber Kerby, LMFT"}
                                 </span>
                             </div>
 
@@ -374,17 +383,42 @@ export default function CourseDetailContent({ course }: Props) {
                         <div className="max-w-4xl">
                             <div className="decorative-line mb-8" />
                             <h2 className="text-navy mb-8">
-                                Experience What You're Really Capable Of
+                                {course.howItWorks ? "How It Works" : "Experience What You're Really Capable Of"}
                             </h2>
                             <div className="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
-                                <p className="text-xl text-navy-500/80 font-medium">
-                                    At Mindscape, we don't just teach facilitation; we master the art of transformative care.
-                                </p>
-                                <p>{course.description}</p>
+                                {course.howItWorksIntro ? (
+                                    <p className="text-xl text-navy-500/80 font-medium whitespace-pre-wrap">
+                                        {course.howItWorksIntro}
+                                    </p>
+                                ) : (
+                                    <p className="text-xl text-navy-500/80 font-medium">
+                                        At Mindscape, we don't just teach facilitation; we master the art of transformative care.
+                                    </p>
+                                )}
+                                {!course.howItWorks && <p>{course.description}</p>}
                             </div>
 
+                            {/* Detailed How It Works Grid */}
+                            {course.howItWorks && (
+                                <div className="mt-12 grid sm:grid-cols-2 gap-8">
+                                    {course.howItWorks.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className="p-8 rounded-2xl bg-white border border-slate-100 shadow-soft hover:shadow-medium transition-all group"
+                                        >
+                                            <h3 className="text-xl font-heading font-semibold text-navy mb-4 group-hover:text-teal transition-colors">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-slate-600 leading-relaxed">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
                             {/* Highlights Grid */}
-                            {course.highlights.length > 0 && (
+                            {course.highlights.length > 0 && !course.howItWorks && (
                                 <div className="mt-12 grid sm:grid-cols-2 gap-6">
                                     {course.highlights.map((highlight, index) => (
                                         <div
@@ -449,6 +483,7 @@ export default function CourseDetailContent({ course }: Props) {
                                         key={index}
                                         title={module.title}
                                         topics={module.topics}
+                                        description={module.description}
                                         isOpen={openAccordion === index}
                                         onClick={() =>
                                             setOpenAccordion(openAccordion === index ? null : index)

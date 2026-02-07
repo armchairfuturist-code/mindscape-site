@@ -73,7 +73,8 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                         <span className="flex items-center gap-1.5">
                             <Users size={14} />
                             {course.instructor === 'both' ? 'Stephan & Amber' :
-                                course.instructor === 'stephan' ? 'Stephan Kerby' : 'Amber Kerby'}
+                                course.instructor === 'stephan' ? 'Stephan Kerby' :
+                                    course.instructor === 'martin' ? 'Martin W. Ball, Ph.D.' : 'Amber Kerby'}
                         </span>
                     )}
                     {course.format && (
