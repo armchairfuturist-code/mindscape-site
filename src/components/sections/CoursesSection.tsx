@@ -12,7 +12,7 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
     };
 
     const statusLabels = {
-        open: "Enroll Now",
+        open: course.requiresInterview ? "Interview Required" : "Purchase Now",
         waitlist: "Join Waitlist",
         "coming-soon": "Coming Soon",
     };
@@ -128,9 +128,14 @@ export default function CoursesSection() {
                 {/* Certification Programs */}
                 {certifications.length > 0 && (
                     <div className="mb-16">
-                        <h3 className="text-2xl font-heading font-semibold text-navy mb-8">
-                            Certification Programs
-                        </h3>
+                        <div className="mb-8 p-6 bg-navy text-white rounded-xl">
+                            <h3 className="text-2xl font-heading font-semibold mb-2">
+                                Certification Programs
+                            </h3>
+                            <p className="text-slate-300">
+                                These are <strong>LIVE</strong> cohort-based trainings. To ensure the highest quality of facilitation and safety, an interview is required for all certification paths.
+                            </p>
+                        </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {certifications.map((course) => (
                                 <CourseCard key={course.slug} course={course} />
@@ -142,9 +147,14 @@ export default function CoursesSection() {
                 {/* Masterclasses */}
                 {masterclasses.length > 0 && (
                     <div className="mb-16">
-                        <h3 className="text-2xl font-heading font-semibold text-navy mb-8">
-                            Masterclasses
-                        </h3>
+                        <div className="mb-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
+                            <h3 className="text-2xl font-heading font-semibold text-navy mb-2">
+                                Masterclasses
+                            </h3>
+                            <p className="text-slate-600">
+                                <strong>Evergreen</strong> trainings designed for self-paced learning. No interviews needed—you can purchase and begin these trainings immediately.
+                            </p>
+                        </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {masterclasses.map((course) => (
                                 <CourseCard key={course.slug} course={course} />
@@ -156,9 +166,11 @@ export default function CoursesSection() {
                 {/* eBooks & Resources */}
                 {ebooks.length > 0 && (
                     <div>
-                        <h3 className="text-2xl font-heading font-semibold text-navy mb-8">
-                            eBooks & Resources
-                        </h3>
+                        <div className="mb-8">
+                            <h3 className="text-2xl font-heading font-semibold text-navy mb-2">
+                                eBooks & Resources
+                            </h3>
+                        </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {ebooks.map((course) => (
                                 <CourseCard key={course.slug} course={course} />
