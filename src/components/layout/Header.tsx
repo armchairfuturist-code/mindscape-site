@@ -2,21 +2,23 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Logo from "../ui/Logo";
 
 const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#videos", label: "Videos" },
-    { href: "#courses", label: "Courses" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#videos", label: "Videos", scrollId: "videos" },
+    { href: "/#courses", label: "Courses", scrollId: "courses" },
+    { href: "/#ebooks", label: "Books", scrollId: "ebooks" },
+    { href: "/#about", label: "About", scrollId: "about" },
+    { href: "/#contact", label: "The Vault", scrollId: "contact" },
 ];
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,20 +29,28 @@ export default function Header() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, scrollId: string) => {
         setIsMobileMenuOpen(false);
 
-        const element = document.querySelector(href);
-        if (element) {
-            const headerOffset = 80;
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        if (pathname === "/") {
+            e.preventDefault();
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth",
-            });
+            if (scrollId === "home") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                return;
+            }
+
+            const element = document.getElementById(scrollId);
+            if (element) {
+                const headerOffset = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                });
+            }
         }
     };
 
@@ -75,15 +85,15 @@ export default function Header() {
                         {/* Desktop Navigation */}
                         <div className="hidden lg:flex items-center gap-8">
                             {navLinks.map((link) => (
-                                <a
+                                <Link
                                     key={link.href}
                                     href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href)}
+                                    onClick={(e) => handleNavClick(e, link.href, link.scrollId)}
                                     className={`font-medium text-sm tracking-wide uppercase transition-colors hover:text-teal ${isScrolled ? "text-navy-600" : "text-white/90 hover:text-white"
                                         }`}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             ))}
                         </div>
 
@@ -130,10 +140,10 @@ export default function Header() {
                         {/* Nav Links */}
                         <nav className="flex-grow">
                             {navLinks.map((link, index) => (
-                                <a
+                                <Link
                                     key={link.href}
                                     href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href)}
+                                    onClick={(e) => handleNavClick(e, link.href, link.scrollId)}
                                     className={`block py-4 text-xl font-heading font-medium text-white/90 hover:text-gold border-b border-white/10 transition-all duration-300 transform ${isMobileMenuOpen
                                         ? "translate-x-0 opacity-100"
                                         : "translate-x-8 opacity-0"
@@ -141,7 +151,7 @@ export default function Header() {
                                     style={{ transitionDelay: `${100 + index * 50}ms` }}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             ))}
                         </nav>
 

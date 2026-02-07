@@ -115,66 +115,25 @@ export default function ContactSection() {
                                     Get Your Free Toolkit
                                 </h3>
                                 <p className="text-white/60 mb-8">
-                                    Enter your email to unlock the Vault and receive your
-                                    Facilitator's Toolkit instantly.
+                                    Unlock the Vault and receive your
+                                    Facilitator's Toolkit instantly through our Kajabi community.
                                 </p>
 
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div>
-                                        <label htmlFor="email" className="block text-white/80 text-sm font-medium mb-2">
-                                            Email Address
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="you@example.com"
-                                            required
-                                            className="w-full px-4 py-4 rounded-lg bg-white/10 border border-white/20
-                               text-white placeholder:text-white/40
-                               focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent
-                               transition-all duration-200"
-                                        />
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        disabled={isLoading}
-                                        className="w-full btn-primary py-4 text-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                                <div className="space-y-6">
+                                    <a
+                                        href="https://mindscape.mykajabi.com/mindscapevault"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full btn-primary py-4 text-lg inline-flex items-center justify-center gap-2"
                                     >
-                                        {isLoading ? (
-                                            <span className="flex items-center justify-center gap-2">
-                                                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                                                    <circle
-                                                        className="opacity-25"
-                                                        cx="12"
-                                                        cy="12"
-                                                        r="10"
-                                                        stroke="currentColor"
-                                                        strokeWidth="4"
-                                                        fill="none"
-                                                    />
-                                                    <path
-                                                        className="opacity-75"
-                                                        fill="currentColor"
-                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                                                    />
-                                                </svg>
-                                                Joining...
-                                            </span>
-                                        ) : (
-                                            <span className="flex items-center justify-center gap-2">
-                                                Get Instant Access
-                                                <Send size={18} />
-                                            </span>
-                                        )}
-                                    </button>
+                                        Get Instant Access
+                                        <Send size={18} />
+                                    </a>
 
                                     <p className="text-white/40 text-xs text-center">
-                                        We respect your privacy. Unsubscribe at any time.
+                                        Join over 1,200 facilitators in our private learning portal.
                                     </p>
-                                </form>
+                                </div>
                             </>
                         )}
                     </div>

@@ -39,6 +39,16 @@ export interface Course {
         title: string;
         description: string;
     }[];
+    guides?: {
+        name: string;
+        role: string;
+        description: string;
+    }[];
+    priceTiers?: {
+        label: string;
+        price: number;
+    }[];
+    amazonLink?: string;
 }
 
 export const courses: Course[] = [
@@ -311,98 +321,223 @@ export const courses: Course[] = [
     },
     {
         slug: "expanding-therapeutic-horizons",
-        title: "Masterclass: Expanding Therapeutic Horizons",
-        subtitle: "The Future of Therapy",
-        description: "Explore the emerging landscape of psychedelic-assisted therapy and how it's reshaping mental health treatment. Perfect for clinicians looking to understand this evolving field.",
+        title: "Expanding Therapeutic Horizons",
+        subtitle: "Therapy Hit a Wall. We’re Breaking It Down.",
+        description: "You know the feeling.\n\nYou’re sitting across from a client. You’ve done the work. You’ve used the modalities. You’ve built the rapport. But they’re still stuck. The trauma is lodged somewhere words just can’t reach.\n\nWe aren’t just entering a new chapter of mental health. We are rewriting the whole book.\n\nKetamine. Psilocybin. MDMA.\n\nThese aren’t just substances; they are keys. And the door is unlocking. The question isn’t if these tools will become the standard of care. The question is whether you’ll be ready when they do.",
         image: "/images/eth.avif",
-        price: null,
+        price: 299,
+        priceTiers: [
+            { label: "Standard", price: 299 },
+            { label: "With CE Credits", price: 349 }
+        ],
         type: "masterclass",
         status: "open",
         requiresInterview: false,
-        duration: "4 weeks",
-        format: "On-Demand",
-        instructor: "amber",
+        nextCohort: "May 31 – June 2",
+        duration: "3 Days",
+        format: "Online LIVE (Virtual Classroom)",
+        instructor: "both",
         metrics: {
             completionRate: 92,
             students: 650,
         },
         highlights: [
-            "Current research overview",
-            "Clinical trial insights",
-            "Integration with traditional therapy",
-            "Future trends and opportunities",
+            "Three days of immersion",
+            "Deep dive into Ketamine, Psilocybin, and MDMA",
+            "Live interaction with clinical and expert guides",
+            "Optional CE Credits available",
+        ],
+        howItWorksIntro: "Most training is passive. You watch a screen, you take notes, you forget half of it by dinner. We don’t do that here. This is three days of immersion. It’s a download of decades of experience—from the clinical sterility of the hospital to the raw reality of underground work—compressed into a format you can actually use.",
+        howItWorks: [
+            {
+                title: "The Setup",
+                description: "We meet live, virtually. No pre-recorded fluff. You’re in the room (digitally) with Dr. Mandler, Dr. Leeker, Dr. Wallington, and the Kerbys. You ask questions. You challenge ideas. You get answers.",
+            },
+            {
+                title: "The Goal",
+                description: "This isn’t about just learning 'facts.' It’s about synthesis. We take the pharmacology, the ethics, and the ancient history, and we braid them into a framework you can apply to your practice.",
+            },
+            {
+                title: "The Certification",
+                description: "For those who need the paper trail, we offer CE Credits ($349 tier). For those who just want the knowledge, we keep the price accessible ($299).",
+            },
         ],
         curriculum: [
             {
-                title: "The Psychedelic Renaissance",
+                title: "Day 1: The Bridge (Ketamine)",
+                description: "Ketamine is the 'now.' It’s the only legal psychedelic medicine currently available for widespread prescription. It is the bridge between the old world and the new.",
                 topics: [
-                    "Historical context and modern revival",
-                    "Current research landscape",
-                    "Regulatory developments",
+                    "The Science: We strip away the jargon and explain exactly what Ketamine does to the brain's neuroplasticity.",
+                    "The Practice: How to move from 'administering a drug' to 'facilitating a breakthrough.'",
+                    "The Evidence: Real clinical applications that show why this works for treatment-resistant depression when nothing else does.",
                 ],
             },
             {
-                title: "Clinical Applications",
+                title: "Day 2: The Deep Dive (Psilocybin)",
+                description: "The mushroom is the teacher. Here, we look backward to look forward.",
                 topics: [
-                    "PTSD and trauma treatment",
-                    "Depression and anxiety",
-                    "Addiction and end-of-life care",
+                    "Roots & Research: From indigenous wisdom to modern clinical trials. You can't understand the medicine if you don't respect the lineage.",
+                    "The Container: How to hold space when a client’s ego dissolves. Frameworks for safety, set, and setting.",
+                    "Integration: The journey is only 10% of the work. The other 90% is what happens after. We teach you how to help clients land.",
                 ],
             },
+            {
+                title: "Day 3: The Heart Opener (MDMA)",
+                description: "MDMA is poised to revolutionize PTSD treatment. It quiets the fear center (amygdala) so the client can finally look their trauma in the eye without blinking.",
+                topics: [
+                    "The Mechanism: Why MDMA is unique compared to classic psychedelics.",
+                    "Trauma Work: Analyzing the Phase 3 clinical trials that are shocking the medical community with their success rates.",
+                    "The Future: Navigating the complex legal and ethical landscape that is shifting beneath our feet right now.",
+                ],
+            },
+        ],
+        guides: [
+            {
+                name: "Stephan \"Kerby\" Kerby",
+                role: "The Visionary",
+                description: "Founder of Unchurch University. He bridges the gap between the street and the clinic. A master facilitator of 5-MeO-DMT who understands that trauma-informed care is the only care that matters."
+            },
+            {
+                name: "Amber Kerby, LMFT",
+                role: "The Integrator",
+                description: "She blends the clinical world of Marriage and Family Therapy with the depth of Internal Family Systems (IFS) and Ketamine. She knows how to hold space for the parts of us that are most afraid."
+            },
+            {
+                name: "Dr. Stephen Mandler",
+                role: "The Psychiatrist",
+                description: "Chief Medical Officer. Board-certified. He’s been everywhere from Afghanistan to the Menninger Clinic. He brings the medical weight and credibility necessary to legitimize this work in the eyes of the establishment."
+            },
+            {
+                name: "Dr. Olivia Leeker",
+                role: "The Psychologist",
+                description: "17+ years in the trenches—from VA hospitals to corrections. She understands the darkest corners of the human experience and uses psychedelic integration to bring light to them."
+            },
+            {
+                name: "Dr. Desmond Wallington",
+                role: "The Activist-Healer",
+                description: "A licensed psychologist with Indigenous heritage. He helped decriminalize nature in DC and Denver. He reminds us that \"new\" medicine is actually very, very old."
+            }
         ],
         faq: [
             {
-                question: "Is this for licensed therapists only?",
-                answer: "While designed with clinicians in mind, this course is valuable for anyone interested in the therapeutic applications of psychedelics.",
+                question: "\"Is this legal?\"",
+                answer: "The education is 100% legal. The application depends on where you live and your license. Ketamine is legal for medical use now. MDMA and Psilocybin are on the fast track for FDA approval, with specific jurisdictions (like Oregon and Colorado) already opening doors. We teach you the map so you don't get lost in the territory."
             },
-        ],
+            {
+                question: "\"I’m just a talk therapist. Is this too medical for me?\"",
+                answer: "No. This is designed for the \"Intermediate\" professional. If you understand basic psychology and mental health, you belong here. You don’t need to be a chemist to understand how these medicines heal. We translate the pharmacology into human language."
+            },
+            {
+                question: "\"Why these specific instructors?\"",
+                answer: "Because you need both sides of the coin. You need Dr. Stephen Mandler and Dr. Olivia Leeker for the clinical, board-certified, \"hospital-grade\" safety and legitimacy. But you also need Stephan and Amber Kerby. You need the underground wisdom, the \"Wounded Healer\" perspective, and the raw experience of guiding thousands of journeys. We blend the white coat with the shamanic heart. That’s the only way this works."
+            },
+            {
+                question: "\"Will I be certified to administer MDMA after this?\"",
+                answer: "No course can legally grant you that right yet—because the federal laws haven't fully flipped. This course gives you the foundation. It puts you at the front of the line. When the floodgates open, you won't be scrambling to learn the basics. You’ll be ready to serve."
+            }
+        ]
     },
     {
         slug: "mdma-masterclass",
-        title: "Masterclass - MDMA",
-        subtitle: "MDMA-Assisted Therapy Training",
-        description: "Prepare for the emerging field of MDMA-assisted therapy. This course covers the MAPS protocol, trauma-informed approaches, and the unique considerations of working with MDMA.",
+        title: "Masterclass: MDMA",
+        subtitle: "The Molecule of Connection",
+        description: "You know that feeling? The one where the static in your head finally goes quiet. The walls you built—brick by bloody brick—suddenly look transparent. You can breathe. You can connect.\n\nThat’s the promise of MDMA.\n\nBut let’s be real for a second. There’s the street version of the story, full of clenched jaws and bad techno, and then there’s the truth. The truth is that this molecule is currently shaking the foundations of modern psychiatry. It’s doing in three sessions what talk therapy hasn’t been able to do in thirty years.\n\nWe aren't here to moralize. We’re here to understand.\n\nThis Master Class is the signal in the noise. It’s a deep, unflinching look at the history, the chemistry, and the sheer human potential of MDMA. Whether you’re a therapist trying to understand the future of your field, or just someone trying to understand the wiring of your own brain, this is where you start.",
         image: "/images/mdma.avif",
-        price: null,
+        price: 49,
         type: "masterclass",
-        status: "waitlist",
+        status: "open",
         requiresInterview: false,
-        nextCohort: "March 2026",
-        duration: "8 weeks",
-        format: "Live Online",
+        nextCohort: "Immediate Access",
+        duration: "Self-Paced",
+        format: "Digital Masterclass",
         instructor: "both",
         metrics: {
             completionRate: 94,
             recommendRate: 97,
         },
         highlights: [
-            "MAPS protocol training",
-            "Trauma-informed approaches",
-            "Co-therapy models",
-            "Integration frameworks",
+            "Comprehensive history and origin story",
+            "In-depth pharmacology and neurochemistry",
+            "PTSD trials and clinical applications",
+            "Safety, risk, and harm reduction maps",
+        ],
+        howItWorksIntro: "We stripped away the academic fluff. No gatekeeping. No semester-long commitments. Just the raw information, delivered straight to you.",
+        howItWorks: [
+            {
+                title: "1. The Download (Self-Paced Study)",
+                description: "Once you’re in, you own it. The content is yours to devour at 2 AM on a Tuesday or slowly digest over a month of Sundays. We know life gets in the way. We know you’re busy. So we built this to fit into the cracks of your schedule. You set the rhythm.",
+            },
+            {
+                title: "2. The Deep Dive (Curriculum)",
+                description: "We go through it all. The good, the bad, and the chemically complex. You’ll watch, read, and listen as we dismantle the myths and look at the actual mechanics of how this substance rewires trauma and opens the heart.",
+            },
+            {
+                title: "3. The Human Element (Optional 1-on-1)",
+                description: "Sometimes, you hit a wall. Or maybe a revelation that you need to pressure-test against a real human being. For a small extra fee, you can book a session with the instructor. No chatbots. No scripts. Just a real conversation to clarify the nuance and dig deeper into the specific things keeping you up at night.",
+            },
         ],
         curriculum: [
             {
-                title: "MDMA Science & History",
+                title: "Module 1: The Origin Story",
+                description: "Before it was a party drug, it was a mistake. Then it was a secret. Then it was a threat. We trace the lineage from the Merck labs in 1912 through the therapy rooms of the 70s to the rave scene and back to the FDA’s desk today. Context is everything.",
                 topics: [
-                    "Pharmacology and effects",
-                    "Research history and current trials",
-                    "Regulatory pathway to approval",
+                    "Merck Lab origins (1912)",
+                    "Therapeutic use in the 1970s",
+                    "The shift to the rave scene",
+                    "The modern FDA approval path",
                 ],
             },
             {
-                title: "Therapeutic Applications",
+                title: "Module 2: Under the Hood (Pharmacology)",
+                description: "What actually happens when the molecule hits the serotonin receptor? We strip down the biology. You don't need a medical degree to understand this, but you will need to pay attention. We talk mechanism of action, neurotoxicity, and the delicate dance of neurochemistry.",
                 topics: [
-                    "PTSD treatment protocols",
-                    "The therapeutic relationship in MDMA therapy",
-                    "Working with trauma memories",
+                    "Serotonin receptor mechanics",
+                    "Mechanism of Action (MOA)",
+                    "Neurotoxicity risks",
+                    "Biological effects on the heart and brain",
+                ],
+            },
+            {
+                title: "Module 3: The Scalpel (Therapeutic Application)",
+                description: "Here’s where it gets heavy. We look at the research. The PTSD trials. The couples therapy. The way MDMA acts not as a numbing agent, but as an emotional anesthetic that allows you to perform surgery on your own soul. We look at why it works when nothing else does.",
+                topics: [
+                    "PTSD Phase 3 clinical trials",
+                    "Couples therapy applications",
+                    "Emotional anesthesia and memory reconsolidation",
+                    "Case studies in healing",
+                ],
+            },
+            {
+                title: "Module 4: Safety, Risk, and the Dark Side",
+                description: "We don’t sugarcoat it. There are risks. There are contraindications. There are ways to do this wrong that end in disaster. We talk about harm reduction, dosage, set, and setting. If you respect the substance, it respects you. If you don't... well, we cover that too.",
+                topics: [
+                    "Contraindications and medication interactions",
+                    "Dosage guidelines and purity",
+                    "Harm reduction strategies",
+                    "Set and setting optimization",
                 ],
             },
         ],
         faq: [
             {
-                question: "When will MDMA therapy be legal?",
-                answer: "We cover the current regulatory landscape and prepare you for when MDMA-assisted therapy receives approval.",
+                question: "\"Do I need a science background to get this?\"",
+                answer: "No. If you can read this, you can learn this. We explain the jargon. We translate the biochemistry into English. We built this for humans, not just academics.",
+            },
+            {
+                question: "\"Is this course advocating for illegal use?\"",
+                answer: "Look, we’re educators, not your lawyer or your dealer. We provide information. Unbiased, research-backed data. What you do with your own consciousness is, frankly, your business. But we believe you should be navigating the territory with a map, not a blindfold.",
+            },
+            {
+                question: "\"Why is it so cheap?\"",
+                answer: "Because information wants to be free, but hosting servers costs money. We priced this to be a \"hell yes\" decision. We want this knowledge in as many hands as possible because we think it matters.",
+            },
+            {
+                question: "\"Can I really talk to the instructor?\"",
+                answer: "Yes. For a nominal fee. Sometimes you need to look someone in the eye (or through a screen) and ask the hard question. We make that space available because generic answers rarely solve specific problems.",
+            },
+            {
+                question: "\"Is this relevant if I just want to understand the therapy aspect?\"",
+                answer: "It’s especially relevant then. The medicalization of MDMA is happening right now. If you're in the healing space and you aren't looking at this, you're looking at the past. This is the future.",
             },
         ],
     },
@@ -505,14 +640,15 @@ export const courses: Course[] = [
     {
         slug: "embodiment-protocol",
         title: "The Embodiment Protocol",
-        subtitle: "A Practical Guide to Somatic Integration",
-        description: "A comprehensive eBook guide to embodiment practices for psychedelic integration. Essential reading for facilitators and individuals seeking to ground transformative experiences in the body.",
-        image: "/images/3.png",
-        price: 19.99,
+        subtitle: "A Practical Guide to Awakening with 5-MeO-DMT",
+        description: "A precise, somatic map for navigating the non-dual landscape. This protocol bridges the gap between peak 5-MeO-DMT experiences and permanent, embodied awakening.",
+        image: "/images/ep.jpg",
+        price: null,
         type: "ebook",
         status: "open",
-        format: "Digital Download",
-        instructor: "stephan",
+        format: "eBook/Paperback",
+        instructor: "both",
+        amazonLink: "https://a.co/d/01vCBCxJ",
         metrics: {
             students: 1200,
         },
@@ -520,43 +656,34 @@ export const courses: Course[] = [
             "Practical somatic exercises",
             "Integration frameworks",
             "Daily embodiment practices",
-            "Trauma-informed approach",
+            "Non-dual realization mapping",
         ],
         curriculum: [],
-        faq: [
-            {
-                question: "Is this suitable for beginners?",
-                answer: "Yes, the protocol is designed to be accessible for anyone interested in embodiment practices.",
-            },
-        ],
+        faq: [],
     },
     {
-        slug: "educational-manual",
-        title: "Educational Manual eBook",
-        subtitle: "Kerby, Stephan, Ball",
-        description: "A collaborative educational manual covering the foundations of psychedelic facilitation. Written by Stephan Kerby and Martin Ball, this text serves as essential reading for our certification programs.",
-        image: "/images/1.png",
-        price: 29.99,
+        slug: "trauma-informed-manual",
+        title: "Trauma-Informed 5-MeO-DMT Facilitation",
+        subtitle: "An Educational Manual",
+        description: "The professional standard for sacred medicine work. A comprehensive manual detailing safe, ethical, and clinical frameworks for holding the highest levels of psychedelic experience.",
+        image: "/images/TI.jpg",
+        price: null,
         type: "ebook",
         status: "open",
-        format: "Digital Download",
+        format: "eBook/Paperback",
         instructor: "stephan",
+        amazonLink: "https://a.co/d/0itFRdyD",
         metrics: {
             students: 850,
         },
         highlights: [
             "Comprehensive facilitation guide",
             "Safety protocols and ethics",
-            "Integration frameworks",
-            "Case studies and examples",
+            "Trauma-informed frameworks",
+            "Professional standards",
         ],
         curriculum: [],
-        faq: [
-            {
-                question: "Is this required for certification courses?",
-                answer: "This manual is included with our certification programs and serves as a key reference text.",
-            },
-        ],
+        faq: [],
     },
 ];
 

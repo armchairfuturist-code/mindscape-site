@@ -12,11 +12,11 @@ const footerLinks = {
         { href: "/courses/certified-entheogenic-guide", label: "Certified Entheogenic Guide" },
     ],
     resources: [
-        { href: "#videos", label: "Video Library" },
+        { href: "/#videos", label: "Video Library" },
         { href: "#", label: "Facilitator Toolkit" },
         { href: "#", label: "Research & Articles" },
-        { href: "#about", label: "About Us" },
-        { href: "#contact", label: "Contact" },
+        { href: "/#about", label: "About Us" },
+        { href: "/#contact", label: "Contact" },
     ],
 };
 
@@ -109,25 +109,17 @@ export default function Footer() {
                         <h4 className="font-heading font-semibold text-lg mb-6">
                             Join the Mindscape Vault
                         </h4>
-                        <p className="text-white/70 text-sm mb-4">
+                        <p className="text-white/70 text-sm mb-6">
                             Get exclusive teachings, tools, and early access to trainings.
                         </p>
-                        <form className="space-y-3">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20
-                         text-white placeholder:text-white/50
-                         focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent
-                         transition-all duration-200"
-                            />
-                            <button
-                                type="submit"
-                                className="w-full btn-primary"
-                            >
-                                Get Free Toolkit
-                            </button>
-                        </form>
+                        <a
+                            href="https://mindscape.mykajabi.com/mindscapevault"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full btn-primary inline-flex items-center justify-center text-center"
+                        >
+                            Get Instant Access
+                        </a>
                     </div>
                 </div>
             </div>

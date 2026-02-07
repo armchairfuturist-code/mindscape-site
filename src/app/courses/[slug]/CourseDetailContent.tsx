@@ -51,10 +51,21 @@ function StatusToggle({
                 >
                     Apply Now
                 </Link>
-                {course.price && (
-                    <p className="text-white/50 text-sm text-center mt-4">
-                        Price: ${course.price}
-                    </p>
+                {course.priceTiers ? (
+                    <div className="mt-4 space-y-2">
+                        {course.priceTiers.map((tier, i) => (
+                            <div key={i} className="flex justify-between items-center text-sm text-white/70 px-4 py-3 bg-white/5 rounded-lg border border-white/10">
+                                <span className="font-medium text-white/90">{tier.label}</span>
+                                <span className="font-bold text-gold">${tier.price}</span>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    course.price && (
+                        <p className="text-white/50 text-sm text-center mt-4">
+                            Price: ${course.price}
+                        </p>
+                    )
                 )}
             </div>
         );
@@ -206,6 +217,7 @@ export default function CourseDetailContent({ course }: Props) {
         { id: "how-it-works", label: "How It Works" },
         { id: "schedule", label: "Schedule" },
         { id: "curriculum", label: "Curriculum" },
+        ...(course.guides ? [{ id: "guides", label: "Your Guides" }] : []),
         { id: "apply", label: course.status === "open" ? "Apply Now" : "Waitlist" },
         { id: "faq", label: "FAQ" },
     ];
@@ -489,6 +501,33 @@ export default function CourseDetailContent({ course }: Props) {
                                             setOpenAccordion(openAccordion === index ? null : index)
                                         }
                                     />
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* Guides / Your Guides */}
+                {course.guides && course.guides.length > 0 && (
+                    <section id="guides" className="section bg-slate-50">
+                        <div className="container-custom">
+                            <div className="text-center max-w-3xl mx-auto mb-16">
+                                <div className="decorative-line mx-auto mb-6" />
+                                <h2 className="text-navy mb-4">Your Guides</h2>
+                                <p className="text-lg text-slate-600">
+                                    A blend of clinical precision and experiential wisdom.
+                                </p>
+                            </div>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {course.guides.map((guide, index) => (
+                                    <div key={index} className="bg-white p-8 rounded-2xl shadow-soft border border-slate-100 flex flex-col items-center text-center">
+                                        <div className="w-20 h-20 rounded-full bg-navy/5 flex items-center justify-center mb-6 border-2 border-gold/30">
+                                            <Users size={32} className="text-navy/40" />
+                                        </div>
+                                        <h3 className="text-xl font-bold text-navy mb-1">{guide.name}</h3>
+                                        <p className="text-teal font-semibold text-sm uppercase tracking-wider mb-4">{guide.role}</p>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{guide.description}</p>
+                                    </div>
                                 ))}
                             </div>
                         </div>

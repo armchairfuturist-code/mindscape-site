@@ -23,11 +23,11 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
         ebook: "eBook",
     };
 
-    return (
-        <Link
-            href={`/courses/${course.slug}`}
-            className="group card-interactive flex flex-col h-full"
-        >
+    const isExternal = !!course.amazonLink;
+    const href = course.amazonLink || `/courses/${course.slug}`;
+
+    const cardContent = (
+        <>
             {/* Image */}
             <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-5 -mx-6 -mt-6">
                 <img
@@ -44,12 +44,14 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                     </span>
                 </div>
 
-                {/* Type Badge */}
-                <div className="absolute bottom-4 left-4">
-                    <span className="badge bg-white/90 text-navy backdrop-blur-sm">
-                        {typeLabels[course.type]}
-                    </span>
-                </div>
+                {/* Type Badge - Hidden for ebooks */}
+                {course.type !== 'ebook' && (
+                    <div className="absolute bottom-4 left-4">
+                        <span className="badge bg-white/90 text-navy backdrop-blur-sm">
+                            {typeLabels[course.type]}
+                        </span>
+                    </div>
+                )}
             </div>
 
             {/* Content */}
@@ -80,7 +82,7 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                     {course.format && (
                         <span className="flex items-center gap-1.5">
                             <BookOpen size={14} />
-                            {course.format.split(' ')[0]}
+                            {course.format}
                         </span>
                     )}
                 </div>
@@ -93,15 +95,37 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                         <span className="font-semibold text-navy">${course.price}</span>
                     ) : (
                         <span className="text-sm text-slate-500">
-                            {course.nextCohort ? `Next: ${course.nextCohort}` : 'View Details'}
+                            {isExternal ? 'Amazon' : (course.nextCohort ? `Next: ${course.nextCohort}` : 'View Details')}
                         </span>
                     )}
                 </div>
                 <span className="inline-flex items-center gap-1 text-teal font-medium text-sm group-hover:gap-2 transition-all">
-                    Learn More
+                    {isExternal ? 'Buy on Amazon' : 'Learn More'}
                     <ArrowRight size={16} />
                 </span>
             </div>
+        </>
+    );
+
+    if (isExternal) {
+        return (
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group card-interactive flex flex-col h-full"
+            >
+                {cardContent}
+            </a>
+        );
+    }
+
+    return (
+        <Link
+            href={href}
+            className="group card-interactive flex flex-col h-full"
+        >
+            {cardContent}
         </Link>
     );
 }
@@ -166,7 +190,7 @@ export default function CoursesSection() {
 
                 {/* eBooks & Resources */}
                 {ebooks.length > 0 && (
-                    <div>
+                    <div id="ebooks">
                         <div className="mb-8">
                             <h3 className="text-2xl font-heading font-semibold text-navy mb-2">
                                 eBooks & Resources
