@@ -322,8 +322,8 @@ export const courses: Course[] = [
     {
         slug: "expanding-therapeutic-horizons",
         title: "Expanding Therapeutic Horizons",
-        subtitle: "",
-        description: "You’re sitting across from a client. You’ve done the work. You’ve used the modalities. You’ve built the rapport. But they’re still stuck. The trauma is lodged somewhere words just can’t reach.\n\nWe aren’t just entering a new chapter of mental health. We are rewriting the whole book.\n\nKetamine. Psilocybin. MDMA.\n\nThese aren’t just substances; they are keys. And the door is unlocking. The question isn’t if these tools will become the standard of care. The question is whether you’ll be ready when they do.",
+        subtitle: "A Clinical, Trauma-Informed Approach",
+        description: "Expanding Therapeutic Horizons is an in-depth, self-paced course designed for therapists and clinical professionals seeking a responsible, evidence-informed understanding of psychedelic-assisted approaches.\n\nThis training examines psilocybin, MDMA, and ketamine through a therapeutic and clinical lens, emphasizing safety, ethical practice, preparation, and integration. Rather than promoting psychedelics as standalone solutions, the course explores how these substances can support therapeutic work when approached with structure, discernment, and trauma-informed care.",
         image: "/images/eth.avif",
         price: 299,
         priceTiers: [
@@ -333,61 +333,64 @@ export const courses: Course[] = [
         type: "masterclass",
         status: "open",
         requiresInterview: false,
-        nextCohort: "May 31 – June 2",
-        duration: "3 Days",
-        format: "Online LIVE (Virtual Classroom)",
+        duration: "Self-Paced",
+        format: "Evergreen",
         instructor: "both",
         metrics: {
             completionRate: 92,
             students: 650,
         },
         highlights: [
-            "Three days of immersion",
-            "Deep dive into Ketamine, Psilocybin, and MDMA",
-            "Live interaction with clinical and expert guides",
-            "Optional CE Credits available",
+            "Clinical perspectives on psilocybin, MDMA, and ketamine",
+            "Neurobiology and mechanisms of action",
+            "Screening, assessment, and contraindications",
+            "Trauma-informed facilitation frameworks",
         ],
-        howItWorksIntro: "Most training is passive. You watch a screen, you take notes, you forget half of it by dinner. We don’t do that here. This is three days of immersion. It’s a download of decades of experience—from the clinical sterility of the hospital to the raw reality of underground work—compressed into a format you can actually use.",
+        howItWorksIntro: "A clinically grounded perspective taught by a multidisciplinary faculty including doctors of psychology, psychiatric care, and experienced facilitators.",
         howItWorks: [
             {
-                title: "The Setup",
-                description: "We meet live, virtually. No pre-recorded fluff. You’re in the room (digitally) with Dr. Mandler, Dr. Leeker, Dr. Wallington, and the Kerbys. You ask questions. You challenge ideas. You get answers.",
+                title: "A Clinically Grounded Perspective",
+                description: "This course is taught by a multidisciplinary faculty, bringing medical, psychological, and facilitation perspectives into a cohesive clinical framework that bridges theory and practice. The focus throughout is on clinical responsibility, not trend-driven enthusiasm.",
             },
             {
-                title: "The Goal",
-                description: "This isn’t about just learning 'facts.' It’s about synthesis. We take the pharmacology, the ethics, and the ancient history, and we braid them into a framework you can apply to your practice.",
+                title: "Trauma-Informed at Every Level",
+                description: "This training is built on the understanding that psychedelic work often amplifies underlying trauma dynamics. We explore nervous system regulation, working with vulnerability, and avoiding re-traumatization through pacing and consent.",
             },
             {
-                title: "The Certification",
-                description: "For those who need the paper trail, we offer CE Credits ($349 tier). For those who just want the knowledge, we keep the price accessible ($299).",
+                title: "Designed for Depth, Not Hype",
+                description: "Ideal for clinicians who want to expand their understanding without abandoning professional rigor. Especially relevant for therapists exploring psychedelic-assisted therapy and mental health professionals seeking clarity around emerging modalities.",
+            },
+            {
+                title: "Expanding Responsibly",
+                description: "Psychedelic-assisted therapy is an evolving field that demands both curiosity and restraint. This course offers a grounded framework for understanding how these substances can fit into thoughtful, trauma-informed care.",
             },
         ],
         curriculum: [
             {
-                title: "Day 1: The Bridge (Ketamine)",
-                description: "Ketamine is the 'now.' It’s the only legal psychedelic medicine currently available for widespread prescription. It is the bridge between the old world and the new.",
+                title: "Module 1: Clinical Foundations",
+                description: "Neurobiology, mechanisms of action, and therapeutic relevance of Psilocybin, MDMA, and Ketamine.",
                 topics: [
-                    "The Science: We strip away the jargon and explain exactly what Ketamine does to the brain's neuroplasticity.",
-                    "The Practice: How to move from 'administering a drug' to 'facilitating a breakthrough.'",
-                    "The Evidence: Real clinical applications that show why this works for treatment-resistant depression when nothing else does.",
+                    "Clinical perspectives on psilocybin, MDMA, and ketamine",
+                    "Neurobiology and mechanisms of action",
+                    "Therapeutic relevance and applications",
                 ],
             },
             {
-                title: "Day 2: The Deep Dive (Psilocybin)",
-                description: "The mushroom is the teacher. Here, we look backward to look forward.",
+                title: "Module 2: Safety & Assessment",
+                description: "Screening, assessment, and contraindications for therapeutic safety.",
                 topics: [
-                    "Roots & Research: From indigenous wisdom to modern clinical trials. You can't understand the medicine if you don't respect the lineage.",
-                    "The Container: How to hold space when a client’s ego dissolves. Frameworks for safety, set, and setting.",
-                    "Integration: The journey is only 10% of the work. The other 90% is what happens after. We teach you how to help clients land.",
+                    "Screening and assessment protocols",
+                    "Contraindications and safety planning",
+                    "Preparation strategies for efficacy",
                 ],
             },
             {
-                title: "Day 3: The Heart Opener (MDMA)",
-                description: "MDMA is poised to revolutionize PTSD treatment. It quiets the fear center (amygdala) so the client can finally look their trauma in the eye without blinking.",
+                title: "Module 3: Trauma-Informed Frameworks",
+                description: "Facilitation and session structure with a focus on trauma-informed care.",
                 topics: [
-                    "The Mechanism: Why MDMA is unique compared to classic psychedelics.",
-                    "Trauma Work: Analyzing the Phase 3 clinical trials that are shocking the medical community with their success rates.",
-                    "The Future: Navigating the complex legal and ethical landscape that is shifting beneath our feet right now.",
+                    "Trauma-informed facilitation",
+                    "Session structure and pacing",
+                    "Ethical considerations and scope",
                 ],
             },
         ],
@@ -428,130 +431,112 @@ export const courses: Course[] = [
                 answer: "No. This is designed for the \"Intermediate\" professional. If you understand basic psychology and mental health, you belong here. You don’t need to be a chemist to understand how these medicines heal. We translate the pharmacology into human language."
             },
             {
-                question: "\"Why these specific instructors?\"",
-                answer: "Because you need both sides of the coin. You need Dr. Stephen Mandler and Dr. Olivia Leeker for the clinical, board-certified, \"hospital-grade\" safety and legitimacy. But you also need Stephan and Amber Kerby. You need the underground wisdom, the \"Wounded Healer\" perspective, and the raw experience of guiding thousands of journeys. We blend the white coat with the shamanic heart. That’s the only way this works."
-            },
-            {
-                question: "\"Will I be certified to administer MDMA after this?\"",
-                answer: "No course can legally grant you that right yet—because the federal laws haven't fully flipped. This course gives you the foundation. It puts you at the front of the line. When the floodgates open, you won't be scrambling to learn the basics. You’ll be ready to serve."
+                question: "\"Will I be certified to administer after this?\"",
+                answer: "No single course can legally grant you that right yet in most jurisdictions—federal laws are still shifting. This course gives you the clinical foundation to practice responsibly within your scope and legal framework."
             }
         ]
     },
     {
         slug: "mdma-masterclass",
-        title: "Masterclass: MDMA",
-        subtitle: "The Molecule of Connection",
-        description: "You know that feeling? The one where the static in your head finally goes quiet. The walls you built—brick by bloody brick—suddenly look transparent. You can breathe. You can connect.\n\nThat’s the promise of MDMA.\n\nBut let’s be real for a second. There’s the street version of the story, full of clenched jaws and bad techno, and then there’s the truth. The truth is that this molecule is currently shaking the foundations of modern psychiatry. It’s doing in three sessions what talk therapy hasn’t been able to do in thirty years.\n\nWe aren't here to moralize. We’re here to understand.\n\nThis Master Class is the signal in the noise. It’s a deep, unflinching look at the history, the chemistry, and the sheer human potential of MDMA. Whether you’re a therapist trying to understand the future of your field, or just someone trying to understand the wiring of your own brain, this is where you start.",
+        title: "MDMA Masterclass",
+        subtitle: "Trauma-Informed, Therapeutically-Oriented",
+        description: "The MDMA Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, and serious students seeking a clear, responsible understanding of MDMA-assisted work.\n\nThis course approaches MDMA not as a recreational or peak-experience substance, but as a powerful therapeutic catalyst—one that requires skill, structure, and ethical clarity. The emphasis throughout is on safety, nervous system regulation, and long-term integration rather than emotional catharsis alone.",
         image: "/images/mdma.avif",
         price: 49,
         type: "masterclass",
         status: "open",
         requiresInterview: false,
-        nextCohort: "Immediate Access",
         duration: "Self-Paced",
-        format: "Digital Masterclass",
+        format: "Evergreen",
         instructor: "both",
         metrics: {
             completionRate: 94,
             recommendRate: 97,
         },
         highlights: [
-            "Comprehensive history and origin story",
-            "In-depth pharmacology and neurochemistry",
-            "PTSD trials and clinical applications",
-            "Safety, risk, and harm reduction maps",
+            "Pharmacology and effects on the brain",
+            "Trauma processing and regulation",
+            "Dosing, timing, and pacing",
+            "Facilitation frameworks and ethics",
         ],
-        howItWorksIntro: "We stripped away the academic fluff. No gatekeeping. No semester-long commitments. Just the raw information, delivered straight to you.",
+        howItWorksIntro: "MDMA is uniquely relational. This course is taught from the understanding that how MDMA is facilitated matters as much as the medicine itself.",
         howItWorks: [
             {
-                title: "1. The Download (Self-Paced Study)",
-                description: "Once you’re in, you own it. The content is yours to devour at 2 AM on a Tuesday or slowly digest over a month of Sundays. We know life gets in the way. We know you’re busy. So we built this to fit into the cracks of your schedule. You set the rhythm.",
+                title: "A Therapeutic & Facilitation Lens",
+                description: "You’ll learn how to create a safe therapeutic container, support emotional openness without fostering dependency, and navigate transference and boundaries to maintain ethical clarity.",
             },
             {
-                title: "2. The Deep Dive (Curriculum)",
-                description: "We go through it all. The good, the bad, and the chemically complex. You’ll watch, read, and listen as we dismantle the myths and look at the actual mechanics of how this substance rewires trauma and opens the heart.",
+                title: "Trauma-Informed by Design",
+                description: "Based on contemporary trauma theory, we explore why MDMA can reduce fear while increasing access to traumatic material, and how to work with emotional flooding or overwhelm.",
             },
             {
-                title: "3. The Human Element (Optional 1-on-1)",
-                description: "Sometimes, you hit a wall. Or maybe a revelation that you need to pressure-test against a real human being. For a small extra fee, you can book a session with the instructor. No chatbots. No scripts. Just a real conversation to clarify the nuance and dig deeper into the specific things keeping you up at night.",
+                title: "Perspectives from Experienced Practitioners",
+                description: "Includes insights and interviews from experienced MDMA-assisted therapy practitioners, offering real-world perspectives on session dynamics, challenges, and lessons learned.",
+            },
+            {
+                title: "Self-Paced, Evergreen Access",
+                description: "A fully self-paced course designed to support long-term competency. Suited for therapists, facilitators, and serious students seeking a professional, trauma-informed foundation.",
+            },
+            {
+                title: "Raising the Standard",
+                description: "MDMA can create profound states of safety and connection—but those states must be handled with care. We emphasize safety over sentiment and integration over intensity.",
             },
         ],
         curriculum: [
             {
-                title: "Module 1: The Origin Story",
-                description: "Before it was a party drug, it was a mistake. Then it was a secret. Then it was a threat. We trace the lineage from the Merck labs in 1912 through the therapy rooms of the 70s to the rave scene and back to the FDA’s desk today. Context is everything.",
+                title: "Module 1: Foundations & Pharmacology",
+                description: "Understanding the molecule, its origin, and its effects on the brain.",
                 topics: [
-                    "Merck Lab origins (1912)",
-                    "Therapeutic use in the 1970s",
-                    "The shift to the rave scene",
-                    "The modern FDA approval path",
+                    "MDMA pharmacology and neurochemistry",
+                    "Effects on the brain and nervous system",
+                    "History and therapeutic context",
                 ],
             },
             {
-                title: "Module 2: Under the Hood (Pharmacology)",
-                description: "What actually happens when the molecule hits the serotonin receptor? We strip down the biology. You don't need a medical degree to understand this, but you will need to pay attention. We talk mechanism of action, neurotoxicity, and the delicate dance of neurochemistry.",
+                title: "Module 2: Therapeutic Applications",
+                description: "The role of MDMA in trauma processing and emotional regulation.",
                 topics: [
-                    "Serotonin receptor mechanics",
-                    "Mechanism of Action (MOA)",
-                    "Neurotoxicity risks",
-                    "Biological effects on the heart and brain",
+                    "Trauma processing mechanisms",
+                    "Emotional regulation and safety",
+                    "Dosing strategies and timing",
                 ],
             },
             {
-                title: "Module 3: The Scalpel (Therapeutic Application)",
-                description: "Here’s where it gets heavy. We look at the research. The PTSD trials. The couples therapy. The way MDMA acts not as a numbing agent, but as an emotional anesthetic that allows you to perform surgery on your own soul. We look at why it works when nothing else does.",
+                title: "Module 3: Facilitation & Practice",
+                description: "Frameworks for creating safe containers and navigating sessions.",
                 topics: [
-                    "PTSD Phase 3 clinical trials",
-                    "Couples therapy applications",
-                    "Emotional anesthesia and memory reconsolidation",
-                    "Case studies in healing",
-                ],
-            },
-            {
-                title: "Module 4: Safety, Risk, and the Dark Side",
-                description: "We don’t sugarcoat it. There are risks. There are contraindications. There are ways to do this wrong that end in disaster. We talk about harm reduction, dosage, set, and setting. If you respect the substance, it respects you. If you don't... well, we cover that too.",
-                topics: [
-                    "Contraindications and medication interactions",
-                    "Dosage guidelines and purity",
-                    "Harm reduction strategies",
-                    "Set and setting optimization",
+                    "Facilitation frameworks",
+                    "Working with vulnerability and attachment",
+                    "Integration practices for lasting change",
                 ],
             },
         ],
         faq: [
             {
-                question: "\"Do I need a science background to get this?\"",
-                answer: "No. If you can read this, you can learn this. We explain the jargon. We translate the biochemistry into English. We built this for humans, not just academics.",
+                question: "\"Do I need a science background?\"",
+                answer: "No. If you can read this, you can learn this. We explain the jargon and translate biochemistry into human language. We built this for humans, not just academics.",
             },
             {
                 question: "\"Is this course advocating for illegal use?\"",
-                answer: "Look, we’re educators, not your lawyer or your dealer. We provide information. Unbiased, research-backed data. What you do with your own consciousness is, frankly, your business. But we believe you should be navigating the territory with a map, not a blindfold.",
+                answer: "We are educators providing unbiased, research-backed data. What you do with your own consciousness is your business, but we believe you should navigate the territory with a map, not a blindfold.",
             },
             {
-                question: "\"Why is it so cheap?\"",
-                answer: "Because information wants to be free, but hosting servers costs money. We priced this to be a \"hell yes\" decision. We want this knowledge in as many hands as possible because we think it matters.",
-            },
-            {
-                question: "\"Can I really talk to the instructor?\"",
-                answer: "Yes. For a nominal fee. Sometimes you need to look someone in the eye (or through a screen) and ask the hard question. We make that space available because generic answers rarely solve specific problems.",
-            },
-            {
-                question: "\"Is this relevant if I just want to understand the therapy aspect?\"",
-                answer: "It’s especially relevant then. The medicalization of MDMA is happening right now. If you're in the healing space and you aren't looking at this, you're looking at the past. This is the future.",
-            },
+                question: "\"Who is this for?\"",
+                answer: "Therapists, facilitators, and serious students who want a grounded, responsible foundation. It is not for recreational users looking for 'trip tips'.",
+            }
         ],
     },
     {
         slug: "psilocybin-masterclass",
-        title: "Masterclass - Psilocybin",
-        subtitle: "Psilocybin Facilitation Training",
-        description: "Comprehensive training in psilocybin facilitation covering both clinical and ceremonial approaches. Learn to create safe, meaningful experiences for healing and growth.",
+        title: "Psilocybin Masterclass",
+        subtitle: "Trauma-Informed, Facilitation-Focused",
+        description: "This Psilocybin Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, guides, and serious students who want a grounded, responsible education in working with psilocybin mushrooms.\n\nRather than emphasizing peak experiences or spiritualized narratives, this course focuses on safety, ethical facilitation, and long-term outcomes. It is built on the understanding that psilocybin is not inherently therapeutic—the quality of preparation, facilitation, and integration determines its impact.",
         image: "/images/1.png",
         price: null,
         type: "masterclass",
         status: "open",
-        duration: "8 weeks",
-        format: "Live Online + Practicum",
+        duration: "Self-Paced",
+        format: "Evergreen",
         instructor: "both",
         metrics: {
             completionRate: 95,
@@ -559,81 +544,318 @@ export const courses: Course[] = [
             students: 420,
         },
         highlights: [
-            "Clinical and ceremonial frameworks",
-            "Dosing and session design",
-            "Music and environment curation",
-            "Integration support methods",
+            "Pharmacology and effects on nervous system",
+            "Dosing strategies and protocols",
+            "Set, setting, and safety preparation",
+            "Trauma-informed facilitation skills",
+        ],
+        howItWorksIntro: "Psilocybin is a powerful tool—but tools require skill. This masterclass exists to raise the standard of education by prioritizing safety over spectacle and integration over experience.",
+        howItWorks: [
+            {
+                title: "Facilitation & Safety at the Center",
+                description: "Designed from a facilitator’s perspective. You’ll learn to hold space during intense experiences, respond skillfully to fear or resistance, and avoid common facilitation mistakes.",
+            },
+            {
+                title: "Trauma-Informed by Design",
+                description: "Informed by modern trauma theory, we cover how psilocybin can amplify trauma, working with nervous system regulation, and why integration is often more important than the experience itself.",
+            },
+            {
+                title: "Perspectives from Experienced Facilitators",
+                description: "Includes interviews with experienced psilocybin facilitators offering grounded perspectives on what actually happens in real sessions and how to navigate ethical challenges.",
+            },
+            {
+                title: "Self-Paced, Evergreen Access",
+                description: "Fully self-paced and designed for long-term competency. Perfect for therapists, facilitators, and serious students who value ethics, depth, and responsibility.",
+            },
         ],
         curriculum: [
             {
-                title: "Psilocybin Fundamentals",
+                title: "Module 1: Foundations & Preparation",
+                description: "Pharmacology, dosing, and setting the stage for safe work.",
                 topics: [
-                    "Mycology and pharmacology",
-                    "Historical and indigenous contexts",
-                    "Current research and applications",
+                    "Psilocybin pharmacology and brain effects",
+                    "Dosing strategies and intention approaches",
+                    "Set, setting, and preparation protocols",
+                    "Distinctions between mushroom strains",
                 ],
             },
             {
-                title: "Facilitation Mastery",
+                title: "Module 2: The Art of Facilitation",
+                description: "Core skills for holding space and navigating the journey.",
                 topics: [
-                    "Set and setting optimization",
+                    "Facilitation frameworks and best practices",
+                    "Responding to fear, grief, and resistance",
+                    "Trauma responses vs. therapeutic process",
                     "Navigating challenging experiences",
-                    "Group facilitation considerations",
+                ],
+            },
+            {
+                title: "Module 3: Integration & Ethics",
+                description: "Supporting lasting change and maintaining professional integrity.",
+                topics: [
+                    "Integration strategies for lasting change",
+                    "Ethical challenges and avoiding harm",
+                    "Scope of practice and referral",
                 ],
             },
         ],
         faq: [
             {
-                question: "Does this course include hands-on experience?",
-                answer: "The course includes a practicum component in jurisdictions where psilocybin work is legal.",
+                question: "\"Do I need prior experience?\"",
+                answer: "While personal experience with psilocybin can be valuable, this course is designed to provide a professional and theoretical foundation regardless of your history.",
+            },
+            {
+                question: "\"Is this a certification?\"",
+                answer: "This is a masterclass focused on knowledge and skill acquisition. It does not provide a legal license to practice, as psilocybin laws vary globally.",
             },
         ],
     },
     {
         slug: "5-meo-dmt-bufo-masterclass",
-        title: "Masterclass - 5-MeO-DMT/Bufo",
-        subtitle: "Advanced 5-MeO Practices",
-        description: "Deep dive into advanced 5-MeO-DMT practices for experienced practitioners. Explore both synthetic and toad-derived medicine with rigorous safety and ethical frameworks.",
+        title: "5-MeO-DMT / Bufo Masterclass",
+        subtitle: "Foundations for the Most Powerful Work",
+        description: "The 5-MeO-DMT / Bufo Masterclass is an advanced, self-paced training designed for those who are serious about understanding and working with one of the most powerful psychedelic substances known.\n\nThis course establishes the conceptual, ethical, and safety foundations required before working with this medicine in any meaningful or responsible way. It is a high-level, safety-centered education rooted in real-world facilitation experience and trauma-informed practice.",
         image: "/images/2.png",
         price: null,
         type: "masterclass",
         status: "open",
         requiresInterview: false,
-        duration: "6 weeks",
-        format: "Live Online",
+        duration: "Self-Paced",
+        format: "Evergreen",
         instructor: "stephan",
         metrics: {
             completionRate: 93,
             recommendRate: 98,
         },
         highlights: [
-            "Synthetic vs. toad-derived considerations",
-            "Advanced safety protocols",
-            "Ecological and ethical sourcing",
-            "Non-dual experience support",
+            "Pharmacology and phenomenology of 5-MeO-DMT",
+            "Synthetic vs. Bufo distinctions",
+            "Nondual experiences and ego dissolution",
+            "Safety, screening, and contraindications",
+        ],
+        howItWorksIntro: "5-MeO-DMT has the capacity to reveal profound truth—and to cause profound harm when mishandled. This course exists to raise the standard of education by emphasizing preparation, integration, and responsibility.",
+        howItWorks: [
+            {
+                title: "Facilitation, Responsibility & Risk",
+                description: "5-MeO-DMT is fundamentally different. We address why traditional frameworks fail, how to navigate loss of identity, and the difference between surrender and dissociation.",
+            },
+            {
+                title: "Trauma-Informed by Necessity",
+                description: "Trauma-informed practice is essential. We explore why somatic responses are common, the risks of spiritual bypassing, and why integration is more complex than with other psychedelics.",
+            },
+            {
+                title: "A Clear Path Forward",
+                description: "This masterclass stands alone as a foundational education, but for those seeking hands-on training, it serves as excellent preparation for our LIVE Facilitation Course.",
+            },
+            {
+                title: "Who This Course Is For",
+                description: "Appropriate for facilitators, therapists, and serious students who value safety, humility, and responsibility. Not designed for casual exploration.",
+            },
         ],
         curriculum: [
             {
-                title: "Advanced Pharmacology",
+                title: "Module 1: The Medicine & Experience",
+                description: "Understanding the unique nature of 5-MeO-DMT and Bufo.",
                 topics: [
-                    "Synthetic vs. organic sources",
-                    "Potency and variability",
-                    "Interactions and contraindications",
+                    "Pharmacology and phenomenology",
+                    "Synthetic vs. Toad-derived distinctions",
+                    "The nature of nondual experience",
+                    "Why it is uniquely destabilizing",
                 ],
             },
             {
-                title: "Mastery in Practice",
+                title: "Module 2: Safety & Facilitation",
+                description: "Core safety protocols and the role of the facilitator.",
                 topics: [
-                    "Complex session navigation",
-                    "Working with challenging states",
-                    "Advanced integration techniques",
+                    "Screening and contraindications",
+                    "The facilitator's role: before, during, after",
+                    "Common errors and their consequences",
+                    "Non-intervention vs. support",
+                ],
+            },
+            {
+                title: "Module 3: Integration & Trauma",
+                description: "Navigating the aftermath and supporting somatic processing.",
+                topics: [
+                    "Somatic responses and release",
+                    "Integration challenges specific to 5-MeO",
+                    "Stabilizing and orienting after the void",
+                    "Spiritual bypassing risks",
                 ],
             },
         ],
         faq: [
             {
-                question: "Is prior 5-MeO experience required?",
-                answer: "Yes, this advanced course requires completion of our foundational 5-MeO training or equivalent experience.",
+                question: "\"Is prior 5-MeO experience required?\"",
+                answer: "It is helpful but not strictly required for this educational masterclass. However, personal experience is essential before attempting to facilitate.",
+            },
+            {
+                question: "\"Can I facilitate after this?\"",
+                answer: "This course provides the educational foundation. Competent facilitation requires guided practice, mentorship, and experience, which are offered in our advanced live certification programs.",
+            },
+        ],
+    },
+    {
+        slug: "entheogenic-guide-masterclass",
+        title: "Trauma-Informed Entheogenic Guide Masterclass",
+        subtitle: "Foundational Certification for Ethical Guiding",
+        description: "The Trauma-Informed Entheogenic Guide Masterclass is an advanced, comprehensive training designed for those who are serious about stepping into the role of guide—and for anyone who ultimately intends to facilitate entheogenic work responsibly.\n\nWith over 15 hours of instruction, a detailed textbook, a complete forms cabinet, and extensive practical material, this masterclass offers one of the most thorough foundational trainings available for entheogenic guiding.",
+        image: "/images/TI.jpg",
+        price: null,
+        type: "masterclass",
+        status: "open",
+        requiresInterview: false,
+        duration: "Self-Paced (15+ Hours)",
+        format: "Evergreen Certification",
+        instructor: "both",
+        metrics: {
+            students: 350,
+            completionRate: 96
+        },
+        highlights: [
+            "Core principles of trauma-informed guiding",
+            "Screening, preparation, and orientation",
+            "Nervous system responses and somatic awareness",
+            "Integration frameworks for long-term benefit",
+        ],
+        howItWorksIntro: "This course exists to raise the standard of guiding by emphasizing competence over charisma, safety over ceremony, and ethics over identity.",
+        howItWorks: [
+            {
+                title: "A Deep, Multimodal Education",
+                description: "Covers principles across Psilocybin, MDMA, Ayahuasca, 5-MeO-DMT, and more. Focuses on universal guiding principles that translate across medicines.",
+            },
+            {
+                title: "Trauma-Informed by Design",
+                description: "Entheogenic work often surfaces trauma. You'll learn to distinguish trauma responses from spiritual process, avoid re-traumatization, and know when to refer out.",
+            },
+            {
+                title: "From Guide to Facilitator",
+                description: "Serves as a foundational pathway toward facilitation, establishing the ethical, psychological, and practical groundwork for advanced training.",
+            },
+            {
+                title: "Evergreen Certification Program",
+                description: "Now a fully self-paced, evergreen certification course. Engage deeply with the material on your own schedule while maintaining the rigor of the original live training.",
+            },
+        ],
+        curriculum: [
+            {
+                title: "Module 1: The Guide's Foundation",
+                description: "Core principles and ethical frameworks for responsible guiding.",
+                topics: [
+                    "Trauma-informed guiding principles",
+                    "Ethical boundaries and scope",
+                    "Set, setting, and container design",
+                ],
+            },
+            {
+                title: "Module 2: The Journey Arc",
+                description: "Navigating the session from preparation to closing.",
+                topics: [
+                    "Screening and participant orientation",
+                    "Nervous system awareness",
+                    "Managing difficult or destabilizing experiences",
+                ],
+            },
+            {
+                title: "Module 3: Professional Practice",
+                description: "The business and administration of safe guiding.",
+                topics: [
+                    "Documentation and forms",
+                    "Professional standards",
+                    "Integration frameworks",
+                ],
+            },
+        ],
+        faq: [
+            {
+                question: "\"Is this a certification?\"",
+                answer: "Yes. This is a comprehensive educational process. Upon completion, you receive a certification acknowledging your training in trauma-informed guiding principles.",
+            },
+            {
+                question: "\"Do I need to be a therapist?\"",
+                answer: "No. This course is designed for guides, coaches, and facilitators. However, it teaches you how to work within your scope and when to refer to clinical professionals.",
+            },
+        ],
+    },
+    {
+        slug: "integration-specialist-masterclass",
+        title: "Psychedelic Integration Specialist Masterclass",
+        subtitle: "Advanced Training in Integration & Embodiment",
+        description: "The Psychedelic Integration Specialist Masterclass is an advanced, comprehensive training designed for therapists, facilitators, guides, and integration practitioners who want to support lasting change after psychedelic experiences.\n\nBuilt on the truth that psychedelic experiences do not create change—integration does. The training moves beyond insight-processing into embodiment, nervous system regulation, and behavioral transformation.",
+        image: "/images/eth.avif",
+        price: null,
+        type: "masterclass",
+        status: "open",
+        requiresInterview: false,
+        duration: "Self-Paced (17+ Hours)",
+        format: "Evergreen",
+        instructor: "both",
+        metrics: {
+            students: 280,
+            recommendRate: 99
+        },
+        highlights: [
+            "Core principles of integration across substances",
+            "Somatic, emotional, and psychological work",
+            "Trauma-informed integration strategies",
+            "6+ hours of recorded demos",
+        ],
+        howItWorksIntro: "Integration has become the determining factor between growth and fragmentation. This course raises the standard by emphasizing stabilization, embodiment, and responsibility.",
+        howItWorks: [
+            {
+                title: "Integration as the Real Work",
+                description: "We move beyond meaning-making into embodiment and nervous system regulation, helping practitioners support clients long after the experience itself.",
+            },
+            {
+                title: "Demonstration-Based Learning",
+                description: "Includes over six hours of recorded integration demonstrations. Observe real sessions to see how to work with resistance, intensity, and translation into daily life.",
+            },
+            {
+                title: "Trauma-Informed at the Core",
+                description: "Integration is where trauma surfaces. We emphasize regulation, avoiding re-traumatization, and supporting embodiment without reinforcing identity narratives.",
+            },
+            {
+                title: "Evergreen, Depth-Oriented",
+                description: "A rigorous, self-paced program for serious practitioners. Ideal for therapists, facilitators, and coaches seeking a trauma-informed framework.",
+            },
+        ],
+        curriculum: [
+            {
+                title: "Module 1: The Art of Integration",
+                description: "Foundational concepts and shifting from insight to embodiment.",
+                topics: [
+                    "Distinguishing insight from integration",
+                    "Core principles across substances",
+                    "Somatic and emotional processing",
+                ],
+            },
+            {
+                title: "Module 2: Applied Practice (Demos)",
+                description: "Learning through observation of real-world integration work.",
+                topics: [
+                    "Attuned presence and pacing",
+                    "Working with resistance and confusion",
+                    "Translating non-ordinary states to life",
+                ],
+            },
+            {
+                title: "Module 3: Advanced Challenges",
+                description: "Navigating complex integration scenarios.",
+                topics: [
+                    "Destabilization and identity shifts",
+                    "Trauma-informed strategies",
+                    "Ethical boundaries in integration",
+                ],
+            },
+        ],
+        faq: [
+            {
+                question: "\"Who is this for?\"",
+                answer: "Therapists, facilitators, guides, and coaches who support clients after psychedelic experiences. It is an advanced training for those already working or stepping into this field.",
+            },
+            {
+                question: "\"Do I get to see real sessions?\"",
+                answer: "Yes. Use of recorded demonstrations is a central part of this training, bridging the gap between theory and practice.",
             },
         ],
     },
