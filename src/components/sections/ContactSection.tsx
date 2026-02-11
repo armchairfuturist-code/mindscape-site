@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, MapPin, Send, Check } from "lucide-react";
+import { Mail, Send, Check } from "lucide-react";
+import Image from "next/image";
 
 export default function ContactSection() {
     const [email, setEmail] = useState("");
@@ -20,11 +21,19 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="section bg-navy relative overflow-hidden">
-            {/* Background decorations */}
+        <section id="contact" className="section relative overflow-hidden flex items-center min-h-[600px]">
+            {/* Background Image / Vault Overlay */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
+                <Image
+                    src="/images/vault.jpeg"
+                    alt="Mindscape Vault"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                {/* Subtle vignetting and a sharper left-side gradient to protect text while keeping the center/right clear */}
+                <div className="absolute inset-0 bg-navy/20" />
+                <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/40 to-transparent" />
             </div>
 
             <div className="container-custom relative z-10">

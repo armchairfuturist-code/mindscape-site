@@ -57,7 +57,7 @@ export const courses: Course[] = [
         title: "Certified 5-MeO/Bufo Facilitator Course",
         subtitle: "Master the art of sacred facilitation",
         description: "The God Molecule doesn’t care about your resume. It cares about your presence. Your nervous system. Your ability to sit in the fire without burning up.\n\nYou’re here because you feel the pull. Maybe you’ve sat with the medicine yourself and felt the fabric of reality tear open. Maybe you’ve seen the healing it offers—the kind that happens in twenty minutes but lasts a lifetime—and you realized: This is what I’m supposed to do.\n\nBut holding space for 5-MeO-DMT isn’t like other modalities. It’s not just \"tripsitting.\" It’s non-dual surgery. It’s walking someone to the edge of the void, holding their hand while they dissolve, and being the anchor that brings them back.\n\nYou don't learn this from a textbook. You learn it by transmission. You learn it by doing the work.\n\nWelcome to the Mindscape Psychedelic Institute. We’re building the next generation of safe, ethical, trauma-informed facilitators.\n\nWe start in May 2026. The question is: are you ready to carry this weight?",
-        image: "/images/5meof.jpg",
+        image: "/images/5meocertlive.jpeg",
         price: 5500,
         type: "certification",
         status: "open",
