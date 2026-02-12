@@ -54,6 +54,8 @@ export interface Course {
         price: number;
     }[];
     amazonLink?: string;
+    optInLink?: string;
+    payLink?: string;
     waitlistLink?: string;
 }
 
@@ -69,6 +71,8 @@ export const courses: Course[] = [
         type: "certification",
         status: "open",
         requiresInterview: true,
+        optInLink: "https://mindscape.mykajabi.com/pl/2148013702",
+        payLink: "https://mindscape.mykajabi.com/offers/n4cvovKC/checkout",
         nextCohort: "May 2026",
         duration: "6 months",
         format: "Deep-Dive Theory + Live Visceral Classes",
@@ -183,6 +187,8 @@ export const courses: Course[] = [
         type: "certification",
         status: "open",
         requiresInterview: true,
+        optInLink: "https://mindscape.mykajabi.com/5meointegration",
+        payLink: "https://mindscape.mykajabi.com/pl/2148612384",
         nextCohort: "March 4, 2026",
         duration: "9 weeks",
         format: "Live Online (2-hour sessions)",
@@ -286,6 +292,8 @@ export const courses: Course[] = [
     {
         slug: "mastering-ketamine-assisted-therapy",
         waitlistLink: "https://mindscape.mykajabi.com/pl/2148566324",
+        optInLink: "https://mindscape.mykajabi.com/pl/2148566324",
+        payLink: "https://mindscape.mykajabi.com/offers/hnvmwd8j",
         title: "Mastering Ketamine Assisted Therapy",
         subtitle: "Clinical excellence in KAT facilitation",
         description: "A comprehensive certification program for practitioners seeking to master Ketamine-Assisted Therapy. This course provides deep clinical insights, safety protocols, and therapeutic frameworks for working with this powerful tool.",
@@ -386,7 +394,7 @@ export const courses: Course[] = [
         subtitle: "A Clinical, Trauma-Informed Approach",
         description: "Expanding Therapeutic Horizons is an in-depth, self-paced course designed for therapists and clinical professionals seeking a responsible, evidence-informed understanding of psychedelic-assisted approaches.\n\nThis training examines psilocybin, MDMA, and ketamine through a therapeutic and clinical lens, emphasizing safety, ethical practice, preparation, and integration. Rather than promoting psychedelics as standalone solutions, the course explores how these substances can support therapeutic work when approached with structure, discernment, and trauma-informed care.",
         image: "/images/eth.jpeg",
-        price: 150,
+        price: 250,
         type: "masterclass",
         kajabiLink: "https://mindscape.mykajabi.com/offers/GVU7n3CL",
         status: "open",
@@ -501,7 +509,7 @@ export const courses: Course[] = [
         requiresInterview: false,
         duration: "Self-Paced",
         format: "Evergreen",
-        kajabiLink: "https://mindscape.mykajabi.com/offers/psT3GJ39/checkout",
+        kajabiLink: "https://mindscape.mykajabi.com/offers/psT3GJ39",
         instructor: "both",
         metrics: {
             completionRate: 94,
@@ -586,8 +594,9 @@ export const courses: Course[] = [
         subtitle: "Trauma-Informed, Facilitation-Focused",
         description: "This Psilocybin Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, guides, and serious students who want a grounded, responsible education in working with psilocybin mushrooms.\n\nRather than emphasizing peak experiences or spiritualized narratives, this course focuses on safety, ethical facilitation, and long-term outcomes. It is built on the understanding that psilocybin is not inherently therapeutic—the quality of preparation, facilitation, and integration determines its impact.",
         image: "/images/Psilomc.jpeg",
-        price: null,
+        price: 150,
         type: "masterclass",
+        kajabiLink: "https://mindscape.mykajabi.com/offers/cPXgVgnV",
         status: "open",
         duration: "Self-Paced",
         format: "Evergreen",
@@ -670,8 +679,9 @@ export const courses: Course[] = [
         subtitle: "Foundations for the Most Powerful Work",
         description: "The 5-MeO-DMT / Bufo Masterclass is an advanced, self-paced training designed for those who are serious about understanding and working with one of the most powerful psychedelic substances known.\n\nThis course establishes the conceptual, ethical, and safety foundations required before working with this medicine in any meaningful or responsible way. It is a high-level, safety-centered education rooted in real-world facilitation experience and trauma-informed practice.",
         image: "/images/5meomc.jpeg",
-        price: null,
+        price: 500,
         type: "masterclass",
+        kajabiLink: "https://mindscape.mykajabi.com/offers/BWJWzpdP",
         status: "open",
         requiresInterview: false,
         duration: "Self-Paced",
@@ -755,8 +765,9 @@ export const courses: Course[] = [
         subtitle: "Foundational Certification for Ethical Guiding",
         description: "The Trauma-Informed Entheogenic Guide Masterclass is an advanced, comprehensive training designed for those who are serious about stepping into the role of guide—and for anyone who ultimately intends to facilitate entheogenic work responsibly.\n\nWith over 15 hours of instruction, a detailed textbook, a complete forms cabinet, and extensive practical material, this masterclass offers one of the most thorough foundational trainings available for entheogenic guiding.",
         image: "/images/tieg.jpeg",
-        price: null,
+        price: 500,
         type: "masterclass",
+        kajabiLink: "https://mindscape.mykajabi.com/offers/799AMW2L",
         status: "open",
         requiresInterview: false,
         duration: "Self-Paced (15+ Hours)",

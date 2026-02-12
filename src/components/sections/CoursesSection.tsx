@@ -25,6 +25,7 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
 
     const isExternal = !!course.amazonLink;
     const href = course.amazonLink || `/courses/${course.slug}`;
+    const showDeposit = course.type === "certification" && !!course.payLink;
 
     const cardContent = (
         <>
@@ -111,10 +112,33 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                         </span>
                     )}
                 </div>
-                <span className={`inline-flex items-center gap-1 text-teal text-sm group-hover:gap-2 transition-all ${isExternal ? 'font-bold' : 'font-medium'}`}>
-                    {isExternal ? 'Buy on Amazon' : 'Learn More'}
-                    <ArrowRight size={16} />
-                </span>
+                <div className="flex items-center gap-3">
+                    <span className={`inline-flex items-center gap-1 text-teal text-sm group-hover:gap-2 transition-all ${isExternal ? 'font-bold' : 'font-medium'}`}>
+                        {isExternal ? 'Buy on Amazon' : 'Learn More'}
+                        <ArrowRight size={16} />
+                    </span>
+                    {showDeposit && (
+                        <span
+                            role="button"
+                            tabIndex={0}
+                            onClick={(event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                                window.open(course.payLink, "_blank", "noopener,noreferrer");
+                            }}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter" || event.key === " ") {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    window.open(course.payLink, "_blank", "noopener,noreferrer");
+                                }
+                            }}
+                            className="text-gold text-xs font-semibold uppercase tracking-wide hover:text-gold/80"
+                        >
+                            Pay Deposit
+                        </span>
+                    )}
+                </div>
             </div>
         </>
     );

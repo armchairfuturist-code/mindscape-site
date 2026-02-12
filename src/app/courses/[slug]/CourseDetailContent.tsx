@@ -41,6 +41,7 @@ function StatusToggle({
 }) {
     if (course.status === "open") {
         const isMasterclass = course.type === "masterclass";
+        const isCertification = course.type === "certification";
         return (
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8">
                 <h3 className="font-heading font-semibold text-xl text-white mb-4">
@@ -51,12 +52,42 @@ function StatusToggle({
                         ? "Get immediate access to all course materials and begin your journey today."
                         : "Secure your spot now and begin your journey."}
                 </p>
-                <Link
-                    href={course.kajabiLink || "#"}
-                    className="btn-primary w-full text-center text-lg py-4"
-                >
-                    {isMasterclass ? "Buy Now" : "Apply Now"}
-                </Link>
+                {isCertification ? (
+                    <div className="space-y-3">
+                        <a
+                            href={course.optInLink || course.waitlistLink || "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary w-full text-center text-lg py-4"
+                        >
+                            Apply / Schedule Interview
+                        </a>
+                        {course.payLink && (
+                            <a
+                                href={course.payLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-secondary w-full text-center text-lg py-4"
+                            >
+                                Pay Deposit
+                            </a>
+                        )}
+                        {course.payLink && (
+                            <p className="text-white/60 text-sm text-center">
+                                Deposit applies to tuition upon interview completion. If you’re not a fit after the interview, your deposit is refunded.
+                            </p>
+                        )}
+                    </div>
+                ) : (
+                    <a
+                        href={course.kajabiLink || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary w-full text-center text-lg py-4"
+                    >
+                        {isMasterclass ? "Buy Now" : "Apply Now"}
+                    </a>
+                )}
                 {course.priceTiers ? (
                     <div className="mt-4 space-y-2">
                         {course.priceTiers.map((tier, i) => (
@@ -139,6 +170,21 @@ function StatusToggle({
                                 </span>
                             </button>
                         </form>
+                    )}
+                    {course.payLink && (
+                        <div className="mt-4 pt-4 border-t border-white/10">
+                            <a
+                                href={course.payLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-secondary w-full text-center py-4"
+                            >
+                                Pay Deposit
+                            </a>
+                            <p className="text-white/60 text-sm text-center mt-3">
+                                Deposit applies to tuition upon interview completion. If you’re not a fit after the interview, your deposit is refunded.
+                            </p>
+                        </div>
                     )}
                 </>
             )}
