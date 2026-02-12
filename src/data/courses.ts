@@ -927,7 +927,7 @@ export const courses: Course[] = [
         price: null,
         type: "ebook",
         status: "open",
-        format: "eBook/Paperback",
+        format: "Book/Paperback",
         instructor: "both",
         amazonLink: "https://a.co/d/01vCBCxJ",
         metrics: {
@@ -951,7 +951,7 @@ export const courses: Course[] = [
         price: null,
         type: "ebook",
         status: "open",
-        format: "eBook/Paperback",
+        format: "Book/Paperback",
         instructor: "stephan",
         amazonLink: "https://a.co/d/0itFRdyD",
         metrics: {

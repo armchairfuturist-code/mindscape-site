@@ -349,7 +349,7 @@ export default function CourseDetailContent({ course }: Props) {
                                     ? "Certification Program"
                                     : course.type === "masterclass"
                                         ? "Masterclass"
-                                        : "Digital Resource"}
+                                        : "Book"}
                             </span>
 
                             <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">

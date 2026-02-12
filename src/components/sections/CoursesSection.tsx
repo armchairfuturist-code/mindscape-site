@@ -20,7 +20,7 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
     const typeLabels = {
         masterclass: "Masterclass",
         certification: "Certification",
-        ebook: "eBook",
+        ebook: "Book",
     };
 
     const isExternal = !!course.amazonLink;
@@ -38,11 +38,13 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
 
                 {/* Status Badge */}
-                <div className="absolute top-4 right-4">
-                    <span className={`badge ${statusColors[course.status]}`}>
-                        {statusLabels[course.status]}
-                    </span>
-                </div>
+                {course.type !== 'ebook' && (
+                    <div className="absolute top-4 right-4">
+                        <span className={`badge ${statusColors[course.status]}`}>
+                            {statusLabels[course.status]}
+                        </span>
+                    </div>
+                )}
 
                 {/* Type Badge - Hidden for ebooks */}
                 {course.type !== 'ebook' && (
@@ -99,7 +101,7 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                         </span>
                     )}
                 </div>
-                <span className="inline-flex items-center gap-1 text-teal font-medium text-sm group-hover:gap-2 transition-all">
+                <span className={`inline-flex items-center gap-1 text-teal text-sm group-hover:gap-2 transition-all ${isExternal ? 'font-bold' : 'font-medium'}`}>
                     {isExternal ? 'Buy on Amazon' : 'Learn More'}
                     <ArrowRight size={16} />
                 </span>
@@ -188,12 +190,12 @@ export default function CoursesSection() {
                     </div>
                 )}
 
-                {/* eBooks & Resources */}
+                {/* Books */}
                 {ebooks.length > 0 && (
                     <div id="ebooks">
                         <div className="mb-8">
                             <h3 className="text-2xl font-heading font-semibold text-navy mb-2">
-                                eBooks & Resources
+                                Books
                             </h3>
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
