@@ -7,8 +7,8 @@ import { courses } from "@/data/courses";
 function CourseCard({ course }: { course: typeof courses[0] }) {
     const statusColors = {
         open: "bg-green-100 text-green-700",
-        waitlist: "bg-gold/20 text-gold-dark",
-        "coming-soon": "bg-slate-100 text-slate-600",
+        waitlist: "bg-gold text-navy shadow-sm font-bold",
+        "coming-soon": "bg-teal text-white shadow-sm font-bold",
     };
 
     const statusLabels = {

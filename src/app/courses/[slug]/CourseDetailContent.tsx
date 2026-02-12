@@ -77,19 +77,23 @@ function StatusToggle({
         );
     }
 
+    const isComingSoon = course.status === "coming-soon";
+
     return (
-        <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8">
+        <div className="bg-navy-900/60 backdrop-blur-lg border border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden group/waitlist">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-0 group-hover/waitlist:opacity-100 transition-opacity" />
             {isSubmitted ? (
                 <div className="text-center">
                     <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
                         <Check size={24} className="text-green-400" />
                     </div>
                     <h3 className="font-heading font-semibold text-xl text-white mb-2">
-                        You're on the List!
+                        {isComingSoon ? "You&apos;re on the list!" : "You&apos;re on the List!"}
                     </h3>
                     <p className="text-white/70">
-                        We'll notify you when enrollment opens for the{" "}
-                        {course.nextCohort} cohort.
+                        {isComingSoon 
+                            ? "We&apos;ll notify you as soon as enrollment opens for this training."
+                            : `We&apos;ll notify you when enrollment opens for the ${course.nextCohort} cohort.`}
                     </p>
                 </div>
             ) : (
@@ -97,31 +101,45 @@ function StatusToggle({
                     <div className="flex items-center gap-2 mb-4">
                         <Calendar size={18} className="text-gold" />
                         <h3 className="font-heading font-semibold text-xl text-white">
-                            Join {course.nextCohort || "2026"} Waitlist
+                            {isComingSoon ? "Coming Soon" : `Join ${course.nextCohort || "2026"} Waitlist`}
                         </h3>
                     </div>
                     <p className="text-white/70 mb-6">
-                        Due to overwhelming demand, enrollment is currently closed.
-                        {course.nextCohort && ` Next cohort starts ${course.nextCohort}.`}
+                        {isComingSoon 
+                            ? "This certification program is currently in development. Join the waitlist to be the first to know when dates are announced."
+                            : "Due to overwhelming demand, enrollment is currently closed."}
+                        {!isComingSoon && course.nextCohort && ` Next cohort starts ${course.nextCohort}.`}
                     </p>
-                    <form onSubmit={handleWaitlistSubmit} className="space-y-4">
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
-                            required
-                            className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20
+                    {course.waitlistLink ? (
+                        <Link
+                            href={course.waitlistLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary w-full text-center py-4 flex items-center justify-center gap-2 shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                        >
+                            {isComingSoon ? "Get Notified" : "Join Waitlist"}
+                            <Send size={16} />
+                        </Link>
+                    ) : (
+                        <form onSubmit={handleWaitlistSubmit} className="space-y-4">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email"
+                                required
+                                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20
                        text-white placeholder:text-white/40
                        focus:outline-none focus:ring-2 focus:ring-teal focus:border-transparent"
-                        />
-                        <button type="submit" className="btn-primary w-full py-4">
-                            <span className="flex items-center justify-center gap-2">
-                                Join Waitlist
-                                <Send size={16} />
-                            </span>
-                        </button>
-                    </form>
+                            />
+                            <button type="submit" className="btn-primary w-full py-4 shadow-lg shadow-gold/20 hover:shadow-gold/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
+                                <span className="flex items-center justify-center gap-2">
+                                    {isComingSoon ? "Get Notified" : "Join Waitlist"}
+                                    <Send size={16} />
+                                </span>
+                            </button>
+                        </form>
+                    )}
                 </>
             )}
         </div>
@@ -203,6 +221,68 @@ function FAQItem({
                 </div>
             )}
         </div>
+    );
+}
+
+function InstructorSpotlight({ instructor }: { instructor: { name: string; image: string; bio: string } }) {
+    return (
+        <section className="section bg-slate-50 overflow-hidden">
+            <div className="container-custom">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        {/* Image Column */}
+                        <div className="relative group">
+                            <div className="absolute -inset-4 bg-gradient-to-tr from-gold/20 to-teal/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
+                                <Image
+                                    src={instructor.image}
+                                    alt={instructor.name}
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
+                            </div>
+                            
+                            {/* Decorative Elements */}
+                            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/10 rounded-full blur-3xl" />
+                            <div className="absolute -top-6 -left-6 w-32 h-32 bg-teal/10 rounded-full blur-3xl" />
+                        </div>
+
+                        {/* Content Column */}
+                        <div>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-bold uppercase tracking-widest mb-6 border border-gold/20">
+                                <Star size={12} className="fill-gold" />
+                                Featured Instructor
+                            </div>
+                            
+                            <h2 className="text-4xl md:text-5xl font-heading font-bold text-navy mb-8 leading-tight">
+                                {instructor.name}
+                            </h2>
+                            
+                            <div className="prose prose-lg text-slate-600 space-y-6 max-w-none">
+                                {instructor.bio.split('\n\n').map((paragraph, i) => (
+                                    <p key={i} className="leading-relaxed">
+                                        {paragraph}
+                                    </p>
+                                ))}
+                            </div>
+
+                            {/* Credentials Strip */}
+                            <div className="mt-12 pt-12 border-t border-slate-200 grid grid-cols-2 gap-8">
+                                <div className="group/item">
+                                    <div className="text-navy font-bold text-2xl mb-1 group-hover/item:text-teal transition-colors">Pioneer</div>
+                                    <div className="text-slate-500 text-xs uppercase tracking-widest font-semibold">Entheogenic Movement</div>
+                                </div>
+                                <div className="group/item">
+                                    <div className="text-navy font-bold text-2xl mb-1 group-hover/item:text-teal transition-colors">Scholar</div>
+                                    <div className="text-slate-500 text-xs uppercase tracking-widest font-semibold">&ldquo;God Molecule&rdquo; Authority</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }
 
@@ -378,6 +458,11 @@ export default function CourseDetailContent({ course }: Props) {
                     </div>
                 </div>
             </section>
+
+            {/* Instructor Spotlight - Intro Section */}
+            {course.featuredInstructor && (
+                <InstructorSpotlight instructor={course.featuredInstructor} />
+            )}
 
             {/* Sticky Navigation */}
             <nav className="sticky top-[72px] z-40 bg-white border-b border-slate-200 shadow-sm">

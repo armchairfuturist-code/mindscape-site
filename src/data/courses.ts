@@ -12,6 +12,11 @@ export interface Course {
     duration?: string;
     format?: string;
     instructor: 'stephan' | 'amber' | 'both' | 'martin';
+    featuredInstructor?: {
+        name: string;
+        image: string;
+        bio: string;
+    };
     metrics: {
         completionRate?: number;
         recommendRate?: number;
@@ -49,7 +54,9 @@ export interface Course {
         price: number;
     }[];
     amazonLink?: string;
+    waitlistLink?: string;
 }
+
 
 export const courses: Course[] = [
     {
@@ -168,10 +175,10 @@ export const courses: Course[] = [
     },
     {
         slug: "martin-ball-5-meo-dmt",
-        title: "The 5-MeO-DMT Advanced Integration Course",
-        subtitle: "With Martin W. Ball, Ph.D.",
+        title: "5-MeO-DMT Advanced Intregration Course",
+        subtitle: "Featuring Martin W. Ball, Ph.D",
         description: "There are psychedelics. And then there is 5-MeO-DMT.\n\nMost plant medicines show you the furniture of your mind—your trauma, your history, your stories. 5-MeO takes the house, burns it down, and leaves you floating in a white void of absolute nothingness. And absolute everythingness.\n\nIt’s the \"God Molecule.\" It is the Everest of the psyche.\n\nAnd when a client comes back from that... when they open their eyes after twenty minutes of ego-obliteration, they don't just need a chat. They need a completely different kind of map.\n\nMost coaches aren't equipped for this. You can't use standard integration techniques for an experience that transcends the standard human self.\n\nStarting March 4th, we are going to fix that.\n\nThis is a 9-week deep dive into the specific, nuanced, and profound art of integrating the 5-MeO experience. Limited to just 15 students, taught by the man who literally wrote the books on it, Martin W. Ball, Ph.D.\n\nIf you want to work with the most powerful molecule on the planet, you need to know how to handle the power.",
-        image: "/images/5meoi.avif",
+        image: "/images/5meoball.jpeg",
         price: null,
         type: "certification",
         status: "open",
@@ -180,6 +187,11 @@ export const courses: Course[] = [
         duration: "9 weeks",
         format: "Live Online (2-hour sessions)",
         instructor: "martin",
+        featuredInstructor: {
+            name: "Martin W. Ball, Ph.D.",
+            image: "/images/mball.jpeg",
+            bio: "Martin W. Ball, Ph.D., is a world-recognized authority on 5-MeO-DMT and one of the foremost pioneers in the modern entheogenic movement. He earned his doctorate in Religious Studies from the University of California, Santa Barbara, and has taught at Southern Oregon University, Rogue Community College, UC Berkeley, and UC Santa Barbara in the fields of Religion, Native American Studies, and ESL.\n\nDr. Ball is widely credited with coining the term “God Molecule” to describe 5-MeO-DMT and has authored more books on the subject than any other scholar or practitioner. His works include Entheogenic Liberation, 5-MeO-DMT Integration, Facilitating 5-MeO-DMT, and The 5-MeO-DMT Glossary, each contributing significantly to the philosophical, practical, and integration-based understanding of this powerful entheogen.\n\nSince 2008, he has hosted The Entheogenic Evolution Podcast, engaging in long-form dialogue on nonduality, psychedelic science, spiritual transformation, and cultural evolution."
+        },
         metrics: {
             completionRate: 94,
             recommendRate: 98,
@@ -273,10 +285,11 @@ export const courses: Course[] = [
     },
     {
         slug: "mastering-ketamine-assisted-therapy",
+        waitlistLink: "https://mindscape.mykajabi.com/pl/2148566324",
         title: "Mastering Ketamine Assisted Therapy",
         subtitle: "Clinical excellence in KAT facilitation",
         description: "A comprehensive certification program for practitioners seeking to master Ketamine-Assisted Therapy. This course provides deep clinical insights, safety protocols, and therapeutic frameworks for working with this powerful tool.",
-        image: "/images/1.png",
+        image: "/images/mkatlive.jpeg",
         price: null,
         type: "certification",
         status: "waitlist",
@@ -316,6 +329,54 @@ export const courses: Course[] = [
             {
                 question: "Is this for medical professionals only?",
                 answer: "While clinical backgrounds are preferred, we welcome experienced facilitators who work in collaboration with medical teams.",
+            },
+        ],
+    },
+    {
+        slug: "the-embodiment-protocol",
+        title: "The Embodiment Protocol",
+        subtitle: "Facilitator Certification Training",
+        description: "You’ve glimpsed the Infinite. Now it’s time to live it.\n\nFor decades, 5-MeO-DMT facilitation has revolved around the peak experience — the explosive moment of ego dissolution that promises enlightenment. But real transformation doesn’t happen in the peak. It happens in the return.\n\nIn The Integration & Embodiment Protocol, facilitators and teachers Stephan Kerby and Amber Kerby, LMFT challenge over forty years of traditional 5-MeO-DMT facilitation by offering a grounded, trauma-informed, and truly evolutionary approach to the medicine. Rooted in nondual awareness, neuroscience, and therapeutic practice, this training lays out a new framework for transformation — one where awakening is not an event to chase, but a state to live.",
+        image: "/images/eplive.jpeg",
+        price: null,
+        type: "certification",
+        status: "coming-soon",
+        waitlistLink: "https://mindscape.mykajabi.com/emobodiment-protocol-waitlist",
+        instructor: "both",
+        metrics: {
+            recommendRate: 100,
+        },
+        highlights: [
+            "Rewire the nervous system to stabilize awakening",
+            "Integrate trauma through presence and somatic awareness",
+            "Bridge psychological and spiritual growth through a single lens",
+            "Cultivate coherence between thought, emotion, and energy",
+            "Evolve beyond the 'mystical chase' into a life of authentic being",
+        ],
+        curriculum: [
+            {
+                title: "Phase 1: The Peak vs. The Return",
+                description: "Rethinking 5-MeO-DMT facilitation through the lens of embodiment.",
+                topics: [
+                    "Limitations of traditional peak-focused models",
+                    "The neurobiology of the return",
+                    "Introduction to the Embodiment Protocol framework",
+                ],
+            },
+            {
+                title: "Phase 2: Stabilizing Awakening",
+                description: "Retraining the nervous system to hold non-dual awareness in daily life.",
+                topics: [
+                    "Nervous system regulation techniques",
+                    "Integration of trauma through presence",
+                    "Stabilizing spiritual shifts somatically",
+                ],
+            },
+        ],
+        faq: [
+            {
+                question: "Is this based on the book?",
+                answer: "Yes, this certification course is the live, practical application of the protocols laid out in 'The Embodiment Protocol' book by Stephan and Amber Kerby.",
             },
         ],
     },
