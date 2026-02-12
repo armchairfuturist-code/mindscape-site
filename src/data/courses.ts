@@ -454,9 +454,9 @@ export const courses: Course[] = [
         ],
         guides: [
             {
-                name: "Stephan \"Kerby\" Kerby",
+                name: "Stephan Kerby",
                 role: "The Visionary",
-                description: "Founder of Unchurch University. He bridges the gap between the street and the clinic. A master facilitator of 5-MeO-DMT who understands that trauma-informed care is the only care that matters."
+                description: "Founder of Mindscape Psychedelic Institute. He bridges the gap between the street and the clinic. A master facilitator of 5-MeO-DMT who understands that trauma-informed care is the only care that matters."
             },
             {
                 name: "Amber Kerby, LMFT",
@@ -467,11 +467,6 @@ export const courses: Course[] = [
                 name: "Dr. Stephen Mandler",
                 role: "The Psychiatrist",
                 description: "Chief Medical Officer. Board-certified. He’s been everywhere from Afghanistan to the Menninger Clinic. He brings the medical weight and credibility necessary to legitimize this work in the eyes of the establishment."
-            },
-            {
-                name: "Dr. Olivia Leeker",
-                role: "The Psychologist",
-                description: "17+ years in the trenches—from VA hospitals to corrections. She understands the darkest corners of the human experience and uses psychedelic integration to bring light to them."
             },
             {
                 name: "Dr. Desmond Wallington",
