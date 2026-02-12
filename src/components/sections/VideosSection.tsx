@@ -63,8 +63,8 @@ export default function VideosSection() {
                 
                 if (data && data.length > 0) {
                     // Keep the first placeholder as the "main" video per instructions
-                    // and append the most recent shorts below it
-                    setVideos([placeholderVideos[0], ...data]);
+                    // and append the most recent videos below it (max 12 previews)
+                    setVideos([placeholderVideos[0], ...data.slice(0, 12)]);
                 }
             } catch (error) {
                 console.error('Failed to fetch videos:', error);
@@ -129,7 +129,7 @@ export default function VideosSection() {
 
                 {/* Video Grid */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {videos.slice(1).map((video, index) => (
+                    {videos.slice(1, 13).map((video, index) => (
                         <button
                             key={video.id}
                             onClick={() => setSelectedVideo(video.id)}
@@ -173,12 +173,12 @@ export default function VideosSection() {
                 {/* YouTube Channel Link */}
                 <div className="text-center mt-12">
                     <a
-                        href="https://www.youtube.com/@mindscapeinstitute/shorts"
+                        href="https://www.youtube.com/@mindscapeinstitute"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-teal-300 hover:text-gold font-medium transition-colors"
                     >
-                        View more shorts on YouTube
+                        View more on YouTube
                         <ExternalLink size={16} />
                     </a>
                 </div>
