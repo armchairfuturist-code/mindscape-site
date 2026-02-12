@@ -29,13 +29,23 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
     const cardContent = (
         <>
             {/* Image */}
-            <div className="relative aspect-[16/10] rounded-lg overflow-hidden mb-5 -mx-6 -mt-6">
+            <div
+                className={`relative rounded-lg overflow-hidden mb-5 -mx-6 -mt-6 ${
+                    course.type === "ebook" ? "aspect-[3/4] bg-slate-100" : "aspect-[16/10]"
+                }`}
+            >
                 <img
                     src={course.image}
                     alt={course.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className={`w-full h-full ${
+                        course.type === "ebook"
+                            ? "object-contain"
+                            : "object-cover group-hover:scale-105 transition-transform duration-500"
+                    }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+                {course.type !== "ebook" && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+                )}
 
                 {/* Status Badge */}
                 {course.type !== 'ebook' && (
