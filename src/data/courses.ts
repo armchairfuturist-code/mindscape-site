@@ -57,6 +57,15 @@ export interface Course {
     optInLink?: string;
     payLink?: string;
     depositAmount?: number;
+    depositQrImage?: string;
+    depositHandle?: string;
+    depositNote?: string;
+    enrollmentTitle?: string;
+    enrollmentDescription?: string;
+    applyCtaLabel?: string;
+    depositCtaLabel?: string;
+    finalCtaTitle?: string;
+    finalCtaDescription?: string;
     waitlistLink?: string;
 }
 
@@ -185,19 +194,28 @@ export const courses: Course[] = [
     },
     {
         slug: "martin-ball-5-meo-dmt",
-        title: "5-MeO-DMT Advanced Intregration Course",
-        subtitle: "Featuring Martin W. Ball, Ph.D",
-        description: "There are psychedelics. And then there is 5-MeO-DMT.\n\nMost plant medicines show you the furniture of your mind—your trauma, your history, your stories. 5-MeO takes the house, burns it down, and leaves you floating in a white void of absolute nothingness. And absolute everythingness.\n\nIt’s the \"God Molecule.\" It is the Everest of the psyche.\n\nAnd when a client comes back from that... when they open their eyes after twenty minutes of ego-obliteration, they don't just need a chat. They need a completely different kind of map.\n\nMost coaches aren't equipped for this. You can't use standard integration techniques for an experience that transcends the standard human self.\n\nStarting March 4th, we are going to fix that.\n\nThis is a 9-week deep dive into the specific, nuanced, and profound art of integrating the 5-MeO experience. Limited to just 15 students, taught by the man who literally wrote the books on it, Martin W. Ball, Ph.D.\n\nIf you want to work with the most powerful molecule on the planet, you need to know how to handle the power.",
+        title: "5-MeO-DMT Integration Coaching Course",
+        subtitle: "A 9-Week Live Intensive with Martin W. Ball, Ph.D.",
+        description: "Thank you for your interest in the 5-MeO-DMT Integration Coaching Course. This 9-week live training is built for practitioners who want a rigorous, practical framework for guiding clients after transformative 5-MeO-DMT experiences.\n\nLed by Martin W. Ball, Ph.D., this is one of the most comprehensive integration-focused trainings available for working with the nondual, somatic, and relational complexity of this molecule.\n\nYou will learn how to support clients beyond insight moments and into embodied, ethical, ongoing integration work.",
         image: "/images/5meoball.jpeg",
-        price: null,
+        price: 2500,
         type: "certification",
         status: "open",
-        requiresInterview: true,
+        requiresInterview: false,
         optInLink: "https://mindscape.mykajabi.com/5meointegration",
-        payLink: "https://mindscape.mykajabi.com/pl/2148612384",
-        nextCohort: "March 4, 2026",
+        depositAmount: 500,
+        depositQrImage: "/images/ballvenmo.png",
+        depositHandle: "@Martin-Ball-3",
+        depositNote: "$500 non-refundable deposit reserves your seat. Remaining balance is due at class start.",
+        enrollmentTitle: "Enrollment Open - 15 Seats",
+        enrollmentDescription: "Reserve one of 15 seats for the March-May live cohort and train directly with Martin W. Ball, Ph.D.",
+        applyCtaLabel: "Apply + Hold Your Seat",
+        depositCtaLabel: "Reserve One of 15 Seats ($500)",
+        finalCtaTitle: "Reserve Your Spot Today",
+        finalCtaDescription: "Enrollment is capped at 15 participants to preserve personalized support and live coaching quality.",
+        nextCohort: "Weds March 4 - May 13, 2026",
         duration: "9 weeks",
-        format: "Live Online (2-hour sessions)",
+        format: "Live Zoom (Wednesdays, 3-5 PM Pacific) + recordings",
         instructor: "martin",
         featuredInstructor: {
             name: "Martin W. Ball, Ph.D.",
@@ -210,88 +228,98 @@ export const courses: Course[] = [
             students: 15,
         },
         highlights: [
-            "Limited to just 15 students for intimacy",
-            "Taught by Martin W. Ball, Ph.D.",
-            "9-week intensive deep dive",
-            "Live 2-hour sessions every Wednesday",
+            "Live on Wednesdays, 3-5 PM Pacific (recorded)",
+            "Limited to 15 participants for personalized attention",
+            "Built specifically for 5-MeO-DMT integration coaching",
+            "Led by Martin W. Ball, Ph.D.",
         ],
-        howItWorksIntro: "Look, this isn't a webinar you play in the background at 2x speed while you fold laundry. This is a crucible. We are keeping this small—15 people max—because this work requires intimacy. It requires looking each other in the eye (virtually) and deconstructing the most intense experience a human being can have.",
+        howItWorksIntro: "This is a focused 9-week live container for serious practitioners. We keep the cohort capped at 15 so Martin can provide direct guidance, case-based teaching, and nuanced feedback throughout the training.",
         howItWorks: [
             {
                 title: "The Commitment",
-                description: "We meet live for 2 hours every Wednesday. We talk. We argue. We unpack the readings. We do the work.",
+                description: "Live classes run Wednesdays from 3-5 PM Pacific via Zoom. Sessions are recorded for later review, but live attendance is strongly encouraged for dialogue and supervision.",
             },
             {
                 title: "The Rhythm",
-                description: "It’s 9 weeks of instruction, but we respect the integration process itself. We’re taking a two-week \"Spring Break\" (March 25 & April 1) to let the material settle.",
+                description: "Program dates are March 4 through May 13, 2026, with no class on March 25 and April 1 for spring break and integration time.",
             },
             {
-                title: "The Safety Net",
-                description: "Life is messy. If you miss a live session, we record everything. You can catch up. But try to be there. The magic is in the conversation.",
+                title: "Class Size",
+                description: "Enrollment is limited to 15 participants so each student receives personalized attention and direct support.",
             },
             {
-                title: "The Dates",
-                description: "Start: Wednesday, March 4th. End: Wednesday, May 13th. (No class March 25th or April 1st).",
+                title: "Tuition",
+                description: "$2,500 for new students, or $2,000 for Mindscape alumni. A $500 non-refundable deposit reserves your seat, with remaining balance due at class start.",
             },
         ],
         curriculum: [
             {
-                title: "Phase 1: The Landscape of the Void",
-                description: "You can't guide someone through territory you don't understand. We start by stripping away the myths.",
+                title: "Module 1: Distinctive Nature of 5-MeO-DMT",
+                description: "Understand what makes 5-MeO-DMT integration distinct from other psychedelic integration approaches.",
                 topics: [
-                    "The pharmacology and history of 5-MeO-DMT",
-                    "Why the \"Toad\" is distinct from ayahuasca, mushrooms, or LSD",
-                    "The Entheological Paradigm: Understanding the nature of the \"Universal Self\"",
+                    "How 5-MeO-DMT differs from other psychedelics",
+                    "Nondual context and integration implications",
+                    "Common misconceptions in post-5-MeO support",
                 ],
             },
             {
-                title: "Phase 2: The Shattering",
-                description: "What happens to the ego? We dive into the terrifying and beautiful mechanics of ego dissolution.",
+                title: "Module 2: Somatic and Energetic Integration",
+                description: "Work with nondual energetics and body-based processing methods in a grounded coaching container.",
                 topics: [
-                    "Navigating the \"White Out\" vs. the \"Black Out\"",
-                    "Understanding energetic symmetry and somatic release",
-                    "Why clients feel like they are dying (and why that’s the point)",
+                    "Nondual energetics and somatic processing",
+                    "Human energetic system interactions",
+                    "Embodiment techniques for stabilization",
                 ],
             },
             {
-                title: "Phase 3: The Reactivation",
-                description: "The hardest part isn't the trip; it's the Tuesday morning after. This is where the real coaching happens.",
+                title: "Module 3: Practical Integration Session Skills",
+                description: "Translate theory into coaching practice with concrete session structure and communication skills.",
                 topics: [
-                    "Identifying \"energetic kinks\" and holding patterns in the body",
-                    "The phenomenon of \"reactivations\" (when the medicine comes back weeks later)",
-                    "Grounding techniques that actually work for non-dual experiences",
+                    "Active listening in nonordinary integration contexts",
+                    "Embodiment exercises for post-session processing",
+                    "Three facets of integration: then, now, and next",
                 ],
             },
             {
-                title: "Phase 4: The Coach's Stance",
-                description: "How do you hold space for the infinite without your own ego getting in the way?",
+                title: "Module 4: Reactivations and Ongoing Support",
+                description: "Prepare for delayed effects and complex post-session dynamics with practical, ethical coaching tools.",
                 topics: [
-                    "Projections, mirrors, and the ethics of power",
-                    "Screening clients: Who is ready and who is absolutely not",
-                    "Building a practice that honors the molecule",
+                    "Addressing reactivations and post-session effects",
+                    "When to support, stabilize, or refer out",
+                    "Building confidence for professional integration services",
                 ],
+            },
+        ],
+        priceTiers: [
+            {
+                label: "New Students",
+                price: 2500,
+            },
+            {
+                label: "Mindscape Alumni",
+                price: 2000,
             },
         ],
         faq: [
             {
-                question: "Do I need to have taken 5-MeO-DMT to take this course?",
-                answer: "Honestly? It helps. It helps a lot. Trying to explain the taste of salt to someone who has never eaten is difficult. Trying to explain the annihilation of space-time to someone who hasn't been there is nearly impossible. However, if you are a serious practitioner preparing to enter this space, you are welcome.",
+                question: "When are classes held?",
+                answer: "Classes run Wednesdays, 3-5 PM Pacific Time, from March 4 through May 13, 2026. There is no class on March 25 or April 1 for spring break.",
             },
             {
-                question: "Is this a certification?",
-                answer: "This is training. Real, hard-earned knowledge. We don't hand you a piece of paper that makes you a \"Shaman.\" The medicine doesn't care about certificates. We give you the competence and confidence to do the work safely. That’s worth more than a badge on your website.",
+                question: "What is the tuition?",
+                answer: "Tuition is $2,500 for new students and $2,000 for previous Mindscape Institute students. A $500 non-refundable deposit reserves your seat, and the remaining balance is due at class start.",
             },
             {
-                question: "Who is Martin W. Ball?",
-                answer: "If you’re in this space, you likely already know. But if not: Martin is a radical thinker, a Ph.D., and an author who has spent years mapping the visual and energetic language of the tryptamine experience. He doesn't sugarcoat things. He teaches you to see clearly.",
+                question: "What if I miss a live class?",
+                answer: "Sessions are recorded, so you can catch up. Live attendance is still encouraged to get full value from direct interaction and real-time coaching dialogue.",
             },
             {
-                question: "What if I can’t make the live times?",
-                answer: "We get it. Time zones are weird. Kids get sick. All sessions are recorded and uploaded. You won't lose the content, but you will miss the direct interaction with Martin and the cohort.",
+                question: "How many seats are available?",
+                answer: "Enrollment is capped at 15 participants to preserve teaching quality and personalized support.",
             },
             {
-                question: "Why is the class so small?",
-                answer: "Because mass-market education is for memorizing facts. Transformation requires conversation. With only 15 spots, you aren't a number. You're a colleague.",
+                question: "How do I pay the deposit?",
+                answer: "Use the Pay Deposit button on this page to view Martin's Venmo QR code and payment handle. Submit your $500 deposit to reserve your seat.",
             },
         ],
     },

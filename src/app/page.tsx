@@ -1,4 +1,5 @@
 import HeroSection from "@/components/sections/HeroSection";
+import EnrollmentProcessSection from "@/components/sections/EnrollmentProcessSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import VideosSection from "@/components/sections/VideosSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
@@ -10,10 +11,11 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <FeaturesSection />
-      <VideosSection />
       <CoursesSection />
+      <EnrollmentProcessSection />
+      <FeaturesSection />
       <TestimonialsSection />
+      <VideosSection />
       <AboutSection />
       <ContactSection />
     </>

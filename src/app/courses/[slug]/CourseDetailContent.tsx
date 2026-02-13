@@ -17,7 +17,8 @@ import {
     Send,
     Zap,
     Shield,
-    UserCheck
+    UserCheck,
+    X
 } from "lucide-react";
 import { Course } from "@/data/courses";
 
@@ -39,79 +40,166 @@ function StatusToggle({
     isSubmitted: boolean;
     handleWaitlistSubmit: (e: React.FormEvent) => void;
 }) {
+    const [showDepositQR, setShowDepositQR] = useState(false);
+    const hasDepositOption = !!course.payLink || !!course.depositQrImage;
+    const depositButtonText = course.depositCtaLabel || `Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`;
+    const defaultDepositNote = course.requiresInterview
+        ? "Deposit reserves your seat and is applied to tuition after interview acceptance."
+        : "Deposit reserves your seat. Remaining balance is due at class start date.";
+    const depositNote = course.depositNote || defaultDepositNote;
+
+    const renderDepositAction = (className: string) => {
+        if (!hasDepositOption) {
+            return null;
+        }
+
+        if (course.depositQrImage) {
+            return (
+                <button
+                    type="button"
+                    onClick={() => setShowDepositQR(true)}
+                    className={className}
+                >
+                    {depositButtonText}
+                </button>
+            );
+        }
+
+        return (
+            <a
+                href={course.payLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={className}
+            >
+                {depositButtonText}
+            </a>
+        );
+    };
+
+    const renderDepositModal = () => {
+        if (!showDepositQR || !course.depositQrImage) {
+            return null;
+        }
+
+        return (
+            <div
+                className="fixed inset-0 z-[120] bg-navy/80 backdrop-blur-sm px-4 py-8"
+                role="presentation"
+                onClick={() => setShowDepositQR(false)}
+            >
+                <div
+                    className="max-w-md mx-auto bg-white rounded-2xl shadow-large border border-slate-200 overflow-hidden"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Deposit payment details"
+                    onClick={(event) => event.stopPropagation()}
+                >
+                    <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
+                        <h4 className="text-lg font-heading font-semibold text-navy">Pay Deposit via Venmo</h4>
+                        <button
+                            type="button"
+                            onClick={() => setShowDepositQR(false)}
+                            className="w-8 h-8 rounded-full border border-slate-300 text-slate-600 hover:text-navy hover:border-slate-400 transition-colors inline-flex items-center justify-center"
+                            aria-label="Close payment details"
+                        >
+                            <X size={16} />
+                        </button>
+                    </div>
+
+                    <div className="p-6 text-center">
+                        <Image
+                            src={course.depositQrImage}
+                            alt="Venmo QR code for deposit"
+                            width={360}
+                            height={432}
+                            className="w-full h-auto rounded-xl border border-slate-200"
+                        />
+                        {course.depositHandle && (
+                            <p className="text-navy font-semibold mt-4">Venmo: {course.depositHandle}</p>
+                        )}
+                        <p className="text-slate-600 text-sm mt-2">{depositNote}</p>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     if (course.status === "open") {
         const isMasterclass = course.type === "masterclass";
         const isCertification = course.type === "certification";
+        const enrollmentTitle = course.enrollmentTitle || (isMasterclass ? "Instant Access" : "Enrollment Open");
+        const enrollmentDescription = course.enrollmentDescription || (isMasterclass
+            ? "Get immediate access to all course materials and begin your journey today."
+            : "Secure your spot now and begin your journey.");
+        const applyButtonText = course.applyCtaLabel || (course.requiresInterview
+            ? "Apply / Schedule Interview"
+            : "Apply / Reserve Spot");
         return (
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8">
-                <h3 className="font-heading font-semibold text-xl text-white mb-4">
-                    {isMasterclass ? "Instant Access" : "Enrollment Open"}
-                </h3>
-                <p className="text-white/70 mb-6">
-                    {isMasterclass
-                        ? "Get immediate access to all course materials and begin your journey today."
-                        : "Secure your spot now and begin your journey."}
-                </p>
-                {isCertification ? (
-                    <div className="space-y-3">
+            <>
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8">
+                    <h3 className="font-heading font-semibold text-xl text-white mb-4">
+                        {enrollmentTitle}
+                    </h3>
+                    <p className="text-white/70 mb-6">
+                        {enrollmentDescription}
+                    </p>
+                    {isCertification ? (
+                        <div className="space-y-3">
+                            <a
+                                href={course.optInLink || course.waitlistLink || "#"}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-primary w-full text-center text-lg py-4"
+                            >
+                                {applyButtonText}
+                            </a>
+                            {renderDepositAction("btn-deposit w-full text-center text-lg py-4")}
+                        </div>
+                    ) : (
                         <a
-                            href={course.optInLink || course.waitlistLink || "#"}
+                            href={course.kajabiLink || "#"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-primary w-full text-center text-lg py-4"
                         >
-                            Apply / Schedule Interview
+                            {isMasterclass ? "Buy Now" : "Apply Now"}
                         </a>
-                        {course.payLink && (
-                            <a
-                                href={course.payLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-deposit w-full text-center text-lg py-4"
-                            >
-                                {`Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`}
-                            </a>
-                        )}
-                    </div>
-                ) : (
-                    <a
-                        href={course.kajabiLink || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-primary w-full text-center text-lg py-4"
-                    >
-                        {isMasterclass ? "Buy Now" : "Apply Now"}
-                    </a>
-                )}
-                {course.priceTiers ? (
-                    <div className="mt-4 space-y-2">
-                        {course.priceTiers.map((tier, i) => (
-                            <div key={i} className="flex justify-between items-center text-sm text-white/70 px-4 py-3 bg-white/5 rounded-lg border border-white/10">
-                                <span className="font-medium text-white/90">{tier.label}</span>
-                                <span className="font-bold text-gold">${tier.price}</span>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    course.price && (
-                        course.depositAmount ? (
-                            <p className="text-white/60 text-sm text-center mt-4">
-                                Tuition: ${course.price}. Deposit: ${course.depositAmount}. Full balance due after interview acceptance.
-                            </p>
-                        ) : (
-                            <p className="text-white/50 text-sm text-center mt-4">
-                                Price: ${course.price}
-                            </p>
+                    )}
+                    {course.priceTiers ? (
+                        <div className="mt-4 space-y-2">
+                            {course.priceTiers.map((tier, i) => (
+                                <div key={i} className="flex justify-between items-center text-sm text-white/70 px-4 py-3 bg-white/5 rounded-lg border border-white/10">
+                                    <span className="font-medium text-white/90">{tier.label}</span>
+                                    <span className="font-bold text-gold">${tier.price}</span>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        course.price && (
+                            course.depositAmount ? (
+                                <p className="text-white/60 text-sm text-center mt-4">
+                                    {course.requiresInterview
+                                        ? `Tuition: $${course.price}. Deposit: $${course.depositAmount}. Full balance due after interview acceptance.`
+                                        : `Tuition: $${course.price}. Deposit: $${course.depositAmount}. Remaining balance due at class start.`}
+                                </p>
+                            ) : (
+                                <p className="text-white/50 text-sm text-center mt-4">
+                                    Price: ${course.price}
+                                </p>
+                            )
                         )
-                    )
-                )}
-            </div>
+                    )}
+                </div>
+                {renderDepositModal()}
+            </>
         );
     }
 
     const isComingSoon = course.status === "coming-soon";
 
     return (
+        <>
         <div className="bg-navy-900/60 backdrop-blur-lg border border-white/20 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden group/waitlist">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-0 group-hover/waitlist:opacity-100 transition-opacity" />
             {isSubmitted ? (
@@ -172,24 +260,19 @@ function StatusToggle({
                             </button>
                         </form>
                     )}
-                    {course.payLink && (
+                    {hasDepositOption && (
                         <div className="mt-4 pt-4 border-t border-white/10">
-                            <a
-                                href={course.payLink}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-deposit w-full text-center py-4"
-                            >
-                                {`Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`}
-                            </a>
+                            {renderDepositAction("btn-deposit w-full text-center py-4")}
                             <p className="text-white/60 text-sm text-center mt-3">
-                                Deposit reserves your seat and is applied to tuition after interview acceptance.
+                                {depositNote}
                             </p>
                         </div>
                     )}
                 </>
             )}
         </div>
+        {renderDepositModal()}
+        </>
     );
 }
 
@@ -334,7 +417,9 @@ function InstructorSpotlight({ instructor }: { instructor: { name: string; image
 }
 
 export default function CourseDetailContent({ course }: Props) {
-    const [activeSection, setActiveSection] = useState("how-it-works");
+    const [activeSection, setActiveSection] = useState(
+        course.type === "masterclass" ? "course-details" : "fit"
+    );
     const [openAccordion, setOpenAccordion] = useState<number | null>(0);
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
     const [email, setEmail] = useState("");
@@ -347,6 +432,19 @@ export default function CourseDetailContent({ course }: Props) {
     };
 
     const isMasterclass = course.type === "masterclass";
+    const enrollmentSteps = course.requiresInterview
+        ? [
+            "Apply + Schedule Interview",
+            "Reserve with Deposit",
+            "Complete Fit Interview",
+            "Finalize Tuition After Acceptance",
+        ]
+        : [
+            "Apply / Reserve Spot",
+            "Submit Deposit to Secure Seat",
+            "Receive Class Access Details",
+            "Pay Remaining Balance by Class Start",
+        ];
     const navItems = isMasterclass
         ? [
             { id: "course-details", label: "Course Details" },
@@ -354,12 +452,15 @@ export default function CourseDetailContent({ course }: Props) {
             { id: "faq", label: "FAQ" },
         ]
         : [
-            { id: "how-it-works", label: "How It Works" },
-            { id: "schedule", label: "Schedule" },
+            { id: "fit", label: "Program Fit" },
+            { id: "outcomes", label: "Outcomes" },
             { id: "curriculum", label: "Curriculum" },
-            ...(course.guides ? [{ id: "guides", label: "Your Guides" }] : []),
-            { id: "apply", label: course.status === "open" ? "Apply Now" : "Waitlist" },
+            { id: "enrollment", label: "Enrollment" },
+            { id: "tuition", label: "Tuition" },
+            { id: "standards", label: "Standards" },
+            { id: "proof", label: "Proof" },
             { id: "faq", label: "FAQ" },
+            { id: "apply", label: course.status === "open" ? "Apply Now" : "Waitlist" },
         ];
 
     return (
@@ -424,7 +525,7 @@ export default function CourseDetailContent({ course }: Props) {
                                 <span className="flex items-center gap-2">
                                     <Users size={18} />
                                     {course.instructor === "both"
-                                        ? "Stephan & Amber"
+                                        ? "Stephan & Amber Kerby"
                                         : course.instructor === "stephan"
                                             ? "Stephan Kerby"
                                             : course.instructor === "martin"
@@ -655,94 +756,83 @@ export default function CourseDetailContent({ course }: Props) {
                         </div>
                     </section>
                 ) : (
-                    /* Existing Segmented Sections for Certifications */
+                    /* Conversion-Oriented Sections for Certifications */
                     <>
-                        <section id="how-it-works" className="section bg-gradient-to-b from-slate-50 to-white">
+                        <section id="fit" className="section bg-gradient-to-b from-slate-50 to-white">
                             <div className="container-custom">
-                                <div className="max-w-4xl">
-                                    <div className="decorative-line mb-8" />
-                                    <h2 className="text-navy mb-8">
-                                        {course.howItWorks ? "How It Works" : "Experience What You're Really Capable Of"}
-                                    </h2>
-                                    <div className="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
-                                        {course.howItWorksIntro ? (
-                                            <p className="text-xl text-navy-500/80 font-medium whitespace-pre-wrap">
-                                                {course.howItWorksIntro}
-                                            </p>
-                                        ) : (
-                                            <p className="text-xl text-navy-500/80 font-medium">
-                                                At Mindscape, we don't just teach facilitation; we master the art of transformative care.
-                                            </p>
-                                        )}
-                                        {!course.howItWorks && <p>{course.description}</p>}
+                                <div className="max-w-5xl mx-auto">
+                                    <div className="text-center mb-12">
+                                        <div className="decorative-line mx-auto mb-6" />
+                                        <h2 className="text-navy mb-4">Is This Program Right for You?</h2>
+                                        <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                                            This is a premium, high-accountability certification path for practitioners ready for deep training and ethical responsibility.
+                                        </p>
                                     </div>
 
-                                    {course.howItWorks && (
-                                        <div className="mt-12 grid sm:grid-cols-2 gap-8">
-                                            {course.howItWorks.map((item, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="p-8 rounded-2xl bg-white border border-slate-100 shadow-soft hover:shadow-medium transition-all group"
-                                                >
-                                                    <h3 className="text-xl font-heading font-semibold text-navy mb-4 group-hover:text-teal transition-colors">
-                                                        {item.title}
-                                                    </h3>
-                                                    <p className="text-slate-600 leading-relaxed">
-                                                        {item.description}
-                                                    </p>
-                                                </div>
-                                            ))}
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-soft">
+                                            <h3 className="text-xl font-heading font-semibold text-navy mb-5">Great Fit If You</h3>
+                                            <ul className="space-y-3">
+                                                {[
+                                                    "Want rigorous, trauma-informed facilitation training",
+                                                    "Value mentorship, feedback, and professional standards",
+                                                    "Can commit to live participation and sustained practice",
+                                                    "Are ready to be evaluated on ethics and competency",
+                                                ].map((item) => (
+                                                    <li key={item} className="flex items-start gap-3 text-slate-700">
+                                                        <Check size={18} className="text-teal mt-0.5 flex-shrink-0" />
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                    )}
 
-                                    {course.highlights.length > 0 && !course.howItWorks && (
-                                        <div className="mt-12 grid sm:grid-cols-2 gap-6">
-                                            {course.highlights.map((highlight, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="group flex items-start gap-4 p-6 rounded-2xl bg-white border border-slate-100 shadow-soft hover:shadow-medium transition-all"
-                                                >
-                                                    <div className="w-10 h-10 rounded-full bg-teal/10 flex items-center justify-center flex-shrink-0 group-hover:bg-teal group-hover:text-white transition-colors">
-                                                        <Check size={20} />
-                                                    </div>
-                                                    <span className="text-slate-700 font-medium pt-1">{highlight}</span>
-                                                </div>
-                                            ))}
+                                        <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-soft">
+                                            <h3 className="text-xl font-heading font-semibold text-navy mb-5">Not Ideal If You</h3>
+                                            <ul className="space-y-3">
+                                                {[
+                                                    "Are looking for a fast, weekend-style credential",
+                                                    "Prefer fully self-paced learning with no live container",
+                                                    "Do not want interview screening or accountability",
+                                                    "Need immediate access without cohort timelines",
+                                                ].map((item) => (
+                                                    <li key={item} className="flex items-start gap-3 text-slate-700">
+                                                        <ChevronDown size={18} className="text-gold-dark mt-0.5 flex-shrink-0 rotate-[-90deg]" />
+                                                        <span>{item}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             </div>
                         </section>
 
-                        {!isMasterclass && (
-                            <section id="schedule" className="section-sm bg-navy text-white relative overflow-hidden">
-                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-30" />
-                                <div className="container-custom relative z-10">
-                                    <h2 className="text-3xl font-heading font-semibold text-center mb-12">
-                                        Program Logistics
-                                    </h2>
-                                    <div className="grid md:grid-cols-3 gap-8">
-                                        <div className="p-8 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
-                                            <Clock size={32} className="text-gold mx-auto mb-4" />
-                                            <h4 className="font-semibold text-white mb-2 uppercase tracking-wide text-xs">Duration</h4>
-                                            <p className="text-white/80 text-lg">{course.duration || "Self-paced"}</p>
-                                        </div>
-                                        <div className="p-8 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
-                                            <BookOpen size={32} className="text-gold mx-auto mb-4" />
-                                            <h4 className="font-semibold text-white mb-2 uppercase tracking-wide text-xs">Learning Format</h4>
-                                            <p className="text-white/80 text-lg">{course.format || "Digital"}</p>
-                                        </div>
-                                        <div className="p-8 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
-                                            <Calendar size={32} className="text-gold mx-auto mb-4" />
-                                            <h4 className="font-semibold text-white mb-2 uppercase tracking-wide text-xs">Enrollment</h4>
-                                            <p className="text-white/80 text-lg">
-                                                {course.nextCohort || "Open Enrollment"}
-                                            </p>
-                                        </div>
+                        <section id="outcomes" className="section bg-white">
+                            <div className="container-custom">
+                                <div className="max-w-5xl mx-auto">
+                                    <div className="text-center mb-12">
+                                        <div className="decorative-line mx-auto mb-6" />
+                                        <h2 className="text-navy mb-4">Program Outcomes</h2>
+                                        <p className="text-lg text-slate-600">What you are expected to embody by the end of training.</p>
+                                    </div>
+
+                                    <div className="grid sm:grid-cols-2 gap-6">
+                                        {course.highlights.map((highlight, index) => (
+                                            <div
+                                                key={index}
+                                                className="group flex items-start gap-4 p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-medium transition-all"
+                                            >
+                                                <div className="w-10 h-10 rounded-full bg-teal/10 flex items-center justify-center flex-shrink-0 group-hover:bg-teal group-hover:text-white transition-colors">
+                                                    <Check size={20} />
+                                                </div>
+                                                <span className="text-slate-700 font-medium pt-1">{highlight}</span>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
-                            </section>
-                        )}
+                            </div>
+                        </section>
 
                         {course.curriculum.length > 0 && (
                             <section id="curriculum" className="section bg-white">
@@ -751,7 +841,7 @@ export default function CourseDetailContent({ course }: Props) {
                                         <div className="decorative-line mx-auto mb-6" />
                                         <h2 className="text-navy mb-4">The Curriculum</h2>
                                         <p className="text-lg text-slate-600">
-                                            A synthesis of clinical depth, spiritual insight, and practical mastery.
+                                            A progression from safety foundations to ethical, embodied facilitation.
                                         </p>
                                     </div>
                                     <div className="space-y-6 max-w-3xl mx-auto">
@@ -771,6 +861,142 @@ export default function CourseDetailContent({ course }: Props) {
                                 </div>
                             </section>
                         )}
+
+                        <section id="enrollment" className="section-sm bg-navy text-white relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-30" />
+                            <div className="container-custom relative z-10">
+                                <div className="text-center mb-10">
+                                    <h2 className="text-3xl font-heading font-semibold mb-3">How Enrollment Works</h2>
+                                    <p className="text-white/70">Clear steps before you enter the full training container.</p>
+                                </div>
+                                <div className="grid md:grid-cols-4 gap-6">
+                                    {enrollmentSteps.map((step, index) => (
+                                        <div key={step} className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center hover:bg-white/10 transition-colors">
+                                            <p className="text-xs uppercase tracking-wide text-gold mb-2">Step {index + 1}</p>
+                                            <p className="text-white/90 text-sm font-semibold leading-snug">{step}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="tuition" className="section bg-slate-50">
+                            <div className="container-custom">
+                                <div className="max-w-3xl mx-auto">
+                                    <div className="text-center mb-10">
+                                        <div className="decorative-line mx-auto mb-6" />
+                                        <h2 className="text-navy mb-4">Tuition & Policy Clarity</h2>
+                                        <p className="text-lg text-slate-600">Transparent pricing and expectations before enrollment.</p>
+                                    </div>
+
+                                    <div className="bg-white rounded-2xl border border-slate-200 shadow-soft p-8">
+                                        <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                                            <div className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-4">
+                                                <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">Tuition</p>
+                                                <p className="text-2xl font-bold text-navy">{course.price ? `$${course.price}` : "Coming Soon"}</p>
+                                            </div>
+                                            <div className="rounded-xl bg-slate-50 border border-slate-200 px-4 py-4">
+                                                <p className="text-xs uppercase tracking-wide text-slate-500 mb-1">Deposit</p>
+                                                <p className="text-2xl font-bold text-navy">{course.depositAmount ? `$${course.depositAmount}` : "Coming Soon"}</p>
+                                            </div>
+                                        </div>
+
+                                        <ul className="space-y-3 text-slate-700">
+                                            <li className="flex gap-3"><Check size={18} className="text-teal mt-0.5 flex-shrink-0" /><span>Deposit reserves your seat and applies to tuition.</span></li>
+                                            <li className="flex gap-3"><Check size={18} className="text-teal mt-0.5 flex-shrink-0" /><span>{course.requiresInterview ? "Full balance is due only after interview acceptance." : "Remaining balance is due at class start date."}</span></li>
+                                            <li className="flex gap-3"><Check size={18} className="text-teal mt-0.5 flex-shrink-0" /><span>Enrollment is limited to preserve mentorship quality.</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            </section>
+
+                        <section id="standards" className="section bg-white">
+                            <div className="container-custom">
+                                <div className="max-w-5xl mx-auto">
+                                    <div className="text-center mb-12">
+                                        <div className="decorative-line mx-auto mb-6" />
+                                        <h2 className="text-navy mb-4">Mentorship & Certification Standards</h2>
+                                        {course.howItWorksIntro && (
+                                            <p className="text-lg text-slate-600 max-w-3xl mx-auto">{course.howItWorksIntro}</p>
+                                        )}
+                                    </div>
+
+                                    {course.howItWorks && (
+                                        <div className="grid sm:grid-cols-2 gap-8">
+                                            {course.howItWorks.map((item, index) => (
+                                                <div
+                                                    key={index}
+                                                    className="p-8 rounded-2xl bg-slate-50 border border-slate-200 shadow-soft hover:shadow-medium transition-all"
+                                                >
+                                                    <h3 className="text-xl font-heading font-semibold text-navy mb-4">{item.title}</h3>
+                                                    <p className="text-slate-600 leading-relaxed">{item.description}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="proof" className="section bg-slate-50">
+                            <div className="container-custom">
+                                <div className="max-w-5xl mx-auto">
+                                    <div className="text-center mb-12">
+                                        <div className="decorative-line mx-auto mb-6" />
+                                        <h2 className="text-navy mb-4">Proof & Practitioner Feedback</h2>
+                                        <p className="text-lg text-slate-600">Evidence from graduates and cohort performance.</p>
+                                    </div>
+
+                                    {course.status === "coming-soon" ? (
+                                        <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-soft text-center">
+                                            <p className="text-2xl font-heading font-semibold text-navy mb-3">Coming Soon</p>
+                                            <p className="text-slate-600 max-w-2xl mx-auto">
+                                                Practitioner outcomes and cohort feedback will be added once this live training launches.
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <div className="grid md:grid-cols-3 gap-6 mb-8">
+                                                {course.metrics.completionRate && (
+                                                    <div className="p-6 rounded-2xl bg-white border border-slate-200 text-center shadow-soft">
+                                                        <p className="text-3xl font-bold text-navy mb-1">{course.metrics.completionRate}%</p>
+                                                        <p className="text-sm text-slate-500 uppercase tracking-wide">Cohort Completion</p>
+                                                    </div>
+                                                )}
+                                                {course.metrics.recommendRate && (
+                                                    <div className="p-6 rounded-2xl bg-white border border-slate-200 text-center shadow-soft">
+                                                        <p className="text-3xl font-bold text-navy mb-1">{course.metrics.recommendRate}%</p>
+                                                        <p className="text-sm text-slate-500 uppercase tracking-wide">Recommended</p>
+                                                    </div>
+                                                )}
+                                                {course.metrics.students && (
+                                                    <div className="p-6 rounded-2xl bg-white border border-slate-200 text-center shadow-soft">
+                                                        <p className="text-3xl font-bold text-navy mb-1">{course.metrics.students.toLocaleString()}+</p>
+                                                        <p className="text-sm text-slate-500 uppercase tracking-wide">Alumni</p>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            {course.testimonial && (
+                                                <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-soft">
+                                                    <div className="flex gap-1 mb-4">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <Star key={i} size={14} className="text-gold fill-gold" />
+                                                        ))}
+                                                    </div>
+                                                    <p className="text-slate-700 text-lg italic mb-6 leading-relaxed">
+                                                        &ldquo;{course.testimonial.quote}&rdquo;
+                                                    </p>
+                                                    <p className="text-navy font-semibold">{course.testimonial.author}</p>
+                                                    <p className="text-slate-500 text-sm">{course.testimonial.role}</p>
+                                                </div>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </section>
                     </>
                 )}
 
@@ -801,28 +1027,6 @@ export default function CourseDetailContent({ course }: Props) {
                     </section>
                 )}
 
-                {/* Final CTA Strip - Hidden for Masterclasses */}
-                {!isMasterclass && (
-                    <section id="apply" className="py-24 bg-gradient-to-br from-navy to-navy-800 text-white text-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-teal)_0%,_transparent_70%)] opacity-10" />
-                        <div className="container-custom relative z-10">
-                            <h2 className="text-4xl font-heading font-bold mb-6">Invest in Your Mastery</h2>
-                            <p className="text-xl text-teal-200 mb-12 max-w-2xl mx-auto">
-                                Join a community of practitioners dedicated to the highest standards of psychedelic care.
-                            </p>
-                            <div className="max-w-md mx-auto">
-                                <StatusToggle
-                                    course={course}
-                                    email={email}
-                                    setEmail={setEmail}
-                                    isSubmitted={isSubmitted}
-                                    handleWaitlistSubmit={handleWaitlistSubmit}
-                                />
-                            </div>
-                        </div>
-                    </section>
-                )}
-
                 {/* FAQ */}
                 {course.faq.length > 0 && (
                     <section id="faq" className="section bg-slate-50">
@@ -842,6 +1046,28 @@ export default function CourseDetailContent({ course }: Props) {
                                         />
                                     ))}
                                 </div>
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* Final CTA Strip - Hidden for Masterclasses */}
+                {!isMasterclass && (
+                    <section id="apply" className="py-24 bg-gradient-to-br from-navy to-navy-800 text-white text-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-teal)_0%,_transparent_70%)] opacity-10" />
+                        <div className="container-custom relative z-10">
+                            <h2 className="text-4xl font-heading font-bold mb-6">{course.finalCtaTitle || "Invest in Your Mastery"}</h2>
+                            <p className="text-xl text-teal-200 mb-12 max-w-2xl mx-auto">
+                                {course.finalCtaDescription || "Join a community of practitioners dedicated to the highest standards of psychedelic care."}
+                            </p>
+                            <div className="max-w-md mx-auto">
+                                <StatusToggle
+                                    course={course}
+                                    email={email}
+                                    setEmail={setEmail}
+                                    isSubmitted={isSubmitted}
+                                    handleWaitlistSubmit={handleWaitlistSubmit}
+                                />
                             </div>
                         </div>
                     </section>

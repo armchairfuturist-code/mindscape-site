@@ -98,7 +98,7 @@ export default function HeroSection() {
                             }`}
                     >
                         <Link href="#courses" className="btn-primary text-lg px-8 py-4">
-                            Explore Courses
+                            Explore Programs
                         </Link>
                         <Link
                             href="#videos"
@@ -139,7 +139,7 @@ export default function HeroSection() {
                     }`}
             >
                 <a
-                    href="#features"
+                    href="#courses"
                     className="flex flex-col items-center gap-2 text-white/50 hover:text-white/80 transition-colors"
                 >
                     <span className="text-xs uppercase tracking-widest">Scroll</span>
