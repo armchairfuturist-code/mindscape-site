@@ -319,7 +319,7 @@ export const courses: Course[] = [
             },
             {
                 question: "How do I pay the deposit?",
-                answer: "Use the Pay Deposit button on this page to view Martin's Venmo QR code and payment handle. Submit your $500 deposit to reserve your seat.",
+                answer: "Use the Reserve Spot button on this page to view Martin's Venmo QR code and payment handle. Submit your $500 deposit to reserve your seat.",
             },
         ],
     },

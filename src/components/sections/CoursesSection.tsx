@@ -1,35 +1,156 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Clock, Users, BookOpen } from "lucide-react";
-import { courses } from "@/data/courses";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowRight, BookOpen, Clock, Users, X } from "lucide-react";
+import { Course, courses } from "@/data/courses";
 
-function CourseCard({ course }: { course: typeof courses[0] }) {
-    const statusColors = {
-        open: "bg-green-100 text-green-700",
-        waitlist: "bg-gold text-navy shadow-sm font-bold",
-        "coming-soon": "bg-teal text-white shadow-sm font-bold",
+type ProgramTab = "all" | Course["type"];
+type RoleFilter = "all" | "clinicians" | "facilitators" | "seekers";
+type CommitmentFilter = "all" | "high" | "flexible" | "light";
+type StartFilter = "all" | "open-now" | "upcoming" | "coming-soon";
+
+const tabs: { id: ProgramTab; label: string }[] = [
+    { id: "all", label: "All" },
+    { id: "certification", label: "Certifications" },
+    { id: "masterclass", label: "Masterclasses" },
+    { id: "ebook", label: "Books" },
+];
+
+const roleTagsBySlug: Record<string, RoleFilter[]> = {
+    "5-meo-dmt-facilitation": ["clinicians", "facilitators"],
+    "martin-ball-5-meo-dmt": ["facilitators", "clinicians"],
+    "mastering-ketamine-assisted-therapy": ["clinicians", "facilitators"],
+    "the-embodiment-protocol": ["facilitators", "seekers"],
+    "5-meo-dmt-bufo-masterclass": ["facilitators", "seekers"],
+    "integration-specialist-masterclass": ["clinicians", "facilitators"],
+};
+
+const fitStatementBySlug: Record<string, string> = {
+    "5-meo-dmt-facilitation": "Practitioners ready for live mentorship and long-term facilitation standards.",
+    "martin-ball-5-meo-dmt": "Coaches and facilitators supporting post-5-MeO integration in real client work.",
+    "mastering-ketamine-assisted-therapy": "Clinicians and facilitators seeking responsible KAT frameworks.",
+    "the-embodiment-protocol": "Facilitators committed to integrating awakening through nervous system work.",
+};
+
+function getInstructorLabel(course: Course): string {
+    if (course.instructor === "both") {
+        return "Stephan & Amber Kerby";
+    }
+    if (course.instructor === "stephan") {
+        return "Stephan Kerby";
+    }
+    if (course.instructor === "martin") {
+        return "Martin W. Ball, Ph.D.";
+    }
+    return "Amber Kerby";
+}
+
+function getRoleTags(course: Course): RoleFilter[] {
+    if (roleTagsBySlug[course.slug]) {
+        return roleTagsBySlug[course.slug];
+    }
+
+    if (course.type === "certification") {
+        return ["clinicians", "facilitators"];
+    }
+    if (course.type === "masterclass") {
+        return ["clinicians", "facilitators", "seekers"];
+    }
+    return ["seekers", "facilitators"];
+}
+
+function getCommitmentLevel(course: Course): CommitmentFilter {
+    if (course.type === "certification") {
+        return "high";
+    }
+    if (course.type === "masterclass") {
+        return "flexible";
+    }
+    return "light";
+}
+
+function getStartCategory(course: Course): StartFilter {
+    if (course.status === "coming-soon") {
+        return "coming-soon";
+    }
+    if (course.status === "waitlist") {
+        return "upcoming";
+    }
+    if (course.type === "certification") {
+        return "upcoming";
+    }
+    return "open-now";
+}
+
+function getFitStatement(course: Course): string {
+    if (fitStatementBySlug[course.slug]) {
+        return fitStatementBySlug[course.slug];
+    }
+
+    if (course.type === "certification") {
+        return "Best for practitioners who want live accountability, supervision, and applied practice.";
+    }
+    if (course.type === "masterclass") {
+        return "Best for self-paced learners building practical, trauma-informed competence.";
+    }
+    return "Best for readers who want practical frameworks they can study and revisit anytime.";
+}
+
+function getPathBadge(course: Course): string | null {
+    if (
+        course.type === "certification" &&
+        course.status === "open" &&
+        (course.slug === "5-meo-dmt-facilitation" || course.slug === "martin-ball-5-meo-dmt")
+    ) {
+        return "Reserve Seat";
+    }
+
+    return null;
+}
+
+function CourseCard({
+    course,
+    onOpenDeposit,
+}: {
+    course: Course;
+    onOpenDeposit: (course: Course) => void;
+}) {
+    const statusColors: Record<Course["status"], string> = {
+        open: "bg-green-100 text-green-800",
+        waitlist: "bg-gold text-navy",
+        "coming-soon": "bg-teal text-white",
     };
 
-    const statusLabels = {
-        open: course.requiresInterview ? "Interview Required" : "Purchase Now",
-        waitlist: "Join Waitlist",
+    const statusLabels: Record<Course["status"], string> = {
+        open: "Open",
+        waitlist: "Waitlist",
         "coming-soon": "Coming Soon",
     };
 
-    const typeLabels = {
-        masterclass: "Masterclass",
+    const typeLabels: Record<Course["type"], string> = {
         certification: "Certification",
+        masterclass: "Masterclass",
         ebook: "Book",
     };
 
     const isExternal = !!course.amazonLink;
     const href = course.amazonLink || `/courses/${course.slug}`;
-    const showDeposit = course.type === "certification" && !!course.payLink;
+    const showDeposit =
+        course.type === "certification" &&
+        course.status === "open" &&
+        (Boolean(course.payLink) || Boolean(course.depositQrImage)) &&
+        Boolean(course.depositAmount);
+
+    const handleDepositClick = (event: React.MouseEvent | React.KeyboardEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onOpenDeposit(course);
+    };
 
     const cardContent = (
         <>
-            {/* Image */}
             <div
                 className={`relative rounded-lg overflow-hidden mb-5 -mx-6 -mt-6 ${
                     course.type === "ebook" ? "aspect-[3/4] bg-slate-100" : "aspect-[16/10]"
@@ -45,38 +166,41 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                     }`}
                 />
                 {course.type !== "ebook" && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy/65 via-navy/20 to-transparent" />
                 )}
 
-                {/* Status Badge */}
-                {course.type !== 'ebook' && (
-                    <div className="absolute top-4 right-4">
-                        <span className={`badge ${statusColors[course.status]}`}>
-                            {statusLabels[course.status]}
-                        </span>
-                    </div>
-                )}
+                {course.type !== "ebook" && (
+                    <>
+                        {getPathBadge(course) && (
+                            <div className="absolute top-4 left-4">
+                                <span className="badge bg-white/90 text-navy backdrop-blur-sm">{getPathBadge(course)}</span>
+                            </div>
+                        )}
 
-                {/* Type Badge - Hidden for ebooks */}
-                {course.type !== 'ebook' && (
-                    <div className="absolute bottom-4 left-4">
-                        <span className="badge bg-white/90 text-navy backdrop-blur-sm">
-                            {typeLabels[course.type]}
-                        </span>
-                    </div>
+                        {course.status !== "open" && (
+                            <div className="absolute top-4 right-4">
+                                <span className={`badge ${statusColors[course.status]}`}>{statusLabels[course.status]}</span>
+                            </div>
+                        )}
+
+                        {course.type === "certification" && (
+                            <div className="absolute bottom-4 left-4">
+                                <span className="badge bg-white/90 text-navy backdrop-blur-sm">{typeLabels[course.type]}</span>
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
 
-            {/* Content */}
             <div className="flex-grow">
                 <h3 className="font-heading font-semibold text-lg text-navy mb-2 group-hover:text-teal transition-colors line-clamp-2">
                     {course.title}
                 </h3>
-                <p className="text-slate-600 text-sm line-clamp-2 mb-4">
-                    {course.subtitle}
+                <p className="text-slate-600 text-sm line-clamp-2 mb-3">{course.subtitle}</p>
+                <p className="text-slate-700 text-sm leading-relaxed mb-4">
+                    <span className="font-semibold text-navy">Best for:</span> {getFitStatement(course)}
                 </p>
 
-                {/* Meta */}
                 <div className="flex flex-wrap gap-4 text-sm text-slate-500">
                     {course.duration && (
                         <span className="flex items-center gap-1.5">
@@ -84,14 +208,10 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                             {course.duration}
                         </span>
                     )}
-                    {course.instructor && (
-                        <span className="flex items-center gap-1.5">
-                            <Users size={14} />
-                            {course.instructor === 'both' ? 'Stephan & Amber Kerby' :
-                                course.instructor === 'stephan' ? 'Stephan Kerby' :
-                                    course.instructor === 'martin' ? 'Martin W. Ball, Ph.D.' : 'Amber Kerby'}
-                        </span>
-                    )}
+                    <span className="flex items-center gap-1.5">
+                        <Users size={14} />
+                        {getInstructorLabel(course)}
+                    </span>
                     {course.format && (
                         <span className="flex items-center gap-1.5">
                             <BookOpen size={14} />
@@ -101,42 +221,36 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                 </div>
             </div>
 
-            {/* Footer */}
-            <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100 gap-3">
                 <div>
                     {course.price ? (
                         <span className="font-semibold text-navy">${course.price}</span>
                     ) : (
                         <span className="text-sm text-slate-500">
-                            {isExternal ? 'Amazon' : (course.nextCohort ? `Next: ${course.nextCohort}` : 'View Details')}
+                            {isExternal ? "Amazon" : course.nextCohort ? `Next: ${course.nextCohort}` : "View Details"}
                         </span>
                     )}
                 </div>
+
                 <div className="flex items-center gap-3">
-                    <span className={`inline-flex items-center gap-1 text-teal text-sm group-hover:gap-2 transition-all ${isExternal ? 'font-bold' : 'font-medium'}`}>
-                        {isExternal ? 'Buy on Amazon' : 'Learn More'}
+                    <span className={`inline-flex items-center gap-1 text-teal text-sm group-hover:gap-2 transition-all ${isExternal ? "font-bold" : "font-medium"}`}>
+                        {isExternal ? "Buy on Amazon" : "Learn More"}
                         <ArrowRight size={16} />
                     </span>
+
                     {showDeposit && (
-                        <span
-                            role="button"
-                            tabIndex={0}
-                            onClick={(event) => {
-                                event.preventDefault();
-                                event.stopPropagation();
-                                window.open(course.payLink, "_blank", "noopener,noreferrer");
-                            }}
+                        <button
+                            type="button"
+                            onClick={handleDepositClick}
                             onKeyDown={(event) => {
                                 if (event.key === "Enter" || event.key === " ") {
-                                    event.preventDefault();
-                                    event.stopPropagation();
-                                    window.open(course.payLink, "_blank", "noopener,noreferrer");
+                                    handleDepositClick(event);
                                 }
                             }}
                             className="btn-deposit text-xs px-3 py-2"
                         >
-                            {`Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`}
-                        </span>
+                            {`Reserve Deposit (${`$${course.depositAmount}`})`}
+                        </button>
                     )}
                 </div>
             </div>
@@ -157,89 +271,314 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
     }
 
     return (
-        <Link
-            href={href}
-            className="group card-interactive flex flex-col h-full"
-        >
+        <Link href={href} className="group card-interactive flex flex-col h-full">
             {cardContent}
         </Link>
     );
 }
 
 export default function CoursesSection() {
-    // Group courses by type
-    const certifications = courses.filter(c => c.type === 'certification');
-    const masterclasses = courses.filter(c => c.type === 'masterclass');
-    const ebooks = courses.filter(c => c.type === 'ebook');
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const programParam = searchParams.get("program");
+    const [roleFilter, setRoleFilter] = useState<RoleFilter>("all");
+    const [commitmentFilter, setCommitmentFilter] = useState<CommitmentFilter>("all");
+    const [startFilter, setStartFilter] = useState<StartFilter>("all");
+    const [depositIntentCourse, setDepositIntentCourse] = useState<Course | null>(null);
+
+    const activeTab: ProgramTab =
+        programParam === "certifications"
+            ? "certification"
+            : programParam === "masterclasses"
+                ? "masterclass"
+                : programParam === "books"
+                    ? "ebook"
+                    : "all";
+
+    const setActiveTab = (tab: ProgramTab) => {
+        const programQuery =
+            tab === "certification"
+                ? "certifications"
+                : tab === "masterclass"
+                    ? "masterclasses"
+                    : tab === "ebook"
+                        ? "books"
+                        : "all";
+
+        router.replace(`/?program=${programQuery}#courses`, { scroll: false });
+    };
+
+    const filteredCourses = useMemo(() => {
+        const filtered = courses
+            .filter((course) => activeTab === "all" || course.type === activeTab)
+            .filter((course) => roleFilter === "all" || getRoleTags(course).includes(roleFilter))
+            .filter((course) => commitmentFilter === "all" || getCommitmentLevel(course) === commitmentFilter)
+            .filter((course) => startFilter === "all" || getStartCategory(course) === startFilter)
+            .sort((a, b) => {
+                const statusOrder: Record<Course["status"], number> = {
+                    open: 0,
+                    waitlist: 1,
+                    "coming-soon": 2,
+                };
+                const typeOrder: Record<Course["type"], number> = {
+                    certification: 0,
+                    masterclass: 1,
+                    ebook: 2,
+                };
+
+                if (statusOrder[a.status] !== statusOrder[b.status]) {
+                    return statusOrder[a.status] - statusOrder[b.status];
+                }
+                return typeOrder[a.type] - typeOrder[b.type];
+            });
+
+        return filtered;
+    }, [activeTab, roleFilter, commitmentFilter, startFilter]);
+
+    const clearFilters = () => {
+        setRoleFilter("all");
+        setCommitmentFilter("all");
+        setStartFilter("all");
+    };
+
+    const shouldShowClearFilters = roleFilter !== "all" || commitmentFilter !== "all" || startFilter !== "all";
 
     return (
         <section id="courses" className="section bg-white">
             <div className="container-custom">
-                {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-16">
+                <div className="text-center max-w-3xl mx-auto mb-12">
                     <div className="decorative-line mx-auto mb-6" />
                     <h2 className="text-navy mb-4">Our Programs</h2>
                     <p className="text-lg text-slate-600">
-                        A wide range of coursework to fit your schedule and your needs.
-                        Whether you're a licensed clinician, facilitator, guide, or dedicated seeker,
-                        our curriculum is designed to meet you where you are.
+                        What it is: a complete ecosystem of live certifications, evergreen masterclasses, and practical books.
+                        Who it&apos;s for: clinicians, facilitators, coaches, and serious seekers. What happens next: choose your path,
+                        then apply or reserve your seat.
                     </p>
                 </div>
 
-                {/* Certification Programs */}
-                {certifications.length > 0 && (
-                    <div className="mb-16">
-                        <div className="mb-8 p-6 bg-navy text-white rounded-xl">
-                            <h3 className="text-2xl font-heading font-semibold mb-2">
-                                Certification Programs
-                            </h3>
-                            <p className="text-slate-300">
-                                These are <strong>LIVE</strong> cohort-based trainings. To ensure the highest quality of facilitation and safety, an interview is required for all certification paths.
-                            </p>
-                        </div>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {certifications.map((course) => (
-                                <CourseCard key={course.slug} course={course} />
-                            ))}
-                        </div>
+                <div className="mb-6 border border-slate-200 rounded-xl p-2 bg-slate-50">
+                    <div className="flex flex-wrap gap-2">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                type="button"
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                                    activeTab === tab.id
+                                        ? "bg-navy text-white"
+                                        : "bg-white text-slate-700 border border-slate-200 hover:border-teal/40 hover:text-navy"
+                                }`}
+                            >
+                                {tab.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="mb-10 grid md:grid-cols-4 gap-3">
+                    <select
+                        value={roleFilter}
+                        onChange={(event) => setRoleFilter(event.target.value as RoleFilter)}
+                        className="px-3 py-3 rounded-lg border border-slate-200 text-slate-700 bg-white"
+                    >
+                        <option value="all">All Roles</option>
+                        <option value="clinicians">Clinicians / Therapists</option>
+                        <option value="facilitators">Facilitators / Coaches</option>
+                        <option value="seekers">Serious Seekers</option>
+                    </select>
+
+                    <select
+                        value={commitmentFilter}
+                        onChange={(event) => setCommitmentFilter(event.target.value as CommitmentFilter)}
+                        className="px-3 py-3 rounded-lg border border-slate-200 text-slate-700 bg-white"
+                    >
+                        <option value="all">All Commitment Levels</option>
+                        <option value="high">High Commitment (Live)</option>
+                        <option value="flexible">Flexible (Self-Paced)</option>
+                        <option value="light">Lightweight (Books)</option>
+                    </select>
+
+                    <select
+                        value={startFilter}
+                        onChange={(event) => setStartFilter(event.target.value as StartFilter)}
+                        className="px-3 py-3 rounded-lg border border-slate-200 text-slate-700 bg-white"
+                    >
+                        <option value="all">All Start Timing</option>
+                        <option value="open-now">Open Now</option>
+                        <option value="upcoming">Upcoming Cohort</option>
+                        <option value="coming-soon">Coming Soon</option>
+                    </select>
+
+                    <button
+                        type="button"
+                        onClick={clearFilters}
+                        disabled={!shouldShowClearFilters}
+                        className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-slate-200 text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50"
+                    >
+                        <X size={16} />
+                        Clear Filters
+                    </button>
+                </div>
+
+                {filteredCourses.length > 0 ? (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredCourses.map((course) => (
+                            <CourseCard key={course.slug} course={course} onOpenDeposit={setDepositIntentCourse} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-10 text-center">
+                        <p className="text-xl font-heading text-navy mb-2">No programs match these filters yet.</p>
+                        <p className="text-slate-600">Try broadening your role, commitment, or start timing filters.</p>
                     </div>
                 )}
 
-                {/* Masterclasses */}
-                {masterclasses.length > 0 && (
-                    <div className="mb-16">
-                        <div className="mb-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
-                            <h3 className="text-2xl font-heading font-semibold text-navy mb-2">
-                                Masterclasses
-                            </h3>
-                            <p className="text-slate-600">
-                                <strong>Evergreen</strong> trainings designed for self-paced learning. No interviews needed—you can purchase and begin these trainings immediately.
-                            </p>
-                        </div>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {masterclasses.map((course) => (
-                                <CourseCard key={course.slug} course={course} />
-                            ))}
-                        </div>
+                <div className="mt-20">
+                    <div className="text-center max-w-3xl mx-auto mb-8">
+                        <h3 className="text-3xl font-heading font-semibold text-navy mb-3">Program Comparison</h3>
+                        <p className="text-slate-600">Choose the learning path that matches your depth, timeline, and support needs.</p>
                     </div>
-                )}
 
-                {/* Books */}
-                {ebooks.length > 0 && (
-                    <div id="ebooks">
-                        <div className="mb-8">
-                            <h3 className="text-2xl font-heading font-semibold text-navy mb-2">
-                                Books
-                            </h3>
-                        </div>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {ebooks.map((course) => (
-                                <CourseCard key={course.slug} course={course} />
-                            ))}
-                        </div>
+                    <div className="overflow-x-auto border border-slate-200 rounded-xl">
+                        <table className="min-w-full text-sm">
+                            <thead className="bg-slate-50">
+                                <tr>
+                                    <th className="text-left px-5 py-4 text-navy font-semibold">Category</th>
+                                    <th className="text-left px-5 py-4 text-navy font-semibold">Certifications</th>
+                                    <th className="text-left px-5 py-4 text-navy font-semibold">Masterclasses</th>
+                                    <th className="text-left px-5 py-4 text-navy font-semibold">Books</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-t border-slate-200">
+                                    <td className="px-5 py-4 font-medium text-slate-700">Format</td>
+                                    <td className="px-5 py-4 text-slate-600">Live cohort + direct guidance</td>
+                                    <td className="px-5 py-4 text-slate-600">Evergreen, self-paced digital</td>
+                                    <td className="px-5 py-4 text-slate-600">Printed / self-study reference</td>
+                                </tr>
+                                <tr className="border-t border-slate-200 bg-slate-50/60">
+                                    <td className="px-5 py-4 font-medium text-slate-700">Duration</td>
+                                    <td className="px-5 py-4 text-slate-600">9 weeks to 12 months</td>
+                                    <td className="px-5 py-4 text-slate-600">Self-paced (hours to weeks)</td>
+                                    <td className="px-5 py-4 text-slate-600">Self-paced reading</td>
+                                </tr>
+                                <tr className="border-t border-slate-200">
+                                    <td className="px-5 py-4 font-medium text-slate-700">Interview</td>
+                                    <td className="px-5 py-4 text-slate-600">Required for most live programs, typically after seat reservation</td>
+                                    <td className="px-5 py-4 text-slate-600">Not required</td>
+                                    <td className="px-5 py-4 text-slate-600">Not required</td>
+                                </tr>
+                                <tr className="border-t border-slate-200 bg-slate-50/60">
+                                    <td className="px-5 py-4 font-medium text-slate-700">Mentorship</td>
+                                    <td className="px-5 py-4 text-slate-600">High-touch feedback and supervision</td>
+                                    <td className="px-5 py-4 text-slate-600">Independent learning model</td>
+                                    <td className="px-5 py-4 text-slate-600">Independent study</td>
+                                </tr>
+                                <tr className="border-t border-slate-200">
+                                    <td className="px-5 py-4 font-medium text-slate-700">Certification Status</td>
+                                    <td className="px-5 py-4 text-slate-600">Competency-based completion pathways</td>
+                                    <td className="px-5 py-4 text-slate-600">Educational completion credentials</td>
+                                    <td className="px-5 py-4 text-slate-600">No certification</td>
+                                </tr>
+                                <tr className="border-t border-slate-200 bg-slate-50/60">
+                                    <td className="px-5 py-4 font-medium text-slate-700">Price Model</td>
+                                    <td className="px-5 py-4 text-slate-600">Deposit + tuition structure</td>
+                                    <td className="px-5 py-4 text-slate-600">One-time purchase</td>
+                                    <td className="px-5 py-4 text-slate-600">Retail purchase</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                )}
+                </div>
+
+                <div className="mt-14 text-center rounded-2xl bg-teal-50 border border-teal-100 p-8 md:p-10">
+                    <p className="text-sm uppercase tracking-wider text-teal font-semibold mb-2">Need Guidance?</p>
+                    <h3 className="text-2xl md:text-3xl font-heading font-semibold text-navy mb-3">Not sure which path fits best?</h3>
+                    <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
+                        Book a fit call and we will help you choose the right next step based on your background, goals, and readiness.
+                    </p>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <Link href="/coaching#consultation" className="btn-primary inline-flex items-center gap-2">
+                            Book Fit Call
+                            <ArrowRight size={16} />
+                        </Link>
+                        <Link href="/apply" className="btn-secondary inline-flex items-center gap-2">
+                            Application Guide
+                            <ArrowRight size={16} />
+                        </Link>
+                    </div>
+                </div>
             </div>
+
+            {depositIntentCourse && (
+                <div
+                    className="fixed inset-0 z-[110] bg-navy/75 backdrop-blur-sm px-4 py-8"
+                    role="presentation"
+                    onClick={() => setDepositIntentCourse(null)}
+                >
+                    <div
+                        className="max-w-md mx-auto bg-white rounded-2xl shadow-large border border-slate-200 overflow-hidden"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Deposit confirmation"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+                            <h4 className="text-lg font-heading font-semibold text-navy">Reserve Your Seat</h4>
+                            <button
+                                type="button"
+                                onClick={() => setDepositIntentCourse(null)}
+                                className="w-8 h-8 rounded-full border border-slate-300 text-slate-600 hover:text-navy hover:border-slate-400 transition-colors inline-flex items-center justify-center"
+                                aria-label="Close deposit confirmation"
+                            >
+                                <X size={16} />
+                            </button>
+                        </div>
+
+                        <div className="p-6">
+                            <p className="text-slate-700 mb-2">
+                                You&apos;re reserving your seat with a
+                                <span className="font-semibold text-navy"> {depositIntentCourse.depositAmount ? `$${depositIntentCourse.depositAmount}` : "deposit"}</span>.
+                            </p>
+                            <p className="text-slate-600 text-sm mb-6">
+                                {depositIntentCourse.requiresInterview
+                                    ? "Remaining tuition is due after interview acceptance."
+                                    : "Remaining tuition is due at class start date."}
+                            </p>
+
+                            <div className="grid grid-cols-2 gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setDepositIntentCourse(null)}
+                                    className="px-4 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors"
+                                >
+                                    Back
+                                </button>
+
+                                {depositIntentCourse.payLink ? (
+                                    <a
+                                        href={depositIntentCourse.payLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => setDepositIntentCourse(null)}
+                                        className="btn-deposit text-center py-3"
+                                    >
+                                        Continue to Deposit
+                                    </a>
+                                ) : (
+                                    <Link
+                                        href={`/courses/${depositIntentCourse.slug}#apply`}
+                                        onClick={() => setDepositIntentCourse(null)}
+                                        className="btn-deposit text-center py-3"
+                                    >
+                                        View Deposit Details
+                                    </Link>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

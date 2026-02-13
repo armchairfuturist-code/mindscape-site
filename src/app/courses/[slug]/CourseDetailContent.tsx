@@ -41,8 +41,9 @@ function StatusToggle({
     handleWaitlistSubmit: (e: React.FormEvent) => void;
 }) {
     const [showDepositQR, setShowDepositQR] = useState(false);
+    const [confirmDepositUrl, setConfirmDepositUrl] = useState<string | null>(null);
     const hasDepositOption = !!course.payLink || !!course.depositQrImage;
-    const depositButtonText = course.depositCtaLabel || `Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`;
+    const depositButtonText = course.depositCtaLabel || `Reserve Spot${course.depositAmount ? ` ($${course.depositAmount})` : ""}`;
     const defaultDepositNote = course.requiresInterview
         ? "Deposit reserves your seat and is applied to tuition after interview acceptance."
         : "Deposit reserves your seat. Remaining balance is due at class start date.";
@@ -53,11 +54,22 @@ function StatusToggle({
             return null;
         }
 
+        const handleOpenDeposit = () => {
+            if (course.depositQrImage) {
+                setShowDepositQR(true);
+                return;
+            }
+
+            if (course.payLink) {
+                setConfirmDepositUrl(course.payLink);
+            }
+        };
+
         if (course.depositQrImage) {
             return (
                 <button
                     type="button"
-                    onClick={() => setShowDepositQR(true)}
+                    onClick={handleOpenDeposit}
                     className={className}
                 >
                     {depositButtonText}
@@ -66,14 +78,78 @@ function StatusToggle({
         }
 
         return (
-            <a
-                href={course.payLink}
-                target="_blank"
-                rel="noopener noreferrer"
+            <button
+                type="button"
+                onClick={handleOpenDeposit}
                 className={className}
             >
                 {depositButtonText}
-            </a>
+            </button>
+        );
+    };
+
+    const renderDepositIntentModal = () => {
+        if (!confirmDepositUrl) {
+            return null;
+        }
+
+        const remainingBalanceCopy = course.requiresInterview
+            ? "Remaining tuition is due after interview acceptance."
+            : "Remaining tuition is due at class start date.";
+
+        return (
+            <div
+                className="fixed inset-0 z-[120] bg-navy/80 backdrop-blur-sm px-4 py-8"
+                role="presentation"
+                onClick={() => setConfirmDepositUrl(null)}
+            >
+                <div
+                    className="max-w-md mx-auto bg-white rounded-2xl shadow-large border border-slate-200 overflow-hidden"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Confirm deposit payment"
+                    onClick={(event) => event.stopPropagation()}
+                >
+                    <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
+                        <h4 className="text-lg font-heading font-semibold text-navy">Confirm Deposit</h4>
+                        <button
+                            type="button"
+                            onClick={() => setConfirmDepositUrl(null)}
+                            className="w-8 h-8 rounded-full border border-slate-300 text-slate-600 hover:text-navy hover:border-slate-400 transition-colors inline-flex items-center justify-center"
+                            aria-label="Close deposit confirmation"
+                        >
+                            <X size={16} />
+                        </button>
+                    </div>
+
+                    <div className="p-6">
+                        <p className="text-slate-700 mb-3">
+                            You&apos;re reserving your seat with a
+                            <span className="font-semibold text-navy"> {course.depositAmount ? `$${course.depositAmount}` : "deposit"}</span>.
+                        </p>
+                        <p className="text-slate-600 text-sm mb-6">{remainingBalanceCopy}</p>
+
+                        <div className="grid grid-cols-2 gap-3">
+                            <button
+                                type="button"
+                                onClick={() => setConfirmDepositUrl(null)}
+                                className="px-4 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition-colors"
+                            >
+                                Back
+                            </button>
+                            <a
+                                href={confirmDepositUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => setConfirmDepositUrl(null)}
+                                className="btn-deposit text-center py-3"
+                            >
+                                Continue to Deposit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     };
 
@@ -96,7 +172,7 @@ function StatusToggle({
                     onClick={(event) => event.stopPropagation()}
                 >
                     <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200">
-                        <h4 className="text-lg font-heading font-semibold text-navy">Pay Deposit via Venmo</h4>
+                        <h4 className="text-lg font-heading font-semibold text-navy">Reserve Spot via Venmo</h4>
                         <button
                             type="button"
                             onClick={() => setShowDepositQR(false)}
@@ -133,7 +209,7 @@ function StatusToggle({
             ? "Get immediate access to all course materials and begin your journey today."
             : "Secure your spot now and begin your journey.");
         const applyButtonText = course.applyCtaLabel || (course.requiresInterview
-            ? "Apply / Schedule Interview"
+            ? "Apply / Start Enrollment"
             : "Apply / Reserve Spot");
         return (
             <>
@@ -191,6 +267,7 @@ function StatusToggle({
                         )
                     )}
                 </div>
+                {renderDepositIntentModal()}
                 {renderDepositModal()}
             </>
         );
@@ -271,6 +348,7 @@ function StatusToggle({
                 </>
             )}
         </div>
+        {renderDepositIntentModal()}
         {renderDepositModal()}
         </>
     );
@@ -434,7 +512,7 @@ export default function CourseDetailContent({ course }: Props) {
     const isMasterclass = course.type === "masterclass";
     const enrollmentSteps = course.requiresInterview
         ? [
-            "Apply + Schedule Interview",
+            "Apply",
             "Reserve with Deposit",
             "Complete Fit Interview",
             "Finalize Tuition After Acceptance",

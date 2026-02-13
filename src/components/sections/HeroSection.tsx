@@ -1,16 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, Play } from "lucide-react";
 
 export default function HeroSection() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-    }, []);
+    const isVisible = true;
 
     return (
         <section
@@ -71,16 +66,10 @@ export default function HeroSection() {
 
                     {/* Subtitle */}
                     <p
-                        className={`text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-4 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                        className={`text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-8 transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                             }`}
                     >
-                        Where Psychedelic Education Meets
-                    </p>
-                    <p
-                        className={`text-lg md:text-xl text-teal-200 font-medium mb-8 transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                            }`}
-                    >
-                        Integrity, Insight, and Embodied Wisdom
+                        Where Psychedelic Education Meets <span className="text-teal-200 font-medium">Integrity, Insight, and Embodied Wisdom</span>
                     </p>
 
                     {/* Description */}

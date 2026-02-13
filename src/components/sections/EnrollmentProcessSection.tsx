@@ -1,7 +1,7 @@
 import { CheckCircle2, Clock3, Users } from "lucide-react";
 
 const certificationSteps = [
-    "Apply + schedule interview",
+    "Apply",
     "Reserve your seat with deposit",
     "Complete fit interview",
     "Finalize tuition after acceptance",

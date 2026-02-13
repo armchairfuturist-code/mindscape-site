@@ -8,8 +8,8 @@ import Logo from "../ui/Logo";
 
 const navLinks = [
     { href: "/#videos", label: "Videos", scrollId: "videos" },
-    { href: "/#courses", label: "Programs", scrollId: "courses" },
-    { href: "/#ebooks", label: "Books", scrollId: "ebooks" },
+    { href: "/?program=all#courses", label: "Programs", scrollId: "courses", program: "all" },
+    { href: "/?program=books#courses", label: "Books", scrollId: "courses", program: "books" },
     { href: "/#about", label: "About", scrollId: "about" },
     { href: "/#contact", label: "The Vault", scrollId: "contact" },
 ];
@@ -29,11 +29,20 @@ export default function Header() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, scrollId: string) => {
+    const handleNavClick = (
+        e: React.MouseEvent<HTMLAnchorElement>,
+        href: string,
+        scrollId: string,
+        program?: "all" | "books"
+    ) => {
         setIsMobileMenuOpen(false);
 
         if (pathname === "/") {
             e.preventDefault();
+
+            if (program) {
+                router.replace(`/?program=${program}#${scrollId}`, { scroll: false });
+            }
 
             if (scrollId === "home") {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -88,7 +97,7 @@ export default function Header() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href, link.scrollId)}
+                                    onClick={(e) => handleNavClick(e, link.href, link.scrollId, link.program)}
                                     className={`font-medium text-sm tracking-wide uppercase transition-colors hover:text-teal ${isScrolled ? "text-navy-600" : "text-white/90 hover:text-white"
                                         }`}
                                 >
@@ -143,7 +152,7 @@ export default function Header() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    onClick={(e) => handleNavClick(e, link.href, link.scrollId)}
+                                    onClick={(e) => handleNavClick(e, link.href, link.scrollId, link.program)}
                                     className={`block py-4 text-xl font-heading font-medium text-white/90 hover:text-gold border-b border-white/10 transition-all duration-300 transform ${isMobileMenuOpen
                                         ? "translate-x-0 opacity-100"
                                         : "translate-x-8 opacity-0"
