@@ -60,3 +60,14 @@
 ✓ Compiled in 25ms
 ✓ Compiled in 25ms
  GET /?program=all 200 in 59ms (compile: 28ms, render: 31ms)
+ GET /?program=books 200 in 18ms (compile: 1866µs, render: 16ms)
+ GET /?program=masterclasses 200 in 17ms (compile: 1358µs, render: 15ms)
+ GET /?program=certifications 200 in 16ms (compile: 1354µs, render: 15ms)
+ GET /?program=certifications 200 in 141ms (compile: 1356µs, render: 139ms)
+ GET /api/youtube 200 in 375ms (compile: 1351µs, render: 374ms)
+ GET /?program=certifications 200 in 87ms (compile: 1227µs, render: 86ms)
+ GET /api/youtube 200 in 4ms (compile: 1374µs, render: 3ms)
+✓ Compiled in 26ms
+✓ Compiled in 25ms
+ GET /?program=certifications 200 in 66ms (compile: 34ms, render: 32ms)
+ GET /?program=certifications 200 in 64ms (compile: 31ms, render: 33ms)
