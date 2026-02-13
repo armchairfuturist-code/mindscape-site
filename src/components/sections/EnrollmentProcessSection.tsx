@@ -1,4 +1,5 @@
-import { CheckCircle2, Clock3, Users } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Clock3, Users } from "lucide-react";
 
 const certificationSteps = [
     "Apply",
@@ -89,6 +90,24 @@ export default function EnrollmentProcessSection() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 rounded-2xl border border-teal-100 bg-teal-50 p-6 md:p-8 text-center">
+                        <p className="text-sm uppercase tracking-wider text-teal font-semibold mb-2">Choose Your Path + Get Guidance</p>
+                        <h4 className="text-2xl font-heading font-semibold text-navy mb-3">Not sure which training style fits best?</h4>
+                        <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
+                            Book a fit call for personalized guidance, or review the application flow before reserving your seat.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <Link href="/coaching#consultation" className="btn-primary inline-flex items-center gap-2">
+                                Book Fit Call
+                                <ArrowRight size={16} />
+                            </Link>
+                            <Link href="/apply" className="btn-secondary inline-flex items-center gap-2">
+                                Application Guide
+                                <ArrowRight size={16} />
+                            </Link>
                         </div>
                     </div>
                 </div>
