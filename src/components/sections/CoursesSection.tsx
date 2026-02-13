@@ -350,9 +350,9 @@ export default function CoursesSection() {
                     <div className="decorative-line mx-auto mb-6" />
                     <h2 className="text-navy mb-4">Our Programs</h2>
                     <p className="text-lg text-slate-600">
-                        What it is: a complete ecosystem of live certifications, evergreen masterclasses, and practical books.
-                        Who it&apos;s for: clinicians, facilitators, coaches, and serious seekers. What happens next: choose your path,
-                        then apply or reserve your seat.
+                        A wide range of coursework to fit your schedule and your needs.
+                        Whether you&apos;re a licensed clinician, facilitator, guide, or dedicated seeker,
+                        our curriculum is designed to meet you where you are.
                     </p>
                 </div>
 

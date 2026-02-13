@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Logo from "../ui/Logo";
 
-const navLinks = [
+const navLinks: Array<{ href: string; label: string; scrollId: string; program?: "all" | "books" }> = [
     { href: "/#videos", label: "Videos", scrollId: "videos" },
     { href: "/?program=all#courses", label: "Programs", scrollId: "courses", program: "all" },
     { href: "/?program=books#courses", label: "Books", scrollId: "courses", program: "books" },

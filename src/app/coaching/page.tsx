@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import CoachingContent from "@/components/sections/CoachingContent";
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function CoachingPage() {
-    return <CoachingContent />;
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-white" />}>
+            <CoachingContent />
+        </Suspense>
+    );
 }
