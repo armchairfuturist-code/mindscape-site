@@ -51,3 +51,12 @@
  HEAD /?program=masterclasses 200 in 101ms (compile: 1398µs, render: 99ms)
  GET /?program=certifications 200 in 13ms (compile: 1311µs, render: 12ms)
  GET /?program=masterclasses 200 in 14ms (compile: 1183µs, render: 12ms)
+ GET /?program=all 200 in 17ms (compile: 1728µs, render: 15ms)
+ GET /?program=books 200 in 15ms (compile: 1348µs, render: 13ms)
+ GET /?program=masterclasses 200 in 15ms (compile: 1330µs, render: 14ms)
+ GET /?program=certifications 200 in 15ms (compile: 1357µs, render: 14ms)
+ GET /?program=all 200 in 15ms (compile: 1367µs, render: 13ms)
+✓ Compiled in 26ms
+✓ Compiled in 25ms
+✓ Compiled in 25ms
+ GET /?program=all 200 in 59ms (compile: 28ms, render: 31ms)
