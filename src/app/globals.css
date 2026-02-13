@@ -251,6 +251,36 @@ p {
   transform: translateY(-2px);
 }
 
+.btn-deposit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-gold);
+  color: var(--color-navy-700);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-radius: 0.5rem;
+  background: linear-gradient(135deg, rgba(212, 168, 75, 0.95), rgba(232, 201, 122, 0.9));
+  transition: all 300ms ease-out;
+}
+
+.btn-deposit:hover {
+  background: linear-gradient(135deg, rgba(232, 201, 122, 0.95), rgba(212, 168, 75, 0.95));
+  color: var(--color-navy-800);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.btn-deposit:active {
+  transform: translateY(0);
+}
+
+.btn-deposit:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--color-gold);
+}
+
 .card {
   background-color: white;
   border-radius: 0.75rem;

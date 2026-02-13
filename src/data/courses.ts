@@ -56,6 +56,7 @@ export interface Course {
     amazonLink?: string;
     optInLink?: string;
     payLink?: string;
+    depositAmount?: number;
     waitlistLink?: string;
 }
 
@@ -64,18 +65,19 @@ export const courses: Course[] = [
     {
         slug: "5-meo-dmt-facilitation",
         title: "Certified 5-MeO/Bufo Facilitator Course",
-        subtitle: "Master the art of sacred facilitation",
-        description: "The God Molecule doesn’t care about your resume. It cares about your presence. Your nervous system. Your ability to sit in the fire without burning up.\n\nYou’re here because you feel the pull. Maybe you’ve sat with the medicine yourself and felt the fabric of reality tear open. Maybe you’ve seen the healing it offers—the kind that happens in twenty minutes but lasts a lifetime—and you realized: This is what I’m supposed to do.\n\nBut holding space for 5-MeO-DMT isn’t like other modalities. It’s not just \"tripsitting.\" It’s non-dual surgery. It’s walking someone to the edge of the void, holding their hand while they dissolve, and being the anchor that brings them back.\n\nYou don't learn this from a textbook. You learn it by transmission. You learn it by doing the work.\n\nWelcome to the Mindscape Psychedelic Institute. We’re building the next generation of safe, ethical, trauma-informed facilitators.\n\nWe start in May 2026. The question is: are you ready to carry this weight?",
+        subtitle: "A 12-Month Immersive Training in Safe, Ethical, Trauma-Informed Facilitation",
+        description: "5-MeO-DMT does not respond to charisma. It does not respond to credentials. It responds to nervous system stability, humility, and embodied presence.\n\nThis medicine is powerful. It can open identity structures in minutes and reveal what feels like infinity. But insight alone is not the work. The work is safety. The work is integration. The work is knowing how to guide someone through dissolution without imposing your own story onto their experience.\n\nMany people feel called to this path after their own profound encounter with the medicine. They sense the depth, the possibility, and the transformation. But facilitation is not about recreating mystical moments. It is about building the capacity to hold intensity without destabilizing yourself or your participant.\n\nAt Mindscape Psychedelic Institute, we train facilitators to understand nondual states without spiritual inflation, screen participants responsibly, recognize trauma responses and nervous system dysregulation, work within legal and ethical boundaries, and guide integration so insight becomes embodiment.\n\nThis is not a weekend certification. It is a structured 12-month immersion: six months of live training and six months of mentorship with supervised development. If you feel called to this work, the question is not whether you are ready to carry the weight. The real question is whether you are willing to do the inner work required to hold others safely.\n\nOur next cohort begins May 2026.",
         image: "/images/5meocertlive.jpeg",
         price: 5500,
         type: "certification",
         status: "open",
         requiresInterview: true,
         optInLink: "https://mindscape.mykajabi.com/pl/2148013702",
-        payLink: "https://mindscape.mykajabi.com/offers/n4cvovKC/checkout",
+        payLink: "https://mindscape.mykajabi.com/offers/MsBAFNMt",
+        depositAmount: 500,
         nextCohort: "May 2026",
-        duration: "6 months",
-        format: "Deep-Dive Theory + Live Visceral Classes",
+        duration: "12 months",
+        format: "6 months live training + 6 months mentorship",
         instructor: "stephan",
         metrics: {
             completionRate: 97,
@@ -83,69 +85,69 @@ export const courses: Course[] = [
             students: 450,
         },
         highlights: [
-            "Trauma-informed & ethical facilitation",
-            "30+ hours of deep-dive recorded theory",
-            "Live mentorship with experienced facilitators",
-            "Comprehensive safety & shadow work",
+            "12-month immersive facilitator training",
+            "Trauma-informed, ethics-first framework",
+            "Live cohort learning with active feedback",
+            "Six-month mentorship and supervised development",
         ],
-        howItWorksIntro: "We don’t believe in weekend certifications. You can’t learn to pilot a rocket ship in a Saturday workshop. This is a slow burn. A six-month container designed to dismantle your bad habits and rebuild your capacity to serve.",
+        howItWorksIntro: "We don’t believe facilitation can be learned in a weekend. This training is a structured, long-term immersion with clear standards, real accountability, and ongoing community.",
         howItWorks: [
             {
-                title: "The Container",
-                description: "For six months, you are ours. And we are yours. You step into a cohort of people just as committed as you are. This isn’t a webinar where you hide your camera. This is a tribe. You’ll practice, you’ll process, and you’ll strip away the layers of your own ego so you don’t project them onto your clients.",
+                title: "The Training Container",
+                description: "For six months, you step into a committed, interactive cohort. You will practice, receive feedback, and examine your own blind spots so you can remain steady when someone dissolves in front of you.",
             },
             {
-                title: "The Transmission",
-                description: "We combine over 30 hours of recorded deep-dive theory with live, visceral classes. You watch the materials on your time, let them sink in, and then we meet live to tear them apart and put them back together. We focus on embodiment. It’s not about what you know; it’s about who you are when the room gets intense.",
+                title: "The Educational Framework",
+                description: "You move through curriculum that blends nondual theory, trauma-informed facilitation, screening, nervous system literacy, ethics, somatic awareness, and integration. You review materials independently, then apply and refine the work in live sessions.",
             },
             {
-                title: "The Mentorship",
-                description: "You aren’t walking this path alone. You get direct access to facilitators who have sat in the chair hundreds of times. We’ve seen the miracles, and we’ve seen the mess. We’re here to show you the difference.",
+                title: "Mentorship & Apprenticeship",
+                description: "After the live training phase, you enter a six-month mentorship period with direct access to experienced facilitators, case discussions, and applied supervision to deepen discernment and embodiment.",
             },
             {
-                title: "The Certification",
-                description: "By May 2026, if you’ve done the work, you won’t just have a piece of paper. You’ll have a calling. You’ll be a Certified 5-MeO Facilitator, ready to serve with integrity.",
+                title: "Certification",
+                description: "Certification is earned through participation, demonstrated competency, and ethical alignment. Completion marks your readiness to serve within a professional standard, not just attendance.",
             },
         ],
         curriculum: [
             {
                 title: "Phase 1: The Foundation & Safety",
-                description: "Before we touch the stars, we ground in the dirt. You’ll learn the pharmacology, the contraindications, and the boring, unsexy safety protocols that actually save lives. If you can’t keep a body safe, you have no business touching a soul.",
+                description: "Facilitation begins with safety. Before altered states, we build medical literacy, risk awareness, and emergency readiness so every graduate can prevent harm and operate responsibly.",
                 topics: [
-                    "Pharmacology and neurochemistry",
-                    "Medical contraindications",
-                    "Emergency response procedures",
-                    "Risk mitigation strategies",
+                    "Pharmacology and neurochemistry of 5-MeO-DMT",
+                    "Medical and psychological contraindications",
+                    "Screening and intake protocols",
+                    "Emergency response procedures and harm reduction",
                 ],
             },
             {
                 title: "Phase 2: The Arc of the Journey",
-                description: "Preparation is everything. Integration is everything else. The medicine experience is just the peak of the mountain. We teach you how to prepare a client’s nervous system before the session and how to help them make sense of the ineffable when they return.",
+                description: "The medicine session is one moment in a longer process. This phase develops your ability to support preparation, session flow, re-entry, and long-term integration for sustainable change.",
                 topics: [
-                    "Nervous system preparation",
-                    "Pre-session container creation",
-                    "Integration framework & protocols",
-                    "Long-term support strategies",
+                    "Nervous system assessment and preparation",
+                    "Intentional pre-session container design",
+                    "Phases of the 5-MeO-DMT experience",
+                    "Re-entry stabilization and integration frameworks",
                 ],
             },
             {
                 title: "Phase 3: The Art of Space Holding",
-                description: "What do you do when a client screams? What do you do when they go silent? What do you do when you feel fear? We train you in non-dual awareness. You learn to become the empty vessel.",
+                description: "Facilitation is not control. It is steadiness under intensity. This phase trains internal regulation and discernment so you can support destabilizing moments without reacting, rescuing, or imposing meaning.",
                 topics: [
-                    "Non-dual surgery techniques",
-                    "Navigation of peak experiences",
-                    "Emotional regulation for facilitators",
-                    "Somatic presence skills",
+                    "Facilitator nervous system regulation skills",
+                    "Somatic awareness and grounded presence",
+                    "Projection and countertransference recognition",
+                    "Intervention vs. non-intervention discernment",
                 ],
             },
             {
-                title: "Phase 4: Ethics & The Shadow",
-                description: "Power corrupts. Spiritual power corrupts absolutely. We do deep shadow work to ensure you understand the ethics of touch, money, and power dynamics. We keep you clean so the medicine can be pure.",
+                title: "Phase 4: Ethics, Power & Professional Integrity",
+                description: "Altered states can amplify vulnerability, transference, and power dynamics. This phase develops ethical maturity, boundaries, and accountability practices required for responsible professional care.",
                 topics: [
-                    "Ethics of touch and power",
-                    "Financial integrity in medicine work",
-                    "Shadow work for practitioners",
-                    "Personal ego dissolution",
+                    "Power dynamics, boundaries, and informed consent",
+                    "Ethics of touch and financial transparency",
+                    "Transference, countertransference, and inflation risk",
+                    "Ongoing self-inquiry and accountability practices",
                 ],
             },
         ],
@@ -156,24 +158,28 @@ export const courses: Course[] = [
         },
         faq: [
             {
-                question: "Is this actually for me?",
-                answer: "Look, $5,500 is a lot of money. We get it. That’s why we have a 3-Week Vibe Check. From the first day of class, you have three weeks to test the waters. Show up. Watch the videos. Feel the energy of the instructors. If you sit through the first three sessions and realize, \"Nope, this isn't my tribe,\" you email us. We refund you 100%. No hard feelings. We part as friends.",
+                question: "Is this training right for me?",
+                answer: "This program is designed for professionals and serious practitioners who feel genuinely called to responsible 5-MeO-DMT facilitation. Many students are licensed therapists, medical professionals, experienced facilitators, and coaches seeking deeper clinical and ethical grounding. It is not a curiosity course or weekend certification. It is a structured year-long immersion requiring maturity, accountability, and sustained inner work.",
             },
             {
-                question: "What happens after week 3?",
-                answer: "If you stay past the third session, we lock the doors. Metaphorically speaking. At that point, you’re committed. The tuition becomes non-refundable. Why? Because the container needs stability. We need to know who is in the boat with us so we can row into deep water.",
+                question: "What is the tuition and refund policy?",
+                answer: "Enrollment requires a non-refundable $500 deposit to reserve your seat due to the limited cohort size and mentorship commitment. From the first day of live training, students have a three-week evaluation period. If you withdraw during that window, all tuition paid is refunded minus the $500 deposit. After the three-week evaluation period, tuition becomes non-refundable.",
             },
             {
-                question: "Can I download the materials?",
-                answer: "Eventually, yes. But not during the trial period. We protect our intellectual property because it’s taken years of blood, sweat, and tears to build. Once you’re fully committed (past the 3-week mark) or paid in full, the library is yours to keep for personal use.",
+                question: "Why is the program 12 months long?",
+                answer: "Facilitation is not learned through information alone. Competency requires time, repetition, supervision, and personal integration. The first six months focus on structured live training and foundational development. The following six months provide mentorship, case consultation, and continued refinement.",
             },
             {
-                question: "Why is it so long?",
-                answer: "Because rushing this process hurts people. We are playing the long game. We want you to be a facilitator for the next 20 years, not a burnout statistic in six months.",
+                question: "What happens after the live training phase?",
+                answer: "After the initial six months of weekly live classes, students enter a six-month mentorship and apprenticeship period. This phase includes case discussions, applied supervision, and continued integration training. Certification is based on participation, demonstrated competency, and ethical alignment, not simply attendance.",
             },
             {
-                question: "When do we start?",
-                answer: "The next cohort certifies in May 2026. The clock is ticking. Secure your spot. Do the work. Serve the medicine.",
+                question: "Can I download the course materials?",
+                answer: "All recorded trainings and materials remain accessible through the student portal for the duration of the program and beyond. Due to the proprietary nature of the curriculum, materials are not available for bulk download or redistribution.",
+            },
+            {
+                question: "When does the next cohort begin?",
+                answer: "The next cohort begins May 2026. Enrollment is limited to preserve the quality of supervision and mentorship, and applications are reviewed prior to acceptance.",
             },
         ],
     },

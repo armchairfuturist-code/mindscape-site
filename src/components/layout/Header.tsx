@@ -8,7 +8,7 @@ import Logo from "../ui/Logo";
 
 const navLinks = [
     { href: "/#videos", label: "Videos", scrollId: "videos" },
-    { href: "/#courses", label: "Courses", scrollId: "courses" },
+    { href: "/#courses", label: "Programs", scrollId: "courses" },
     { href: "/#ebooks", label: "Books", scrollId: "ebooks" },
     { href: "/#about", label: "About", scrollId: "about" },
     { href: "/#contact", label: "The Vault", scrollId: "contact" },

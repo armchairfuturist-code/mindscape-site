@@ -67,15 +67,10 @@ function StatusToggle({
                                 href={course.payLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="btn-secondary w-full text-center text-lg py-4"
+                                className="btn-deposit w-full text-center text-lg py-4"
                             >
-                                Pay Deposit
+                                {`Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`}
                             </a>
-                        )}
-                        {course.payLink && (
-                            <p className="text-white/60 text-sm text-center">
-                                Deposit applies to tuition upon interview completion. If you’re not a fit after the interview, your deposit is refunded.
-                            </p>
                         )}
                     </div>
                 ) : (
@@ -99,9 +94,15 @@ function StatusToggle({
                     </div>
                 ) : (
                     course.price && (
-                        <p className="text-white/50 text-sm text-center mt-4">
-                            Price: ${course.price}
-                        </p>
+                        course.depositAmount ? (
+                            <p className="text-white/60 text-sm text-center mt-4">
+                                Tuition: ${course.price}. Deposit: ${course.depositAmount}. Full balance due after interview acceptance.
+                            </p>
+                        ) : (
+                            <p className="text-white/50 text-sm text-center mt-4">
+                                Price: ${course.price}
+                            </p>
+                        )
                     )
                 )}
             </div>
@@ -177,12 +178,12 @@ function StatusToggle({
                                 href={course.payLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="btn-secondary w-full text-center py-4"
+                                className="btn-deposit w-full text-center py-4"
                             >
-                                Pay Deposit
+                                {`Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`}
                             </a>
                             <p className="text-white/60 text-sm text-center mt-3">
-                                Deposit applies to tuition upon interview completion. If you’re not a fit after the interview, your deposit is refunded.
+                                Deposit reserves your seat and is applied to tuition after interview acceptance.
                             </p>
                         </div>
                     )}

@@ -133,9 +133,9 @@ function CourseCard({ course }: { course: typeof courses[0] }) {
                                     window.open(course.payLink, "_blank", "noopener,noreferrer");
                                 }
                             }}
-                            className="text-gold text-xs font-semibold uppercase tracking-wide hover:text-gold/80"
+                            className="btn-deposit text-xs px-3 py-2"
                         >
-                            Pay Deposit
+                            {`Pay Deposit${course.depositAmount ? ` ($${course.depositAmount})` : ""}`}
                         </span>
                     )}
                 </div>

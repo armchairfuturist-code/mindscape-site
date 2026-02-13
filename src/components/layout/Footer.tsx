@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Mail, Youtube, Linkedin, Instagram } from "lucide-react";
 import Logo from "../ui/Logo";
+import LegalPopups from "./LegalPopups";
 
 const footerLinks = {
     programs: [
@@ -131,17 +131,7 @@ export default function Footer() {
                         <p className="text-white/50 text-sm">
                             © {new Date().getFullYear()} Mindscape Psychedelic Institute. All rights reserved.
                         </p>
-                        <div className="flex gap-6 text-sm">
-                            <Link href="#" className="text-white/50 hover:text-white transition-colors">
-                                Privacy Policy
-                            </Link>
-                            <Link href="#" className="text-white/50 hover:text-white transition-colors">
-                                Terms of Service
-                            </Link>
-                            <Link href="#" className="text-white/50 hover:text-white transition-colors">
-                                Disclaimer
-                            </Link>
-                        </div>
+                        <LegalPopups />
                     </div>
                 </div>
             </div>

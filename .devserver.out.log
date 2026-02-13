@@ -1,0 +1,61 @@
+
+> mindscape-site@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.92:3000
+
+✓ Starting...
+✓ Ready in 665ms
+ GET / 200 in 693ms (compile: 487ms, render: 206ms)
+ GET /api/youtube 200 in 184ms (compile: 40ms, render: 144ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 258ms (compile: 241ms, generate-params: 193ms, render: 16ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 53ms (compile: 26ms, generate-params: 3ms, render: 27ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 82ms (compile: 5ms, generate-params: 3ms, render: 77ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 50ms (compile: 5ms, generate-params: 3ms, render: 45ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 48ms (compile: 5ms, generate-params: 3ms, render: 43ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 45ms (compile: 5ms, generate-params: 3ms, render: 40ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 46ms (compile: 4ms, generate-params: 3ms, render: 42ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 44ms (compile: 1528µs, generate-params: 20µs, render: 43ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 16ms (compile: 5ms, generate-params: 3ms, render: 11ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 14ms (compile: 4ms, generate-params: 3ms, render: 10ms)
+✓ Compiled in 73ms
+✓ Compiled in 108ms
+ GET /courses/5-meo-dmt-facilitation 200 in 121ms (compile: 18ms, generate-params: 16µs, render: 103ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 174ms (compile: 27ms, generate-params: 3ms, render: 147ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 130ms (compile: 2ms, generate-params: 20µs, render: 127ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 54ms (compile: 21ms, generate-params: 3ms, render: 34ms)
+ GET /courses/5-meo-dmt-facilitation 200 in 18ms (compile: 1214µs, generate-params: 12µs, render: 16ms)
+✓ Compiled in 23ms
+ GET /courses/5-meo-dmt-facilitation 200 in 49ms (compile: 24ms, generate-params: 3ms, render: 24ms)
+✓ Compiled in 23ms
+✓ Compiled in 22ms
+✓ Compiled in 23ms
+✓ Compiled in 24ms
+✓ Compiled in 21ms
+✓ Compiled in 22ms
+ GET / 200 in 31ms (compile: 22ms, render: 10ms)
+ GET /api/youtube 200 in 213ms (compile: 1241µs, render: 212ms)
+ GET /api/youtube 200 in 685ms (compile: 1477µs, render: 684ms)
+ GET /courses/martin-ball-5-meo-dmt 200 in 31ms (compile: 20ms, generate-params: 3ms, render: 11ms)
+ GET /api/youtube 200 in 654ms (compile: 1161µs, render: 653ms)
+ GET /api/youtube 200 in 651ms (compile: 900µs, render: 650ms)
+ GET /courses/mastering-ketamine-assisted-therapy 200 in 14ms (compile: 4ms, generate-params: 3ms, render: 9ms)
+ GET / 200 in 8ms (compile: 1330µs, render: 7ms)
+ GET /api/youtube 200 in 197ms (compile: 1073µs, render: 196ms)
+ GET /api/youtube 200 in 306ms (compile: 1158µs, render: 305ms)
+ GET /courses/expanding-therapeutic-horizons 200 in 15ms (compile: 4ms, generate-params: 3ms, render: 10ms)
+ GET /api/youtube 200 in 225ms (compile: 1324µs, render: 223ms)
+ GET /api/youtube 200 in 241ms (compile: 929µs, render: 240ms)
+✓ Compiled in 69ms
+ GET /courses/5-meo-dmt-facilitation 200 in 16ms (compile: 5ms, generate-params: 3ms, render: 11ms)
+✓ Compiled in 21ms
+✓ Compiled in 23ms
+✓ Compiled in 20ms
+✓ Compiled in 51ms
+✓ Compiled in 52ms
+ GET / 200 in 30ms (compile: 20ms, render: 10ms)
+ GET /api/youtube 200 in 258ms (compile: 1377µs, render: 257ms)
+ GET /api/youtube 200 in 260ms (compile: 1006µs, render: 259ms)
+ GET /courses/martin-ball-5-meo-dmt 200 in 34ms (compile: 21ms, generate-params: 3ms, render: 12ms)
