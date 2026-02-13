@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import {
     ArrowRight,
     Check,
@@ -20,17 +21,44 @@ import {
 } from "lucide-react";
 
 export default function CoachingContent() {
+    const searchParams = useSearchParams();
+    const bgVariant = searchParams.get("bg") || "stock9";
+    const stockBackgrounds: Record<string, string> = {
+        stock1: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=3200&q=90",
+        stock2: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=3200&q=90",
+        stock3: "https://images.unsplash.com/photo-1431794062232-2a99a5431c6c?auto=format&fit=crop&w=3200&q=90",
+        stock4: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=3200&q=90",
+        stock5: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=3200&q=90",
+        stock6: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=3200&q=90",
+        stock7: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=3200&q=90",
+        stock8: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=3200&q=90",
+        stock9: "https://images.unsplash.com/photo-1474418397713-7ede21d49118?auto=format&fit=crop&w=3200&q=90",
+    };
+
+    const heroBackground =
+        bgVariant === "2"
+            ? "/images/coaching-fractal-bg.svg"
+            : bgVariant === "3"
+                ? "/images/coaching-geometry-bg.svg"
+                : bgVariant === "1"
+                    ? "/images/coaching-mandala-bg.svg"
+                    : stockBackgrounds[bgVariant] || stockBackgrounds.stock1;
+
+    const isStock9 = bgVariant === "stock9";
+
     return (
         <div className="bg-white">
             {/* Hero Section */}
             <section className="relative min-h-[80vh] flex items-center bg-navy overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/95 to-navy/80 z-10" />
                     {/* Abstract background image - Deep/Cosmic/Meditative */}
                     <div
-                        className="absolute inset-0 opacity-40 bg-cover bg-center mix-blend-overlay"
-                        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2048&auto=format&fit=crop')" }}
+                        className={`absolute inset-0 bg-cover ${isStock9 ? "bg-center md:bg-top" : "bg-center"} opacity-80`}
+                        style={{ backgroundImage: `url('${heroBackground}')` }}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-r from-navy/58 via-navy/46 to-navy/38 z-10" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_36%_42%,_rgba(113,226,217,0.16)_0%,_transparent_36%)] z-10" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_18%,_rgba(8,20,35,0.5)_78%)] z-10" />
                 </div>
 
                 <div className="container-custom relative z-20 pt-32 pb-16">

@@ -1,0 +1,42 @@
+<svg width="2800" height="1800" viewBox="0 0 2800 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="base" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1400 900) rotate(90) scale(980)">
+      <stop offset="0" stop-color="#1f8b9d"/>
+      <stop offset="0.5" stop-color="#0d3b55"/>
+      <stop offset="1" stop-color="#060d1b"/>
+    </radialGradient>
+    <g id="spiral-arm" opacity="0.55">
+      <path d="M1400 900C1580 730 1840 720 2040 860" stroke="#6be0db" stroke-opacity="0.55" stroke-width="3"/>
+      <path d="M1400 900C1570 790 1770 820 1925 940" stroke="#f4cc79" stroke-opacity="0.45" stroke-width="2"/>
+      <circle cx="2040" cy="860" r="7" fill="#f4cc79" fill-opacity="0.55"/>
+      <circle cx="1925" cy="940" r="5" fill="#6be0db" fill-opacity="0.55"/>
+    </g>
+  </defs>
+
+  <rect width="2800" height="1800" fill="url(#base)"/>
+
+  <g>
+    <use href="#spiral-arm"/>
+    <use href="#spiral-arm" transform="rotate(20 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(40 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(60 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(80 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(100 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(120 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(140 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(160 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(180 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(200 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(220 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(240 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(260 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(280 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(300 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(320 1400 900)"/>
+    <use href="#spiral-arm" transform="rotate(340 1400 900)"/>
+  </g>
+
+  <circle cx="1400" cy="900" r="280" fill="#f4cc79" fill-opacity="0.09"/>
+  <circle cx="1400" cy="900" r="160" fill="#6be0db" fill-opacity="0.11"/>
+  <circle cx="1400" cy="900" r="55" fill="#f4cc79" fill-opacity="0.42"/>
+</svg>
