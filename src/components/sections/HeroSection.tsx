@@ -78,7 +78,7 @@ export default function HeroSection() {
                             }`}
                     >
                         Training clinicians, facilitators, and guides worldwide to support
-                        real transformation—safely, ethically, and skillfully.
+                        real transformation-safely, ethically, and skillfully.
                     </p>
 
                     {/* CTAs */}

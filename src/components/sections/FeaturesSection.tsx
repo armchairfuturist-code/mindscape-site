@@ -16,21 +16,21 @@ const features = [
         title: "Support That Doesn't End",
         subtitle: "Lifelong community and mentorship",
         description:
-            "True learning happens over time—through mentorship, community, and lived practice. From interactive mentorship to an ongoing practitioner community, you'll have guidance, feedback, and connection as you grow—personally, professionally, and spiritually.",
+            "True learning happens over time-through mentorship, community, and lived practice. From interactive mentorship to an ongoing practitioner community, you'll have guidance, feedback, and connection as you grow-personally, professionally, and spiritually.",
     },
     {
         icon: Heart,
         title: "A Safe Space",
         subtitle: "Built with intention, held with integrity",
         description:
-            "Psychedelic education requires more than information—it requires a safe, supportive space to explore, question, and grow. Our faculty is experienced in trauma-informed facilitation and deeply understands the vulnerability this work invites.",
+            "Psychedelic education requires more than information-it requires a safe, supportive space to explore, question, and grow. Our faculty is experienced in trauma-informed facilitation and deeply understands the vulnerability this work invites.",
     },
     {
         icon: Shield,
         title: "Ethical Foundation",
         subtitle: "Responsibility at the core",
         description:
-            "We cultivate an environment where emotional safety, confidentiality, and personal agency are honored. Here, honesty is welcomed, uncertainty is safe to explore, and transformation unfolds with compassion—not pressure.",
+            "We cultivate an environment where emotional safety, confidentiality, and personal agency are honored. Here, honesty is welcomed, uncertainty is safe to explore, and transformation unfolds with compassion-not pressure.",
     },
 ];
 
@@ -76,7 +76,7 @@ export default function FeaturesSection() {
                         At Mindscape, We Offer
                     </h2>
                     <p className="text-lg text-slate-600">
-                        Unlock the potential of consciousness—not just through information,
+                        Unlock the potential of consciousness-not just through information,
                         but through integration, embodiment, and lived experience.
                     </p>
                 </div>

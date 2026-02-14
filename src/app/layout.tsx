@@ -19,7 +19,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Mindscape Psychedelic Institute | Professional Psychedelic Education",
   description:
-    "Where Psychedelic Education Meets Integrity, Insight, and Embodied Wisdom. Training clinicians, facilitators, and guides worldwide to support real transformation—safely, ethically, and skillfully.",
+    "Where Psychedelic Education Meets Integrity, Insight, and Embodied Wisdom. Training clinicians, facilitators, and guides worldwide to support real transformation-safely, ethically, and skillfully.",
   keywords: [
     "psychedelic education",
     "psychedelic therapy training",

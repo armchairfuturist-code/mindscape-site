@@ -106,7 +106,7 @@ export default function CoachingContent() {
                         <div className="prose prose-lg prose-invert mx-auto text-white/70">
                             <p className="text-lg leading-relaxed">
                                 Awareness Reset is a private, high-touch intensive designed for professionals,
-                                clinicians, facilitators, founders, and leaders who already function well in the world—
+                                clinicians, facilitators, founders, and leaders who already function well in the world-
                                 <span className="text-white font-semibold"> but know something deeper is asking to reorganize.</span>
                             </p>
                             <p className="text-lg leading-relaxed mt-6">
@@ -114,7 +114,7 @@ export default function CoachingContent() {
                                 No medicine. No peak-state chasing. No spiritual performance.
                             </p>
                             <p className="text-xl font-medium text-teal-200 mt-8">
-                                Just direct, embodied work with how experience is actually being organized—moment to moment.
+                                Just direct, embodied work with how experience is actually being organized-moment to moment.
                             </p>
                         </div>
                     </div>
@@ -144,7 +144,7 @@ export default function CoachingContent() {
                                     and still live from the same underlying nervous system patterns."
                                 </blockquote>
                                 <p>
-                                    Awareness Reset exists to address that layer directly—without medicine, without abstraction, and without bypass.
+                                    Awareness Reset exists to address that layer directly-without medicine, without abstraction, and without bypass.
                                 </p>
                             </div>
                         </div>
@@ -405,7 +405,7 @@ export default function CoachingContent() {
                             <p>And it is not rushed.</p>
                         </div>
                         <p className="text-2xl font-medium text-white mb-12">
-                            If you’re looking for something refined, honest, and direct—<br />
+                            If you’re looking for something refined, honest, and direct-<br />
                             <span className="text-teal-200">this may be the right container.</span>
                         </p>
 

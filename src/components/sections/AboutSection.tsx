@@ -59,7 +59,7 @@ export default function AboutSection() {
                         <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
                         <div className="absolute bottom-6 left-6 right-6">
                             <p className="text-white/90 text-lg font-medium">
-                                Together, we blend science, spirituality, and clinical awareness—
+                                Together, we blend science, spirituality, and clinical awareness-
                                 emphasizing safety, ethics, and embodied practice as the foundation
                                 for transformative work.
                             </p>

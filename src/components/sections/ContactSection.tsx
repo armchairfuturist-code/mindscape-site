@@ -45,7 +45,7 @@ export default function ContactSection() {
                             Join the Mindscape Vault
                         </h2>
                         <p className="text-lg text-white/70 mb-8 leading-relaxed">
-                            Step into a deeper level of mastery with the Mindscape Vault —
+                            Step into a deeper level of mastery with the Mindscape Vault -
                             a private library of high-level teachings, practical tools,
                             trauma-informed guidance, and behind-the-scenes insights designed
                             for facilitators, therapists, and seekers committed to doing this

@@ -378,7 +378,7 @@ export const courses: Course[] = [
         slug: "the-embodiment-protocol",
         title: "The Embodiment Protocol",
         subtitle: "Facilitator Certification Training",
-        description: "You’ve glimpsed the Infinite. Now it’s time to live it.\n\nFor decades, 5-MeO-DMT facilitation has revolved around the peak experience — the explosive moment of ego dissolution that promises enlightenment. But real transformation doesn’t happen in the peak. It happens in the return.\n\nIn The Integration & Embodiment Protocol, facilitators and teachers Stephan Kerby and Amber Kerby, LMFT challenge over forty years of traditional 5-MeO-DMT facilitation by offering a grounded, trauma-informed, and truly evolutionary approach to the medicine. Rooted in nondual awareness, neuroscience, and therapeutic practice, this training lays out a new framework for transformation — one where awakening is not an event to chase, but a state to live.",
+        description: "You’ve glimpsed the Infinite. Now it’s time to live it.\n\nFor decades, 5-MeO-DMT facilitation has revolved around the peak experience - the explosive moment of ego dissolution that promises enlightenment. But real transformation doesn’t happen in the peak. It happens in the return.\n\nIn The Integration & Embodiment Protocol, facilitators and teachers Stephan Kerby and Amber Kerby, LMFT challenge over forty years of traditional 5-MeO-DMT facilitation by offering a grounded, trauma-informed, and truly evolutionary approach to the medicine. Rooted in nondual awareness, neuroscience, and therapeutic practice, this training lays out a new framework for transformation - one where awakening is not an event to chase, but a state to live.",
         image: "/images/eplive.jpeg",
         price: null,
         type: "certification",
@@ -527,7 +527,7 @@ export const courses: Course[] = [
             },
             {
                 question: "\"Will I be certified to administer after this?\"",
-                answer: "No single course can legally grant you that right yet in most jurisdictions—federal laws are still shifting. This course gives you the clinical foundation to practice responsibly within your scope and legal framework."
+                answer: "No single course can legally grant you that right yet in most jurisdictions-federal laws are still shifting. This course gives you the clinical foundation to practice responsibly within your scope and legal framework."
             }
         ]
     },
@@ -535,7 +535,7 @@ export const courses: Course[] = [
         slug: "mdma-masterclass",
         title: "MDMA Masterclass",
         subtitle: "Trauma-Informed, Therapeutically-Oriented",
-        description: "The MDMA Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, and serious students seeking a clear, responsible understanding of MDMA-assisted work.\n\nThis course approaches MDMA not as a recreational or peak-experience substance, but as a powerful therapeutic catalyst—one that requires skill, structure, and ethical clarity. The emphasis throughout is on safety, nervous system regulation, and long-term integration rather than emotional catharsis alone.",
+        description: "The MDMA Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, and serious students seeking a clear, responsible understanding of MDMA-assisted work.\n\nThis course approaches MDMA not as a recreational or peak-experience substance, but as a powerful therapeutic catalyst-one that requires skill, structure, and ethical clarity. The emphasis throughout is on safety, nervous system regulation, and long-term integration rather than emotional catharsis alone.",
         image: "/images/mdmamc.jpeg",
         price: 150,
         type: "masterclass",
@@ -575,7 +575,7 @@ export const courses: Course[] = [
             },
             {
                 title: "Raising the Standard",
-                description: "MDMA can create profound states of safety and connection—but those states must be handled with care. We emphasize safety over sentiment and integration over intensity.",
+                description: "MDMA can create profound states of safety and connection-but those states must be handled with care. We emphasize safety over sentiment and integration over intensity.",
             },
         ],
         curriculum: [
@@ -626,7 +626,7 @@ export const courses: Course[] = [
         slug: "psilocybin-masterclass",
         title: "Psilocybin Masterclass",
         subtitle: "Trauma-Informed, Facilitation-Focused",
-        description: "This Psilocybin Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, guides, and serious students who want a grounded, responsible education in working with psilocybin mushrooms.\n\nRather than emphasizing peak experiences or spiritualized narratives, this course focuses on safety, ethical facilitation, and long-term outcomes. It is built on the understanding that psilocybin is not inherently therapeutic—the quality of preparation, facilitation, and integration determines its impact.",
+        description: "This Psilocybin Masterclass is a comprehensive, self-paced training designed for therapists, facilitators, guides, and serious students who want a grounded, responsible education in working with psilocybin mushrooms.\n\nRather than emphasizing peak experiences or spiritualized narratives, this course focuses on safety, ethical facilitation, and long-term outcomes. It is built on the understanding that psilocybin is not inherently therapeutic-the quality of preparation, facilitation, and integration determines its impact.",
         image: "/images/Psilomc.jpeg",
         price: 150,
         type: "masterclass",
@@ -646,7 +646,7 @@ export const courses: Course[] = [
             "Set, setting, and safety preparation",
             "Trauma-informed facilitation skills",
         ],
-        howItWorksIntro: "Psilocybin is a powerful tool—but tools require skill. This masterclass exists to raise the standard of education by prioritizing safety over spectacle and integration over experience.",
+        howItWorksIntro: "Psilocybin is a powerful tool-but tools require skill. This masterclass exists to raise the standard of education by prioritizing safety over spectacle and integration over experience.",
         howItWorks: [
             {
                 title: "Facilitation & Safety at the Center",
@@ -731,7 +731,7 @@ export const courses: Course[] = [
             "Nondual experiences and ego dissolution",
             "Safety, screening, and contraindications",
         ],
-        howItWorksIntro: "5-MeO-DMT has the capacity to reveal profound truth—and to cause profound harm when mishandled. This course exists to raise the standard of education by emphasizing preparation, integration, and responsibility.",
+        howItWorksIntro: "5-MeO-DMT has the capacity to reveal profound truth-and to cause profound harm when mishandled. This course exists to raise the standard of education by emphasizing preparation, integration, and responsibility.",
         howItWorks: [
             {
                 title: "Facilitation, Responsibility & Risk",
@@ -797,7 +797,7 @@ export const courses: Course[] = [
         slug: "entheogenic-guide-masterclass",
         title: "Trauma-Informed Entheogenic Guide Masterclass",
         subtitle: "Foundational Certification for Ethical Guiding",
-        description: "The Trauma-Informed Entheogenic Guide Masterclass is an advanced, comprehensive training designed for those who are serious about stepping into the role of guide—and for anyone who ultimately intends to facilitate entheogenic work responsibly.\n\nWith over 15 hours of instruction, a detailed textbook, a complete forms cabinet, and extensive practical material, this masterclass offers one of the most thorough foundational trainings available for entheogenic guiding.",
+        description: "The Trauma-Informed Entheogenic Guide Masterclass is an advanced, comprehensive training designed for those who are serious about stepping into the role of guide-and for anyone who ultimately intends to facilitate entheogenic work responsibly.\n\nWith over 15 hours of instruction, a detailed textbook, a complete forms cabinet, and extensive practical material, this masterclass offers one of the most thorough foundational trainings available for entheogenic guiding.",
         image: "/images/tieg.jpeg",
         price: 500,
         type: "masterclass",
@@ -880,7 +880,7 @@ export const courses: Course[] = [
         slug: "integration-specialist-masterclass",
         title: "Psychedelic Integration Specialist Masterclass",
         subtitle: "Advanced Training in Integration & Embodiment",
-        description: "The Psychedelic Integration Specialist Masterclass is an advanced, comprehensive training designed for therapists, facilitators, guides, and integration practitioners who want to support lasting change after psychedelic experiences.\n\nBuilt on the truth that psychedelic experiences do not create change—integration does. The training moves beyond insight-processing into embodiment, nervous system regulation, and behavioral transformation.",
+        description: "The Psychedelic Integration Specialist Masterclass is an advanced, comprehensive training designed for therapists, facilitators, guides, and integration practitioners who want to support lasting change after psychedelic experiences.\n\nBuilt on the truth that psychedelic experiences do not create change-integration does. The training moves beyond insight-processing into embodiment, nervous system regulation, and behavioral transformation.",
         image: "/images/iscourse.jpeg",
         price: 500,
         type: "masterclass",

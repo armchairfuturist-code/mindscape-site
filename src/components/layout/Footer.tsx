@@ -50,7 +50,7 @@ export default function Footer() {
                         </Link>
                         <p className="text-white/70 text-sm leading-relaxed mb-6">
                             Training clinicians, facilitators, and guides worldwide to support
-                            real transformation—safely, ethically, and skillfully.
+                            real transformation-safely, ethically, and skillfully.
                         </p>
                         {/* Social Links */}
                         <div className="flex gap-4">

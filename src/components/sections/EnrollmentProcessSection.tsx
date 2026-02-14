@@ -27,7 +27,7 @@ export default function EnrollmentProcessSection() {
                         Two Training Styles, Different Commitments
                     </h3>
                     <p className="text-slate-600 text-center max-w-3xl mx-auto mb-8">
-                        Live certifications are premium, cohort-based immersions with mentorship and interview.
+                        Live certifications are serious, cohort-based immersions with mentorship and interview.
                         Masterclasses are evergreen, shorter trainings you can begin anytime.
                     </p>
 

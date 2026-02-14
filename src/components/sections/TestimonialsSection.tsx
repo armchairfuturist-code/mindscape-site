@@ -28,7 +28,7 @@ const testimonials = [
     },
     {
         id: 5,
-        quote: "What sets Mindscape apart is the emphasis on embodiment. This isn't just intellectual learning—it's transformative practice that you feel in your body.",
+        quote: "What sets Mindscape apart is the emphasis on embodiment. This isn't just intellectual learning-it's transformative practice that you feel in your body.",
         author: "Lisa Thompson",
         role: "Somatic Therapist",
         rating: 5,
@@ -49,7 +49,7 @@ const testimonials = [
     },
     {
         id: 8,
-        quote: "As someone new to this field, I felt completely supported throughout the training. The trauma-informed approach isn't just taught—it's modeled in every interaction.",
+        quote: "As someone new to this field, I felt completely supported throughout the training. The trauma-informed approach isn't just taught-it's modeled in every interaction.",
         author: "Rachel Green, MA",
         role: "Mental Health Counselor",
         rating: 5,
