@@ -93,9 +93,11 @@ function StatusToggle({
             return null;
         }
 
-        const remainingBalanceCopy = course.requiresInterview
-            ? "Remaining tuition is due after interview acceptance."
-            : "Remaining tuition is due at class start date.";
+        const remainingBalanceCopy = course.slug === "mastering-ketamine-assisted-therapy"
+            ? ""
+            : course.requiresInterview
+                ? "Remaining tuition is due after interview acceptance."
+                : "Remaining tuition is due at class start date.";
 
         return (
             <div
@@ -127,7 +129,7 @@ function StatusToggle({
                             You&apos;re reserving your seat with a
                             <span className="font-semibold text-navy"> {course.depositAmount ? `$${course.depositAmount}` : "deposit"}</span>.
                         </p>
-                        <p className="text-slate-600 text-sm mb-6">{remainingBalanceCopy}</p>
+                        {remainingBalanceCopy && <p className="text-slate-600 text-sm mb-6">{remainingBalanceCopy}</p>}
 
                         <div className="grid grid-cols-2 gap-3">
                             <button
