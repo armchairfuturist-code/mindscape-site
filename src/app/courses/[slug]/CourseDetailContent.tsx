@@ -208,9 +208,7 @@ function StatusToggle({
         const enrollmentDescription = course.enrollmentDescription || (isMasterclass
             ? "Get immediate access to all course materials and begin your journey today."
             : "Secure your spot now and begin your journey.");
-        const applyButtonText = course.applyCtaLabel || (course.requiresInterview
-            ? "Apply / Start Enrollment"
-            : "Apply / Reserve Spot");
+        const applyButtonText = "Apply";
         return (
             <>
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 md:p-8">
